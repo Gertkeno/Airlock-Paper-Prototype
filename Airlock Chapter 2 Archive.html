@@ -1,0 +1,96 @@
+<tw-storydata name="airlock-paper" startnode="1" creator="Twine" creator-version="2.3.2" ifid="4811A33E-5E47-4E07-92F9-123504BA7C82" zoom="1" format="Harlowe" format-version="3.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
+
+</script><tw-passagedata pid="1" name="Chapter 1" tags="" position="814,317" size="100,100">You find yourself in an airlock with 3 figures watching you.
+
+They ask what is your name?
+
+(if: $your_name is true) [ [[Kaleb]] ]
+[[Ms. Information]]</tw-passagedata><tw-passagedata pid="2" name="Kaleb" tags="" position="772,606" size="100,100">They believe you&#39;ve regained some of your old self and let you out of your cell.
+
+[[Chapter 2]]</tw-passagedata><tw-passagedata pid="3" name="Ms. Information" tags="" position="920,593" size="100,100">The three figures look quizically then one shed&#39;s a tear and softly says &quot;It&#39;s not Kaleb&quot;
+The tallest of the three presses the eject button and you are sent on your way
+
+(set: $your_name to true)
+[[Drift into space]]</tw-passagedata><tw-passagedata pid="4" name="Drift into space" tags="" position="1070,335" size="100,100">You die, lol.
+
+[[Chapter 1]] </tw-passagedata><tw-passagedata pid="5" name="Chapter 2" tags="" position="976,897" size="100,100">You eat dinner &quot;with&quot; the three others onboard, Sad and alone in your cell, though you get a great view of the figurative family eating in strokes of glee and worry.
+
+Suddenly you feel sick, a voice roars and rumbles the ship; with no reaction from the crew.
+
+Once your sickness subsides you feel detached and now see an aura from each member of this crew, you&#39;re closer to them somehow and feel you will get closer very soon.
+
+Pick a possesion target.
+
+[[ Possess the tallest|ch2pl]]
+[[ Possess Mr. white coat|ch2pr]]
+[[ Possess the young woman|ch2pa]]</tw-passagedata><tw-passagedata pid="6" name="ch2pr" tags="" position="1010,1078" size="100,100">(if: $rakesh_name is true) [ You find yourself through the eyes of Rakesh. ]
+(else:) [ Forced into this man&#39;s mind and pristine white coat you now see through their eyes. ]
+
+At nearly the same time, by pure coincidence the tallest turns to you, the white coat, and states &quot;If something is wrong with Kaleb he&#39;d still know his name, this proves nothing! If it&#39;s really Kaleb in there he&#39;d know the ships name, your name, my name, Ardelia&#39;s name, and our every routine.&quot;
+(set: $ardelia_name to true)
+
+You, in the white coat, can only sit and stare at this lanky woman, to which she pouts and withdraws herself from your presence. The other, assumed &quot;Adrelia&quot; mutters &quot;I still think it&#39;s him, or at worst just feeling real ill.&quot;
+
+Though you don&#39;t reply it doesn&#39;t seem Adrelia wanted or needed a reply, you&#39;re a good target to vent to, given the circumstances.
+
+With a little more akward silence and staring you are pulled back into your original body, Kaleb.
+
+[[return|ch2testp1]]</tw-passagedata><tw-passagedata pid="7" name="ch2pl" tags="" position="783,1058" size="100,100">(if: $leah_name is true) [ You&#39;re transported inside the great pilot Leah&#39;s mind, ] (else:) [ You merely blink and find yourself through a new view, ] if only you were actually this tall.
+
+Everyone soaks in silence for a short while until (if: $rakesh_name is true) [Rakesh] (else:) [the white coat] interrupts the beautiful nothing with &quot;Leah, we&#39;re not against you,&quot; and with more courage states &quot;We just don&#39;t want to jump to conclusions.&quot;
+(set: $leah_name to true)
+
+He&#39;s looking right at you, and your looking right back. He quickly looks away, clearly terrified of the eye contact.
+
+(if: $ardelia_name is true) [Ardelia] (else:) [The third] blurts out &quot;It&#39;s not a trial, rakesh.&quot;
+(set: $rakesh_name to true)
+
+Rakesh grimmaces but says nothing in return. Tension is high and you want to sneak away from this feels fest, and by pure coincidence you are pulled back to your original body.
+
+[[retreat|ch2testp1]]</tw-passagedata><tw-passagedata pid="8" name="ch2pa" tags="" position="1180,1058" size="100,100">(if: $ardelia_name is true) [ You brain blast your way into Adrelia&#39;s mind. ]
+(else:) [ You&#39;ve melded minds with a member of the crew, short (relatively) and colourful. ]
+
+Hearing the other two members arguing certainly annoys you, though why not eavesdrop a little?
+
+The tallest states as immutible fact &quot;If something is wrong with Kaleb he&#39;d still know his name, this proves nothing! If it&#39;s really Kaleb in there he&#39;d know the ships name, your name, my name, Ardelia&#39;s name, and our every routine.&quot;
+(set: $ardelia_name to true)
+
+This certainly puts Kaleb in the hot seat, luckily we&#39;re not quite him right now and luckily (if: $rakesh_name) [Rakesh] (else:) [the white coat] retorts &quot;As if, you don&#39;t announce &#39;Welcome to a bright new day aboard the Kairos-3 This is your captain speaking-&#39;&quot;
+(set: $ship_name to true)
+
+But the tallest cuts him off brandishing her teeth, and as yellow as they may be this certainly scares everyone, and by pure coincidence you&#39;re pulled back to your original body.
+
+[[withdraw|ch2testp1]]</tw-passagedata><tw-passagedata pid="9" name="ch2testp1" tags="" position="952,1245" size="100,100">You&#39;re approached by the three crew members, the tallest leads with &quot;Kaleb, we&#39;ve decided we need more information from you, to see if you are still yourself.&quot; With a deep breath she continues &quot;If you fail this test I have no choice but to eject you from this ship, as is procedure.&quot;
+
+Everyone looks away breifly as (if: $leah_name is true) [Leah] (else:) [the tallest] begins to question, &quot;What is my name?&quot; she asks.
+
+[[Margret|ch2testdie]]
+[[Chad|ch2testdie]]
+[[It&#39;s my right to remain silent|ch2testdie]]
+(if: $leah_name is true) [[Leah|ch2testp2]]</tw-passagedata><tw-passagedata pid="10" name="ch2testdie" tags="" position="830,1400" size="100,100">(if: $leah_name) [Leah] (else:) [The tallest] is quick to slam the eject button. The airlock bay fails to open. Sadly they have to foresight to press the button a second time and now your in space, dying.
+
+[[Chapter 2]]</tw-passagedata><tw-passagedata pid="11" name="ch2testp2" tags="" position="1014,1402" size="100,100">With some relief from the others Leah presses on.
+
+&quot;Who is this beside me?&quot; She points to the younger woman on her left, your right.
+
+[[Kaleb|ch2testdie]]
+[[Mary|ch2testdie]]
+[[Arduino|ch2testdie]]
+(if: $ardelia_name is true) [[Ardelia|ch2testp3]]</tw-passagedata><tw-passagedata pid="12" name="ch2testp3" tags="" position="1047,1561" size="100,100">Adrelia smiles. Leah puts on her thinking scowl and breaths in.
+
+&quot;What ship are we on?&quot;
+
+(if: $rakesh_name is true) [Rakesh] (else:) [The white coat] quickly blurts out &quot;He might not know that, we shouldn&#39;t-&quot;
+
+Leah rudely interrupts with &quot;Fine, if you don&#39;t know the ship&#39;s name what&#39;s his?&quot;
+
+[[Phone a friend?|ch2testdie]]
+[[The Scrapper mk2|ch2testdie]]
+[[Randy|ch2testdie]]
+(if: $ship_name is true) [[Kairos-3|ch2testpass]]
+(if: $rakesh_name is true) [[Rakesh|ch2testpass]]</tw-passagedata><tw-passagedata pid="13" name="ch2testpass" tags="" position="1047,1711" size="100,100">Turns out your a good study buddy to have.</tw-passagedata></tw-storydata>
+
