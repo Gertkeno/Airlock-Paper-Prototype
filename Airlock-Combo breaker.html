@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>airlock-paper</title>
+<title>Airlock-Combo breaker</title>
 <style title="Twine CSS">@-webkit-keyframes appear{0%{opacity:0}to{opacity:1}}@keyframes appear{0%{opacity:0}to{opacity:1}}@-webkit-keyframes fade-in-out{0%,to{opacity:0}50%{opacity:1}}@keyframes fade-in-out{0%,to{opacity:0}50%{opacity:1}}@-webkit-keyframes rumble{50%{-webkit-transform:translateY(-0.2em);transform:translateY(-0.2em)}}@keyframes rumble{50%{-webkit-transform:translateY(-0.2em);transform:translateY(-0.2em)}}@-webkit-keyframes shudder{50%{-webkit-transform:translateX(0.2em);transform:translateX(0.2em)}}@keyframes shudder{50%{-webkit-transform:translateX(0.2em);transform:translateX(0.2em)}}@-webkit-keyframes box-flash{0%{background-color:white;color:white}}@keyframes box-flash{0%{background-color:white;color:white}}@-webkit-keyframes pulse{0%{-webkit-transform:scale(0, 0);transform:scale(0, 0)}20%{-webkit-transform:scale(1.2, 1.2);transform:scale(1.2, 1.2)}40%{-webkit-transform:scale(0.9, 0.9);transform:scale(0.9, 0.9)}60%{-webkit-transform:scale(1.05, 1.05);transform:scale(1.05, 1.05)}80%{-webkit-transform:scale(0.925, 0.925);transform:scale(0.925, 0.925)}to{-webkit-transform:scale(1, 1);transform:scale(1, 1)}}@keyframes pulse{0%{-webkit-transform:scale(0, 0);transform:scale(0, 0)}20%{-webkit-transform:scale(1.2, 1.2);transform:scale(1.2, 1.2)}40%{-webkit-transform:scale(0.9, 0.9);transform:scale(0.9, 0.9)}60%{-webkit-transform:scale(1.05, 1.05);transform:scale(1.05, 1.05)}80%{-webkit-transform:scale(0.925, 0.925);transform:scale(0.925, 0.925)}to{-webkit-transform:scale(1, 1);transform:scale(1, 1)}}@-webkit-keyframes shudder-in{0%, to{-webkit-transform:translateX(0em);transform:translateX(0em)}5%, 25%, 45%{-webkit-transform:translateX(-1em);transform:translateX(-1em)}15%, 35%, 55%{-webkit-transform:translateX(1em);transform:translateX(1em)}65%{-webkit-transform:translateX(-0.6em);transform:translateX(-0.6em)}75%{-webkit-transform:translateX(0.6em);transform:translateX(0.6em)}85%{-webkit-transform:translateX(-0.2em);transform:translateX(-0.2em)}95%{-webkit-transform:translateX(0.2em);transform:translateX(0.2em)}}@keyframes shudder-in{0%, to{-webkit-transform:translateX(0em);transform:translateX(0em)}5%, 25%, 45%{-webkit-transform:translateX(-1em);transform:translateX(-1em)}15%, 35%, 55%{-webkit-transform:translateX(1em);transform:translateX(1em)}65%{-webkit-transform:translateX(-0.6em);transform:translateX(-0.6em)}75%{-webkit-transform:translateX(0.6em);transform:translateX(0.6em)}85%{-webkit-transform:translateX(-0.2em);transform:translateX(-0.2em)}95%{-webkit-transform:translateX(0.2em);transform:translateX(0.2em)}}@-webkit-keyframes rumble-in{0%, to{-webkit-transform:translateY(0em);transform:translateY(0em)}5%, 25%, 45%{-webkit-transform:translateY(-1em);transform:translateY(-1em)}15%, 35%, 55%{-webkit-transform:translateY(1em);transform:translateY(1em)}65%{-webkit-transform:translateY(-0.6em);transform:translateY(-0.6em)}75%{-webkit-transform:translateY(0.6em);transform:translateY(0.6em)}85%{-webkit-transform:translateY(-0.2em);transform:translateY(-0.2em)}95%{-webkit-transform:translateY(0.2em);transform:translateY(0.2em)}}@keyframes rumble-in{0%, to{-webkit-transform:translateY(0em);transform:translateY(0em)}5%, 25%, 45%{-webkit-transform:translateY(-1em);transform:translateY(-1em)}15%, 35%, 55%{-webkit-transform:translateY(1em);transform:translateY(1em)}65%{-webkit-transform:translateY(-0.6em);transform:translateY(-0.6em)}75%{-webkit-transform:translateY(0.6em);transform:translateY(0.6em)}85%{-webkit-transform:translateY(-0.2em);transform:translateY(-0.2em)}95%{-webkit-transform:translateY(0.2em);transform:translateY(0.2em)}}@-webkit-keyframes slide-right{0%{-webkit-transform:translateX(-100vw);transform:translateX(-100vw)}}@keyframes slide-right{0%{-webkit-transform:translateX(-100vw);transform:translateX(-100vw)}}@-webkit-keyframes slide-left{0%{-webkit-transform:translateX(100vw);transform:translateX(100vw)}}@keyframes slide-left{0%{-webkit-transform:translateX(100vw);transform:translateX(100vw)}}@-webkit-keyframes slide-up{0%{-webkit-transform:translateY(100vh);transform:translateY(100vh)}}@keyframes slide-up{0%{-webkit-transform:translateY(100vh);transform:translateY(100vh)}}@-webkit-keyframes slide-down{0%{-webkit-transform:translateY(-100vh);transform:translateY(-100vh)}}@keyframes slide-down{0%{-webkit-transform:translateY(-100vh);transform:translateY(-100vh)}}@-webkit-keyframes flicker{0%,29%,31%,63%,65%,77%,79%,86%,88%,91%,93%{opacity:0}30%{opacity:0.2}64%{opacity:0.4}78%{opacity:0.6}87%{opacity:0.8}92%, to{opacity:1}}@keyframes flicker{0%,29%,31%,63%,65%,77%,79%,86%,88%,91%,93%{opacity:0}30%{opacity:0.2}64%{opacity:0.4}78%{opacity:0.6}87%{opacity:0.8}92%, to{opacity:1}}.debug-mode tw-expression[type=hookref]{background-color:rgba(115,123,140,0.15)}.debug-mode tw-expression[type=hookref]::after{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:"?" attr(name)}.debug-mode tw-expression[type=variable]{background-color:rgba(140,128,115,0.15)}.debug-mode tw-expression[type=variable]::after{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:"$" attr(name)}.debug-mode tw-expression[type=tempVariable]{background-color:rgba(140,128,115,0.15)}.debug-mode tw-expression[type=tempVariable]::after{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:"_" attr(name)}.debug-mode tw-expression[type=macro]:nth-of-type(4n+0){background-color:rgba(136,153,102,0.15)}.debug-mode tw-expression[type=macro]:nth-of-type(2n+1){background-color:rgba(102,153,102,0.15)}.debug-mode tw-expression[type=macro]:nth-of-type(4n+2){background-color:rgba(102,153,136,0.15)}.debug-mode tw-expression[type=macro][name="display"]{background-color:rgba(0,170,255,0.1) !important}.debug-mode tw-expression[type=macro][name="if"],.debug-mode tw-expression[type=macro][name="if"]+tw-hook:not([name]),.debug-mode tw-expression[type=macro][name="unless"],.debug-mode tw-expression[type=macro][name="unless"]+tw-hook:not([name]),.debug-mode tw-expression[type=macro][name="elseif"],.debug-mode tw-expression[type=macro][name="elseif"]+tw-hook:not([name]),.debug-mode tw-expression[type=macro][name="else"],.debug-mode tw-expression[type=macro][name="else"]+tw-hook:not([name]){background-color:rgba(0,255,0,0.1) !important}.debug-mode tw-expression[type=macro].false{background-color:rgba(255,0,0,0.2) !important}.debug-mode tw-expression[type=macro].false+tw-hook:not([name]){display:none}.debug-mode tw-expression[type=macro][name="a"],.debug-mode tw-expression[type=macro][name="array"],.debug-mode tw-expression[type=macro][name="datamap"],.debug-mode tw-expression[type=macro][name="dataset"],.debug-mode tw-expression[type=macro][name="colour"],.debug-mode tw-expression[type=macro][name="color"],.debug-mode tw-expression[type=macro][name="num"],.debug-mode tw-expression[type=macro][name="number"],.debug-mode tw-expression[type=macro][name="text"],.debug-mode tw-expression[type=macro][name="print"]{background-color:rgba(255,255,0,0.2) !important}.debug-mode tw-expression[type=macro][name="put"],.debug-mode tw-expression[type=macro][name="set"]{background-color:rgba(255,128,0,0.2) !important}.debug-mode tw-expression[type=macro][name="script"]{background-color:rgba(255,191,0,0.2) !important}.debug-mode tw-expression[type=macro][name="style"]{background-color:rgba(185,198,198,0.2) !important}.debug-mode tw-expression[type=macro][name^="link"],.debug-mode tw-expression[type=macro][name^="click"],.debug-mode tw-expression[type=macro][name^="mouseover"],.debug-mode tw-expression[type=macro][name^="mouseout"]{background-color:rgba(128,223,32,0.2) !important}.debug-mode tw-expression[type=macro][name^="replace"],.debug-mode tw-expression[type=macro][name^="prepend"],.debug-mode tw-expression[type=macro][name^="append"],.debug-mode tw-expression[type=macro][name^="remove"]{background-color:rgba(223,96,32,0.2) !important}.debug-mode tw-expression[type=macro][name="live"]{background-color:rgba(32,96,223,0.2) !important}.debug-mode tw-expression[type=macro]::before{content:"(" attr(name) ":)";padding:0 0.5rem;font-size:1rem;vertical-align:middle;line-height:normal;background-color:inherit;border:1px solid rgba(255,255,255,0.5)}.debug-mode tw-hook{background-color:rgba(0,85,255,0.1) !important}.debug-mode tw-hook::before{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:"["}.debug-mode tw-hook::after{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:"]"}.debug-mode tw-hook[name]::after{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:"]<" attr(name) "|"}.debug-mode tw-pseudo-hook{background-color:rgba(255,170,0,0.1) !important}.debug-mode tw-collapsed::before{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:"{"}.debug-mode tw-collapsed::after{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:"}"}.debug-mode tw-verbatim::before,.debug-mode tw-verbatim::after{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:"`"}.debug-mode tw-align[style*="text-align: center"]{background:linear-gradient(to right, rgba(255,204,189,0) 0%, rgba(255,204,189,0.25) 50%, rgba(255,204,189,0) 100%)}.debug-mode tw-align[style*="text-align: left"]{background:linear-gradient(to right, rgba(255,204,189,0.25) 0%, rgba(255,204,189,0) 100%)}.debug-mode tw-align[style*="text-align: right"]{background:linear-gradient(to right, rgba(255,204,189,0) 0%, rgba(255,204,189,0.25) 100%)}.debug-mode tw-column{background-color:rgba(189,228,255,0.2)}.debug-mode tw-enchantment{animation:enchantment 0.5s infinite;-webkit-animation:enchantment 0.5s infinite;border:1px solid}.debug-mode tw-link::after,.debug-mode tw-broken-link::after{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:attr(passage-name)}.debug-mode tw-include{background-color:rgba(204,128,51,0.1)}.debug-mode tw-include::before{font-size:0.8rem;padding-left:0.2rem;padding-right:0.2rem;vertical-align:top;content:attr(type) ' "' attr(title) '"'}@keyframes enchantment{0%,to{border-color:#ffb366}50%{border-color:#6fc}}@-webkit-keyframes enchantment{0%,to{border-color:#ffb366}50%{border-color:#6fc}}tw-debugger{position:fixed;box-sizing:border-box;bottom:0;right:0;z-index:999999;min-width:10em;min-height:1em;padding:1em;font-size:1.25em;font-family:sans-serif;border-left:solid #000 2px;border-top:solid #000 2px;border-top-left-radius:.5em;background:#fff;opacity:1}tw-debugger select{margin-right:1em;width:12em}tw-debugger button{border-radius:3px;border:solid #999 1px;margin:auto 4px;background-color:#fff;font-size:inherit}tw-debugger button.enabled{background-color:#eee;box-shadow:inset #ddd 3px 5px 0.5em}tw-debugger .variables{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-direction:normal;-webkit-box-orient:vertical;-webkit-flex-direction:column;-moz-flex-direction:column;-ms-flex-direction:column;flex-direction:column;position:absolute;bottom:100%;left:-2px;right:0;padding:1em;max-height:40vh;overflow-y:scroll;overflow-x:hidden;z-index:999998;background:#fff;border:inherit;border-top-left-radius:.5em;border-bottom-left-radius:.5em;font-size:0.8em}tw-debugger .variables:empty,tw-debugger .variables[hidden]{display:none}tw-debugger .variables .variable-row{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-direction:normal;-webkit-box-orient:horizontal;-webkit-flex-direction:row;-moz-flex-direction:row;-ms-flex-direction:row;flex-direction:row;flex-shrink:0}tw-debugger .variables .variable-row:nth-child(2n){background:#EEE}tw-debugger .variables .variable-name{display:inline-block;width:50%}tw-debugger .variables .variable-name::before{content:"$"}tw-debugger .variables .variable-name.temporary::before{content:"_"}tw-debugger .variables .variable-name .temporary-variable-scope{opacity:0.8;font-size:0.75em}tw-debugger .variables .variable-name .temporary-variable-scope::before{content:" in "}tw-debugger .variables .variable-value{display:inline-block;width:50%}tw-link,.link,tw-icon,.enchantment-clickblock{cursor:pointer}tw-link,.enchantment-link{color:#4169E1;font-weight:bold;text-decoration:none;transition:color 0.2s ease-in-out}tw-enchantment[style^="color"] tw-link:not(:hover),tw-enchantment[style*=" color"] tw-link:not(:hover),tw-enchantment[style^="color"] .enchantment-link:not(:hover),tw-enchantment[style*=" color"] .enchantment-link:not(:hover){color:inherit}tw-link:hover,.enchantment-link:hover{color:#00bfff}tw-link:active,.enchantment-link:active{color:#DD4B39}.visited{color:#6941e1}tw-enchantment[style^="color"] .visited:not(:hover),tw-enchantment[style*=" color"] .visited:not(:hover){color:inherit}.visited:hover{color:#E3E}tw-broken-link{color:#993333;border-bottom:2px solid #993333;cursor:not-allowed}tw-enchantment[style^="color"] tw-broken-link:not(:hover),tw-enchantment[style*=" color"] tw-broken-link:not(:hover){color:inherit}.enchantment-mouseover{border-bottom:1px dashed #666}.enchantment-mouseout{border:rgba(64,149,191,0.25) 1px solid}.enchantment-mouseout:hover{background-color:rgba(64,149,191,0.25);border:transparent 1px solid;border-radius:0.2em}.enchantment-clickblock{box-shadow:inset 0 0 0 0.5vmax;display:block;color:rgba(65,105,225,0.5);transition:color 0.2s ease-in-out}.enchantment-clickblock:hover{color:rgba(0,191,255,0.5)}.enchantment-clickblock:active{color:rgba(222,78,59,0.5)}html{margin:0;height:100%;overflow-x:hidden}*,:before,:after{position:relative;box-sizing:inherit}body{margin:0;height:100%}tw-storydata{display:none}tw-story{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-direction:normal;-webkit-box-orient:vertical;-webkit-flex-direction:column;-moz-flex-direction:column;-ms-flex-direction:column;flex-direction:column;font:100% Georgia, serif;box-sizing:border-box;width:100%;min-height:100%;font-size:1.5em;line-height:1.5em;padding:5% 20%;margin:0;overflow:hidden;background-color:#000;color:#fff}tw-passage{display:block}br+br{display:block;height:0;margin:0.8ex 0}tw-sidebar{left:-5em;width:3em;position:absolute;text-align:center;display:block}tw-icon{display:block;margin:0.5em 0;opacity:0.2;font-size:2.75em}tw-icon:hover{opacity:0.4}tw-hook:empty,tw-expression:empty{display:none}tw-error{display:inline-block;border-radius:0.2em;padding:0.2em;font-size:1rem;cursor:help}tw-error.error{background-color:rgba(223,58,190,0.4);color:#fff}tw-error.warning{background-color:rgba(223,140,58,0.4);color:#fff;display:none}.debug-mode tw-error.warning{display:inline}tw-error-explanation{display:block;font-size:0.8rem;line-height:1rem}tw-error-explanation-button{cursor:pointer;line-height:0em;border-radius:1px;border:1px solid black;font-size:0.8rem;margin:0 0.4rem;opacity:0.5}tw-error-explanation-button .folddown-arrowhead{display:inline-block}tw-notifier{border-radius:0.2em;padding:0.2em;font-size:1rem;background-color:rgba(223,182,58,0.4);display:none}.debug-mode tw-notifier{display:inline}tw-notifier::before{content:attr(message)}tw-colour{border:1px solid black;display:inline-block;width:1em;height:1em}select{background-color:transparent;font:inherit;border-style:solid;padding:2px}select:not([disabled]){color:inherit}h1{font-size:3em}h2{font-size:2.25em}h3{font-size:1.75em}h1,h2,h3,h4,h5,h6{line-height:1em;margin:0.3em 0 0.6em 0}pre{font-size:1rem}small{font-size:70%}big{font-size:120%}mark{color:rgba(0,0,0,0.6);background-color:#ff9}ins{color:rgba(0,0,0,0.6);background-color:rgba(255,242,204,0.5);border-radius:0.5em;box-shadow:0em 0em 0.2em #ffe699;text-decoration:none}center{text-align:center;margin:0 auto;width:60%}blink{text-decoration:none;animation:fade-in-out 1s steps(1, end) infinite alternate;-webkit-animation:fade-in-out 1s steps(1, end) infinite alternate}tw-align{display:block}tw-columns{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-direction:normal;-webkit-box-orient:horizontal;-webkit-flex-direction:row;-moz-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;-moz-justify-content:space-between;justify-content:space-between}tw-outline{color:white;text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000}tw-shadow{text-shadow:0.08em 0.08em 0.08em #000}tw-emboss{text-shadow:0.08em 0.08em 0em #000;color:white}tw-condense{letter-spacing:-0.08em}tw-expand{letter-spacing:0.1em}tw-blur{color:transparent;text-shadow:0em 0em 0.08em #000}tw-blurrier{color:transparent;text-shadow:0em 0em 0.2em #000}tw-blurrier::selection{background-color:transparent;color:transparent}tw-blurrier::-moz-selection{background-color:transparent;color:transparent}tw-smear{color:transparent;text-shadow:0em 0em 0.02em rgba(0,0,0,0.75),-0.2em 0em 0.5em rgba(0,0,0,0.5),0.2em 0em 0.5em rgba(0,0,0,0.5)}tw-mirror{display:inline-block;transform:scaleX(-1);-webkit-transform:scaleX(-1)}tw-upside-down{display:inline-block;transform:scaleY(-1);-webkit-transform:scaleY(-1)}tw-fade-in-out{text-decoration:none;animation:fade-in-out 2s ease-in-out infinite alternate;-webkit-animation:fade-in-out 2s ease-in-out infinite alternate}tw-rumble{-webkit-animation:rumble linear 0.1s 0s infinite;animation:rumble linear 0.1s 0s infinite;display:inline-block}tw-shudder{-webkit-animation:shudder linear 0.1s 0s infinite;animation:shudder linear 0.1s 0s infinite;display:inline-block}tw-shudder-in{animation:shudder-in 1s ease-out;-webkit-animation:shudder-in 1s ease-out}.transition-in{-webkit-animation:appear 0ms step-start;animation:appear 0ms step-start}.transition-out{-webkit-animation:appear 0ms step-end;animation:appear 0ms step-end}[data-t8n^=dissolve].transition-in{-webkit-animation:appear .8s;animation:appear .8s}[data-t8n^=dissolve].transition-out{-webkit-animation:appear .8s reverse;animation:appear .8s reverse}[data-t8n^=shudder].transition-in{display:inline-block;-webkit-animation:shudder-in .8s;animation:shudder-in .8s}[data-t8n^=shudder].transition-out{display:inline-block;-webkit-animation:shudder-in .8s reverse;animation:shudder-in .8s reverse}[data-t8n^=rumble].transition-in{display:inline-block;-webkit-animation:rumble-in .8s;animation:rumble-in .8s}[data-t8n^=rumble].transition-out{display:inline-block;-webkit-animation:rumble-in .8s reverse;animation:rumble-in .8s reverse}[data-t8n^=boxflash].transition-in{-webkit-animation:box-flash .8s;animation:box-flash .8s}[data-t8n^=pulse].transition-in{-webkit-animation:pulse .8s;animation:pulse .8s;display:inline-block}[data-t8n^=pulse].transition-out{-webkit-animation:pulse .8s reverse;animation:pulse .8s reverse;display:inline-block}[data-t8n^=slideleft].transition-in{-webkit-animation:slide-left .8s;animation:slide-left .8s;display:inline-block}[data-t8n^=slideleft].transition-out{-webkit-animation:slide-right .8s reverse;animation:slide-right .8s reverse;display:inline-block}[data-t8n^=slideright].transition-in{-webkit-animation:slide-right .8s;animation:slide-right .8s;display:inline-block}[data-t8n^=slideright].transition-out{-webkit-animation:slide-left .8s reverse;animation:slide-left .8s reverse;display:inline-block}[data-t8n^=slideup].transition-in{-webkit-animation:slide-up .8s;animation:slide-up .8s;display:inline-block}[data-t8n^=slideup].transition-out{-webkit-animation:slide-down .8s reverse;animation:slide-down .8s reverse;display:inline-block}[data-t8n^=slidedown].transition-in{-webkit-animation:slide-down .8s;animation:slide-down .8s;display:inline-block}[data-t8n^=slidedown].transition-out{-webkit-animation:slide-up .8s reverse;animation:slide-up .8s reverse;display:inline-block}[data-t8n^=flicker].transition-in{-webkit-animation:flicker .8s;animation:flicker .8s}[data-t8n^=flicker].transition-out{-webkit-animation:flicker .8s reverse;animation:flicker .8s reverse}[data-t8n$=fast]{animation-duration:.4s;-webkit-animation-duration:.4s}[data-t8n$=slow]{animation-duration:1.6s;-webkit-animation-duration:1.6s}
 </style>
 </head>
@@ -11,9 +11,7 @@
 
 <tw-story></tw-story>
 
-<tw-storydata name="airlock-paper" startnode="1" creator="Twine" creator-version="2.3.2" ifid="4811A33E-5E47-4E07-92F9-123504BA7C82" zoom="0.6" format="Harlowe" format-version="3.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
-
-
+<tw-storydata name="Airlock-Combo breaker" startnode="31" creator="Twine" creator-version="2.3.2" ifid="F5867D3C-A9A5-4AD1-9FA2-6D583AF1C3F0" zoom="1" format="Harlowe" format-version="3.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
 
 
 
@@ -21,53 +19,120 @@
 
 
 
+</script><tw-passagedata pid="1" name="Chapter 3 oponer" tags="" position="1891,1247" size="100,100">(set: $Tension to 0)
+(set: $knowsEnginer to false)
+The questions are over. A collective sigh of relief hangs in the air.  Everyone returns to eating slowly and quietly.  The silence is cut by the lurch of the ship going to a sudden stop. 
+Leah eyes snap to you and she says &quot;Seems the engine has shut off forward momentum. Kaleb why don&#39;t you go fix it?&quot;.  A small smile graces her face.
+[[(set: $Tension = $Tension +1)Why me?|ch3SupGain]] 
+[[On It boss?|ch3ReactorPuzzle]]
+[[Probably the fan belt. It is always the fan belt |ch3FanBelt]]
+(if: $knowsEnginer is true)[[(set: $Tension = $Tension -1)I&#39;ll give it all she&#39;s got captain.|ch3ReactorPuzzle]]</tw-passagedata><tw-passagedata pid="2" name="ch3SupGain" tags="" position="1699,1448" size="100,100">(Set: $Tension = $Tension + 1)
+Leah says &quot;Why would I ask you?&quot; 
+ [[I Dont Know| Ch3NotKelab]] (Set: $Tension = $Tension + 1)
+ [[Because I work with the engine?|ch3ReactorPuzzle]](Set: $Tension = $Tension + 1)
+ (if: $knowsEnginer is true) [[I am just joking. I am the best engineer y&#39;all could afford.|ch3ReactorPuzzle]]
+  (if: $knowsEnginer is true) [[Sorry, on it.|ch3ReactorPuzzle]](set: $Tension = $Tension -1)</tw-passagedata><tw-passagedata pid="3" name="ch3ReactorPuzzle" tags="" position="1856,1454" size="100,100">In the Engine Room, a massive Reactor sits humming with vacuum tubes ablaze with oddly colored lights. 
+Leah pulls out her holstered gun and says &quot;This is a Flame West revolver, given to me... its old. It will still but a lethal plasma-shell into you.&quot; She sighs &quot;I do not want to fire this in this room, I do not want to fire this at all&quot; She drinks from a flask. $Tension
+(if: $Tension &lt; 1)[Leah holsters the weapon &quot;I am sorry. Could you show me how the reactor works?&quot; ](else:)[Leah Keeping the gun trained on you &quot;So, show me how the reactor works.&quot;]
+[[(set: $Tension = $Tension + 1 )Sure, come over here, hold this heavy metal plate... please. |ReactorDial_1]]
+(If: $knowsEnginer) [[Actually this is pretty complicated, I am going to need space.|ReactorDial_0]]</tw-passagedata><tw-passagedata pid="4" name="ch3FanBelt" tags="" position="2005,1448" size="100,100">Adrelia Says &quot;The engine has fan belts? I thought it was a fusion reactor.&quot;
+Leah states &quot;yes why would the reactor need fan belts?&quot;
+Rekesh interjects &quot;Why would I know? I am not the engineer, Kal....&quot;
+The death stare Leah shoots Rekesh could kill a medium-sized horse. (set: $knowsEnginer to true)
+[[It is allways the fan belt.|ch3ReactorPuzzle]](Set: $Tension = $Tension + 1)
+[[Does fusion mean gassoline?| Ch3NotKelab]]
+</tw-passagedata><tw-passagedata pid="5" name=" Ch3NotKelab" tags="" position="1519,1593" size="100,100">Leah states &quot;that&#39;s not Kaleb and fires a round into your skull.&quot;
+As your body hits the floor you hear a voice say &quot;Let&#39;s try again&quot;
+[[Chapter 3 oponer]] </tw-passagedata><tw-passagedata pid="6" name="ReactorDial_1" tags="" position="1810,1591" size="100,100">While leah is distracted with the heavy object you know you have time to possess someone else. not alot of time. 
+[[Possess new man | MarvToRek]]
+[[Possess Rekesh | RekToMarv]]
+[[Work on Reactor | ReactorWork]]</tw-passagedata><tw-passagedata pid="7" name="ReactorDial_0" tags="" position="1966,1602" size="100,100">Leah walks all the way to the back of the room.  She is still watching you and that gun is a concern. You see out of a window Rakesh talking to Ardelia holding a rock. 
+[[Possess new man | MarvToRek]]
+[[Possess Rekesh | RekToMarv]]
+[[Possess Leah | LeahPossess]]
+[[Work on Reactor | ReactorWork]]</tw-passagedata><tw-passagedata pid="8" name=" MarvToRek" tags="" position="1741,1758" size="100,100">You see with the Ardelia&#39;s eyes. You see Rekesh holding a key card  You see his thoughts he is a geologist named Marv. (set: $MarvID to true)
+Rekesh looks at you puzzled and says &quot;Why did you stop talking, these rocks are profitable for business, explain more&quot;  
+[[($Tension = $Tension + 1) Uh... Sorry had a weird thought| MarvToRek2.1]]
+[[($Tension = $Tension + 1) hey is that a keys card? | MarvToRek2.Key]]
+(If: $MarvRoom = true) [[[Oh Sorry was thinking of my many sisters| MarvToRek2.2]]]
+(If: $MarvRoom = true) [[[The mineral analysis does show promising rare earth element deposits. So that key card is for me? | MarvToRek2.Key]]] </tw-passagedata><tw-passagedata pid="9" name=" RekToMarv" tags="" position="2209,2145" size="100,100">Marv continues to discuss the various rocks and readings they found on the moon. untill he posses and says &quot;Wait you stopped me for something what was it?&quot; You look down and see the master key in your hand.
+[[(set:$Tension = $Tension + 1) oh I just wanted to tell you I am going to be patrolling the halls|ExploreTime]]
+(If: $RekRoom = true)[[(set: $tension = $tension - 1) Oh the business is having great profitable turn over so you can afford that new geological pulse reader |ExploreTime]] 
+(If: $MarvRoom = true)[[[(set: $tension = $tension - 1)Rock puns |ExploreTime]]]</tw-passagedata><tw-passagedata pid="10" name=" LeahPossess" tags="" position="2028,1750" size="100,100">You see through Leah&#39;s eyes. you hear her thoughts unraveling a secret.
+(set: $LeahSecret to true)
+[[head outside |OutsideLeah]]
+[[Shoot reactor| ReactorExplodes]] </tw-passagedata><tw-passagedata pid="11" name=" ReactorWork" tags="" position="2208,1594" size="100,100">[[Try the Blue bulb| ReactorOverHeats]]</tw-passagedata><tw-passagedata pid="12" name=" ReactorOverHeats" tags="" position="2192,1902" size="100,100">[[Try the Red Bulb | ReactorExplodes]]</tw-passagedata><tw-passagedata pid="13" name=" ReactorExplodes" tags="" position="2344,1789" size="100,100">A voice in your head chuckles. 
+[[Chapter 3 oponer]] </tw-passagedata><tw-passagedata pid="14" name=" MarvToRek2.1" tags="" position="1686,1907" size="100,100">Rekesh says &quot;weird thoughts like what? are you feeling okay you seemed a little shook all of the sudden.&quot;
+[[ (set:$Tension = $Tension + 1) Oh it is nothing, now is that a key card? | MarvToRek2.Key]] 
+(If: $RekRoom = true)[[(set: $tension = $tension - 1)That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]] 
+(If: $MarvRoom = true) [[[Oh the obsidian formation on that moon seem to be caused by heat but their should&#39;t be any volcano&#39;s. | MarvToRek2.4]]]
+(If: $RekRoom = true)[[(set: $tension = $tension - 1)You know the org chart states that I should be holding the master key? | MarvToRek2.Key]] 
+(If: $MarvRoom = true) [[[Don&#39;t expect perfection from Scientist we all have ellectric personalities. Is that a key? | MarvToRek2.Key]]] </tw-passagedata><tw-passagedata pid="15" name=" MarvToRek2.Key" tags="" position="1931,2033" size="100,100">(set: $toldAboutKey to true)
+Rekesh looks at you for a moment then says &quot;Oh yes it is. I was supposed to give this to you.  The master Key goes to the person with most corporate achievement points. You do beat me every year.&quot; He sighs. 
+(if: $Tension &lt; 1)[I feel like you are the only one I can trust. The company metrics are clearly right to trust you.&quot; ](else:)[I do not think the company knows best this time.&quot;]
+(if: $Tension &lt; 1) [[Thanks I will patrol the ship |ExploreTime]]
+(if: $Tension &gt; 1) [[Wait do not be so hasty| TryGetKey]]
+(if: ($Tension &gt; 1 and RekRoom = true)) [[Isnt the corporation where our trust should be?| TryGetKeyG]]</tw-passagedata><tw-passagedata pid="16" name=" MarvToRek2.2" tags="" position="1940,1863" size="100,100">Rekesh seems not to know what to say.  He opens his mouth to say something and thinks better of it. Awkward silence is broken by him saying &quot;Yes children&quot;
+[[ (set:$Tension = $Tension + 1) Oh it is nothing, now is that a key card? | MarvToRek2.Key]] 
+(If: $RekRoom = true)[[(set: $tension = $tension - 1)That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]] 
+(If: $MarvRoom = true) [[[Oh the obsidian formation on that moon seem to be caused by heat but there shouldn&#39;t be any volcanoes. | MarvToRek2.4]]]
+(If: $RekRoom = true)[[(set: $tension = $tension = 1)You know the org chart states that I should be holding the master key? | MarvToRek2.Key]] 
+(If: $MarvRoom = true) [[[Don&#39;t expect perfection from Geologist we all have faults. Is that a key? | MarvToRek2.Key]]]  </tw-passagedata><tw-passagedata pid="17" name=" MarvToRek2.3" tags="" position="1573,2073" size="100,100">(set: $toldAboutKey to true)
+(set: $Marv23 to true)
+Rekesh perks up and says &quot;Oh I am glad you enjoyed it. It will save the company 14 cents every year on cards and cake. The cake budget haunts me to this day. But I stopped you for a reason. This is the Master key to all the rooms. I need you to hold onto it.&quot;
+(If: ($MarvRoom = true and $Marv24 = false)) [[[(set: $tension = $tension - 1)Oh that reminds me of the obsidian formation on that moon seem to be caused by heat but there shouldn&#39;t be any volcanoes. | MarvToRek2.4]]]
+[[Thanks mate |ExploreTime]]  </tw-passagedata><tw-passagedata pid="18" name=" MarvToRek2.4" tags="" position="1786,2072" size="100,100">(set: $toldAboutKey to true)
+(set: $Marv24 to true)
+Rekesh looks perplexed &quot;That is interesting, I know glass sales are always solid. Better than gold. We might be able to corner the artisanal window market. But I stopped you for a reason. This is the Master key to all the rooms. I need you to hold onto it.&quot;
+(If: ($MarvRoom = true and $Marv23 = false))[[(set: $tension = $tension - 1) Oh that reminds me, That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]] 
+[[Thanks mate |ExploreTime]]  </tw-passagedata><tw-passagedata pid="19" name="ExploreTime" tags="" position="2000,2393" size="100,100">You have the keycard time to snoop some peoples rooms. 
+[[tensionLock]]</tw-passagedata><tw-passagedata pid="20" name=" TryGetKey" tags="" position="2120,2022" size="100,100">Rekesh looks at you and says &quot;Okay what have I not considered? I know I am me but how do I know you are you?
 
-
-</script><tw-passagedata pid="1" name="Chapter 1: Start" tags="" position="810,315" size="100,100">Your eyes open. In a brilliant white room, you look out on the vast blackness of space through a set of clear doors. You are in an airlock. There&#39;s a faint buzzing in your ear, whispers crowding one another. 
-
-The whispering dies down and you turn, through the glass door onto the ship you see three people you do not recognize. 
-
-The first figure (&quot;Man with glasses&quot; - Rakesh): A man wearing a streamlined black outfit, with white streaks in his hair. He wears glasses and carries himself stiffly, as if his presence there is something of a chore.
-
-The second figure (&quot;Young woman&quot; - Ardelia): The youngest woman of the three is slightly shorter, and dressed more casually. Her dark hair is braided to one side and her eyes dart from the people to you anxiously. 
-
-The third figure (&quot;Blonde woman&quot; - Leah): She stands, arms crossed as she listens to the arguments on both sides. She&#39;s dressed most casually of all, half her flight suit unzipped and tied around her waist. 
-
+(If: $RekRoom = true)[[(set: $tension = $tension - 1)You drop a truth bomb on the man. | TryGetKeyG]] 
+(If: $MarvRoom = true) [[[Have my reports changed any? kaleb is currently doing what he could do in his sleep | TryGetKeyG]]]
+(If: $LeahRoom = true)[[(set: $tension = $tension - 1)Look I do trust you, unlike Leah I know you have us all at heart. | TryGetKeyG]] 
+(If: $MarvRoom = true) [[[(set: $tension = $tension - 1)I know we are all rocked by this but I am me.  | TryGetKeyG]]] 
+[[(set: $tension = $tension + 3)I got nothing|LeahNotices]]</tw-passagedata><tw-passagedata pid="21" name=" TryGetKeyG" tags="" position="2039,2246" size="100,100">Rekesh Says &quot;I am sorry for doubting you. Here take the key I am gonna lie down in my room&quot;
+[[Thanks I will patrol the ship |ExploreTime]]</tw-passagedata><tw-passagedata pid="22" name="LeahNotices" tags="" position="2608,1931" size="100,100">Leah shakes you back to your body. The voice in your head louder than ever is hissing. 
+Leah says &quot;what are you doing? You are not Kaleb!&quot;
+Leah vents the room and you slowly suffocate to death. 
+[[Chapter 3 oponer]]  </tw-passagedata><tw-passagedata pid="23" name="OutsideLeah" tags="" position="2332,1950" size="100,100">You see Ardelia talking to Rekesh.
+[[Walk over and talk |LeahToRekMarv]]
+[[Explore as Leah |LeahExplore]]</tw-passagedata><tw-passagedata pid="24" name="LeahToRekMarv" tags="" position="2466,2098" size="100,100">They both stop talking in shock. Rekesh says &quot;I thought you said you would watch him untill the job is done? what happened?
+[[($Tension = $Tension + 1) I trust him.|LeahRekMarv2]]
+[[($Tension = $Tension + 1) hey is that a keys card? |LeahMarvRek2.Key]]
+(If: $MarvRoom = true) [[[He is doing boring science stuff and i needed to stretch my legs |LeahRekMarv2]]]
+(If: $RekRoom = true) [[[($Tension = $Tension - 1)Rekesh With Marv&#39;s passing I just wanted to apologize for how I have treated you Rekash.|LeahMarvRek2.Key]]] </tw-passagedata><tw-passagedata pid="25" name="LeahExplore" tags="" position="2142,2382" size="100,100">You only have access to leah&#39;s room and other shared spaces. 
+[[Walk over and talk |LeahToRekMarv]]
+[[tensionLock]]</tw-passagedata><tw-passagedata pid="26" name="LeahRekMarv2" tags="" position="2536,2280" size="100,100">They stair at you wondering. Rekesh says well Ardelia should have the key her metrix are flawless.  
+(If: $RekRoom = true)[[(set: $tension = $tension - 1)You drop a truth bomb on the man. |TryGetKeyGLeah]] 
+(If: $LeahRoom = true)[[(set: $tension = $tension - 1)Look I do trust you, I know i do not show it but I do. |TryGetKeyGLeah]] 
+(If: $MarvRoom = true) [[[(set: $tension = $tension - 1)I know we are all rocked by this but I should have the key.  |TryGetKeyGLeah]]] 
+[[(set: $tension = $tension + 3)I got nothing|LeahNotices2]]</tw-passagedata><tw-passagedata pid="27" name="LeahMarvRek2.Key" tags="" position="2390,2294" size="100,100">Rekesh looks at you and says &quot;this keycard is the master key card. I was about to hand it over to Ardelia.&quot;
+(If: $RekRoom = true)[[(set: $tension = $tension - 1)You drop a truth bomb on the man. |TryGetKeyGLeah]] 
+(If: $LeahRoom = true)[[(set: $tension = $tension - 1)Look I do trust you, I know i do not show it but I do. |TryGetKeyGLeah]] 
+(If: $MarvRoom = true) [[[(set: $tension = $tension - 1)I know we are all rocked by this but I am me.  |TryGetKeyGLeah]]] 
+[[(set: $tension = $tension + 3)I got nothing|LeahNotices2]]</tw-passagedata><tw-passagedata pid="28" name="TryGetKeyGLeah" tags="" position="2270,2409" size="100,100">YOu have the gun and the key the power is all yours!
+[[tensionLock]]</tw-passagedata><tw-passagedata pid="29" name="LeahNotices2" tags="" position="2678,2078" size="100,100">You snap to your body and hear shouting in the distance before you know it Leah burst in gun drawn. 
+[[ What happens next? | Ch3NotKelab]]</tw-passagedata><tw-passagedata pid="30" name="tensionLock" tags="" position="2116,2558" size="100,100">End so far. </tw-passagedata><tw-passagedata pid="31" name="Chapter 1: Start" tags="" position="814,317" size="100,100">You find yourself in an airlock with 3 figures watching you.
 
 (set: $your_name to false)
 (set: $ship_name to false)
 (set: $marv_is_dead to false)
-(set: $possession_sight to false)
 
-[[Continue |Opening debate]]</tw-passagedata><tw-passagedata pid="2" name="End of Chapter 1" tags="" position="792,1616" size="100,100">The doors of the airlock open. Ardelia covers her mouth, Rakesh crosses his arms, and Leah steps forward.
+[[Continue |Opening debate]]</tw-passagedata><tw-passagedata pid="32" name="End of Chapter 1" tags="" position="792,1616" size="100,100">TThe doors of the airlock open. Ardelia covers her mouth, Rakesh crosses his arms, and Leah steps forward.
 
-As the screen fades to black, you hear the voice: &quot;We begin, when they end.&quot; 
-
-[[End of Chapter 1. |Chapter 2]]</tw-passagedata><tw-passagedata pid="3" name="Graveyard" tags="" position="364,334" size="100,100">Together, we have no end. 
-
-Voice: Do you know where you start and where you end?
-
-
-Where you end, we continue. 
-Gabe&#39;s voice: I don&#39;t understand.
-Voice: Pe
-Voice: Perhaps you would like to see 
-Voice: Perhaps you would like to see? 
-Gabe&#39;s voice: 
-Voice: Where you end, we do not. 
-Gabe&#39;s voice: I don&#39;t understand. 
-Voice: Perhaps  
-
-
+As the screen fades to black, you hear the voice: [[&quot;We begin, when they end.&quot;|Chapter 2]]</tw-passagedata><tw-passagedata pid="33" name="Ms. Information" tags="" position="366,334" size="100,100">The three figures look quizically then one shed&#39;s a tear and softly says &quot;It&#39;s not Kaleb&quot;
+The tallest of the three presses the eject button and you are sent on your way
 
 (set: $your_name to true)
-[[Drift into space]]</tw-passagedata><tw-passagedata pid="4" name="Drift into space" tags="" position="517,440" size="100,100">Man with glasses: He must be sick. 
-Young woman: Please, there has to be another way. 
-Man with glasses: Quarantine protocol is clear. Leah.
-Blonde woman: I&#39;m sorry, Gabe. 
+[[Drift into space]]</tw-passagedata><tw-passagedata pid="34" name="Drift into space" tags="" position="517,440" size="100,100">Rakesh: He must be sick. 
+Ardelia: Please, there has to be another way. 
+Rakesh: Quarantine procedures are clear. {delay: 10} Leah.
+Leah: I&#39;m sorry, Gabe. 
 
 [[Leah blasts you from the airlock. |The Voice]]
-</tw-passagedata><tw-passagedata pid="5" name="Chapter 2" tags="" position="1499,356" size="100,100">You eat dinner &quot;with&quot; the three others onboard, Sad and alone in your cell, though you get a great view of the figurative family eating in strokes of glee and worry.
+</tw-passagedata><tw-passagedata pid="35" name="Chapter 2" tags="" position="1499,356" size="100,100">You eat dinner &quot;with&quot; the three others onboard, Sad and alone in your cell, though you get a great view of the figurative family eating in strokes of glee and worry.
 
 Suddenly you feel sick, a voice roars and rumbles the ship; with no reaction from the crew.
 
@@ -77,7 +142,7 @@ Pick a possesion target.
 
 [[ Possess the tallest|ch2pl]]
 [[ Possess Mr. white coat|ch2pr]]
-[[ Possess the young woman|ch2pa]]</tw-passagedata><tw-passagedata pid="6" name="ch2pr" tags="" position="1533,537" size="100,100">(if: $rakesh_name is true) [ You find yourself through the eyes of Rakesh. ]
+[[ Possess the young woman|ch2pa]]</tw-passagedata><tw-passagedata pid="36" name="ch2pr" tags="" position="1533,537" size="100,100">(if: $rakesh_name is true) [ You find yourself through the eyes of Rakesh. ]
 (else:) [ Forced into this man&#39;s mind and pristine white coat you now see through their eyes. ]
 
 At nearly the same time, by pure coincidence the tallest turns to you, the white coat, and states &quot;If something is wrong with Kaleb he&#39;d still know his name, this proves nothing! If it&#39;s really Kaleb in there he&#39;d know the ships name, your name, my name, Ardelia&#39;s name, and our every routine.&quot;
@@ -89,7 +154,7 @@ Though you don&#39;t reply it doesn&#39;t seem Adrelia wanted or needed a reply,
 
 With a little more akward silence and staring you are pulled back into your original body, Kaleb.
 
-[[return|ch2testp1]]</tw-passagedata><tw-passagedata pid="7" name="ch2pl" tags="" position="1306,517" size="100,100">(if: $leah_name is true) [ You&#39;re transported inside the great pilot Leah&#39;s mind, ] (else:) [ You merely blink and find yourself through a new view, ] if only you were actually this tall.
+[[return|ch2testp1]]</tw-passagedata><tw-passagedata pid="37" name="ch2pl" tags="" position="1306,517" size="100,100">(if: $leah_name is true) [ You&#39;re transported inside the great pilot Leah&#39;s mind, ] (else:) [ You merely blink and find yourself through a new view, ] if only you were actually this tall.
 
 Everyone soaks in silence for a short while until (if: $rakesh_name is true) [Rakesh] (else:) [the white coat] interrupts the beautiful nothing with &quot;Leah, we&#39;re not against you,&quot; and with more courage states &quot;We just don&#39;t want to jump to conclusions.&quot;
 (set: $leah_name to true)
@@ -101,7 +166,7 @@ He&#39;s looking right at you, and your looking right back. He quickly looks awa
 
 Rakesh grimmaces but says nothing in return. Tension is high and you want to sneak away from this feels fest, and by pure coincidence you are pulled back to your original body.
 
-[[retreat|ch2testp1]]</tw-passagedata><tw-passagedata pid="8" name="ch2pa" tags="" position="1703,517" size="100,100">(if: $ardelia_name is true) [ You brain blast your way into Adrelia&#39;s mind. ]
+[[retreat|ch2testp1]]</tw-passagedata><tw-passagedata pid="38" name="ch2pa" tags="" position="1703,517" size="100,100">(if: $ardelia_name is true) [ You brain blast your way into Adrelia&#39;s mind. ]
 (else:) [ You&#39;ve melded minds with a member of the crew, short (relatively) and colourful. ]
 
 Hearing the other two members arguing certainly annoys you, though why not eavesdrop a little?
@@ -114,23 +179,23 @@ This certainly puts Kaleb in the hot seat, luckily we&#39;re not quite him right
 
 But the tallest cuts him off brandishing her teeth, and as yellow as they may be this certainly scares everyone, and by pure coincidence you&#39;re pulled back to your original body.
 
-[[withdraw|ch2testp1]]</tw-passagedata><tw-passagedata pid="9" name="ch2testp1" tags="" position="1475,704" size="100,100">You&#39;re approached by the three crew members, the tallest leads with &quot;Kaleb, we&#39;ve decided we need more information from you, to see if you are still yourself.&quot; With a deep breath she continues &quot;If you fail this test I have no choice but to eject you from this ship, as is procedure.&quot;
+[[withdraw|ch2testp1]]</tw-passagedata><tw-passagedata pid="39" name="ch2testp1" tags="" position="1475,704" size="100,100">You&#39;re approached by the three crew members, the tallest leads with &quot;Kaleb, we&#39;ve decided we need more information from you, to see if you are still yourself.&quot; With a deep breath she continues &quot;If you fail this test I have no choice but to eject you from this ship, as is procedure.&quot;
 
 Everyone looks away breifly as (if: $leah_name is true) [Leah] (else:) [the tallest] begins to question, &quot;What is my name?&quot; she asks.
 
 [[Margret|ch2testdie]]
 [[Chad|ch2testdie]]
 [[It&#39;s my right to remain silent|ch2testdie]]
-(if: $leah_name is true) [[Leah|ch2testp2]]</tw-passagedata><tw-passagedata pid="10" name="ch2testdie" tags="" position="1353,859" size="100,100">(if: $leah_name) [Leah] (else:) [The tallest] is quick to slam the eject button. The airlock bay fails to open. Sadly they have to foresight to press the button a second time and now your in space, dying.
+(if: $leah_name is true) [[Leah|ch2testp2]]</tw-passagedata><tw-passagedata pid="40" name="ch2testdie" tags="" position="1353,859" size="100,100">(if: $leah_name) [Leah] (else:) [The tallest] is quick to slam the eject button. The airlock bay fails to open. Sadly they have to foresight to press the button a second time and now your in space, dying.
 
-[[Chapter 2]]</tw-passagedata><tw-passagedata pid="11" name="ch2testp2" tags="" position="1537,861" size="100,100">With some relief from the others Leah presses on.
+[[Chapter 2]]</tw-passagedata><tw-passagedata pid="41" name="ch2testp2" tags="" position="1537,861" size="100,100">With some relief from the others Leah presses on.
 
 &quot;Who is this beside me?&quot; She points to the younger woman on her left, your right.
 
 [[Kaleb|ch2testdie]]
 [[Mary|ch2testdie]]
 [[Arduino|ch2testdie]]
-(if: $ardelia_name is true) [[Ardelia|ch2testp3]]</tw-passagedata><tw-passagedata pid="12" name="ch2testp3" tags="" position="1570,1020" size="100,100">Adrelia smiles. Leah puts on her thinking scowl and breaths in.
+(if: $ardelia_name is true) [[Ardelia|ch2testp3]]</tw-passagedata><tw-passagedata pid="42" name="ch2testp3" tags="" position="1570,1020" size="100,100">Adrelia smiles. Leah puts on her thinking scowl and breaths in.
 
 &quot;What ship are we on?&quot;
 
@@ -141,157 +206,112 @@ Leah rudely interrupts with &quot;Fine, if you don&#39;t know the ship&#39;s nam
 [[Phone a friend?|ch2testdie]]
 [[The Scrapper mk2|ch2testdie]]
 [[Randy|ch2testdie]]
-(if: $ship_name is true) [[Kairos-3|ch2testpass]]
-(if: $rakesh_name is true) [[Rakesh|ch2testpass]]</tw-passagedata><tw-passagedata pid="13" name="ch2testpass" tags="" position="1570,1170" size="100,100">Turns out your a good study buddy to have.</tw-passagedata><tw-passagedata pid="14" name="Test 1-1" tags="" position="805,559" size="100,100">The blonde woman steps forward.
-
-Blonde woman: I need you to answer this question.
-Blonde woman: What is your name?
+(if: $ship_name is true) [[Kairos-3|Ch2testpass]]
+(if: $rakesh_name is true) [[Rakesh|Ch2testpass]]</tw-passagedata><tw-passagedata pid="43" name="Test 1-1" tags="" position="809,559" size="100,100">Leah: I need you to answer this question.
+Leah: What is your name?
 
 (if: $your_name is true) [ [[&quot;Gabe.&quot; |Complete Test 1-1]] ]
-[[&quot;...&quot; |Protocol]]</tw-passagedata><tw-passagedata pid="15" name="Protocol" tags="" position="518,554" size="100,100">(if: $your_name is false) 
-[Blonde woman: He doesn&#39;t know his own name.]
+[[&quot;...&quot; |Protocol]]</tw-passagedata><tw-passagedata pid="44" name="Protocol" tags="" position="517,558" size="100,100">(if: $your_name is false) 
+[Leah: He doesn&#39;t know his own name.]
 (else-if: $ship_name is false)
-[Man with glasses: He doesn&#39;t know the ship we&#39;re on. This madness must be contained.
-Blonde woman: Ardelia, I don&#39;t know how that&#39;s possible. Unless...]
+[Rakesh: He doesn&#39;t know the ship we&#39;re on. This madness must be contained.
+Leah: Ardelia, I don&#39;t know how that&#39;s possible. Unless...]
 (else-if: $marv_is_dead is false)
-[Leah: How could he not remember?
-Ardelia: Why are you acting like this?
+[Leah: How could he not know Gates is dead?
+Ardelia: Caleb, Marv is gone. Why are you acting like this?
 Rakesh: Because he&#39;s not himself anymore. This situation is extremely dangerous.]
 
-[[You&#39;ve failed. |Drift into space]]</tw-passagedata><tw-passagedata pid="16" name="Test 1-2" tags="" position="804,795" size="100,100">Trying to mask her panic, her voice wavers. 
-
-Ardelia (Young Woman): Okay, okay, okay...  Gabe, do you know where you are? 
+[[You&#39;ve failed. |Drift into space]]</tw-passagedata><tw-passagedata pid="45" name="Test 1-2" tags="" position="806,795" size="100,100">Ardelia: Okay. Okay. Gabe. Gabe, do you know where you are? {Timer: 60} 
 
 [[&quot;The airlock.&quot; |A bad joke]]
 [[&quot;...&quot; |Protocol]]
 (if: $ship_name is true) 
-[ [[&quot;The Kairos-3.&quot;|Complete Test 1-2]]]</tw-passagedata><tw-passagedata pid="17" name="Opening debate" tags="" position="809,440" size="100,100">The three are talking amongst themselves.
+[ [[&quot;The Kairos-3.&quot;|Complete Test 1-2]]]</tw-passagedata><tw-passagedata pid="46" name="Opening debate" tags="" position="811,440" size="100,100">Ardelia: I don&#39;t feel comfortable with this.
+Rakesh: It&#39;s protocol. 
+Leah: Quiet. He&#39;s awake. 
 
-Young woman: I don&#39;t feel comfortable with this.
-Man with glasses: It&#39;s protocol. 
-Blonde woman: Quiet. He&#39;s awake. 
-
-[[Continue. |Test 1-1]]</tw-passagedata><tw-passagedata pid="18" name="The Voice" tags="" position="670,440.3333333333333" size="100,100">As you drift out into space, you hear a voice...
+[[Continue. |Test 1-1]]</tw-passagedata><tw-passagedata pid="47" name="The Voice" tags="" position="670,441" size="100,100">As you drift out into space, you hear a voice...
 
 (if: $your_name is false)
 [Voice: To end just as we begin. 
 Voice: No. 
 (set: $your_name to true)
-
-[[A rush of blue light |Opening debate]] 
 ]
 
 (else-if: $ship_name is false)
-[Gabe&#39;s voice: What is happening?
-Voice: You are ending.
-Gabe&#39;s voice: Why? 
-Voice: You are no longer you. Perhaps one might learn. 
+[Voice: Perhaps one might learn.
 
 You see the name &quot;Kairos-3&quot; as you drift out from the ship.
 
-Voice: Again.
+Voice: Such frailty. 
 (set: $ship_name to true)
-
-[[A rush of blue light |Test 1-2]] 
 ]
 
 (else-if: $marv_is_dead is false)
-[Gabe&#39;s voice: What are you?
-Voice: Something not so frail. 
-Gabe&#39;s voice: Am I going to keep dying like this?
-Voice: You will continue ending, confined to this form.
-Gabe&#39;s voice: And you?
-Voice: I have no end. Perhaps one might like to see.
+[Voice: Perhaps one might see.
+Voice: Where do you start and end. 
 
-(set: $possession_sight to true)
-[[A rush of blue light. |Test 1-3]]
+(set: $marv_is_dead to true)
 ]
 
-</tw-passagedata><tw-passagedata pid="19" name="A bad joke" tags="" position="932,796" size="100,100">Man with glasses: Is that a joke? (set: rakesh_paranoia += 1)
-Leah (blonde woman): God forbid any humor.
-Ardelia (young woman): Yes, you&#39;re in the airlock.
+[[A rush of blue light and you find yourself back in the airlock. |Opening debate]] </tw-passagedata><tw-passagedata pid="48" name="A bad joke" tags="" position="1007,791" size="100,100">Rakesh: Is that a joke? 
+Leah: Awful timing.
 
-[[She continues to stares at you. |Test 1-2]] </tw-passagedata><tw-passagedata pid="20" name="Complete Test 1-1" tags="" position="809,666" size="100,100">They seem a bit surprised by your response. The young woman is most relieved.
+[[Ardelia stares at you. |Test 1-2]] </tw-passagedata><tw-passagedata pid="49" name="Complete Test 1-1" tags="" position="806,668" size="100,100">Ardelia: See, he knows his name. We&#39;re all overreacting.
+Rakesh: That doesn&#39;t account for the past few days.
+Leah: Rakesh is right, Ardelia. 
 
-Blonde woman: He seems to be lucid. 
-Young woman: Leah, he knows his name. We&#39;re all overreacting.
-Man with glasses: That doesn&#39;t account for the past few days.
-Blonde woman: He&#39;s right, Ardelia. 
+[[Ardelia steps closer to the glass, in her hand is a tablet computer. |Test 1-2]]</tw-passagedata><tw-passagedata pid="50" name="Complete Test 1-2" tags="" position="806,928" size="100,100">Ardelia: See, he knows where he is! 
+Leah: Okay, I think we might need to slow this down.
 
-[[The young woman steps closer to the glass. |Test 1-2]]</tw-passagedata><tw-passagedata pid="21" name="Complete Test 1-2" tags="" position="804,926" size="100,100">Ardelia: See, he knows where he is! 
-Leah: Maybe we should slow down.
-
-[[The man with glasses shakes his head. |Test 1-3]]</tw-passagedata><tw-passagedata pid="22" name="Another bad joke" tags="" position="928,1002" size="100,100">Man with glasses: Another joke. 
+[[Rakesh shakes his head. |Test 1-3]]</tw-passagedata><tw-passagedata pid="51" name="Another bad joke" tags="" position="633,921" size="100,100">Rakesh: Another joke. 
 Leah: We have to follow protocol, Gabe. Answer the questions. 
-Ardelia: Quiet! Gabe, please look at us. This is serious. 
+Ardelia: Quiet! Gabe, please look at me. Focus! 
 
-[[The man with glasses returns to looking at his tablet. |Test 1-3]]</tw-passagedata><tw-passagedata pid="23" name="Test 1-3" tags="" position="800,1058" size="100,100">Man with glasses: Two correct answers and you both toss protocol aside. 
-Man with glasses: Welsh, please explain your behavior. 
-
-He looks at the tablet in his hands. 
-
-(if: $marv_is_dead is false) [
+[[Ardelia holds a tablet in her hands as she stares from it, to you. |Test 1-3]]</tw-passagedata><tw-passagedata pid="52" name="Test 1-3" tags="" position="804,1063" size="100,100">Rakesh: Two correct answers and you both toss protocol aside. 
+Rakesh: Welsh, please explain your behavior. {Timer: 60}
 
 [[&quot;Could you tell me what I&#39;ve done? |Another bad joke]]
 [[&quot;...&quot; |Protocol]]
-]
-
-(if: $possession_sight is true) [ [[Player looks at Rakesh]] ]
-
 (if: $marv_is_dead is true)
-[We have no end. 
-
-[[&quot;Gates is dead. He died in this spot.&quot; (set: ardelia_paranoia and leah_paranoia += 1)|Complete 1-3]]
-
-[[&quot;Marv is gone. He killed himself.&quot; |Complete 1-3]]
+[[[&quot;Gates is dead.&quot; (set: ardelia_paranoia and leah_paranoia += 1)|Complete 1-3]]
+[[&quot;Marv is gone.&quot; |Complete 1-3]]
 ]
-</tw-passagedata><tw-passagedata pid="24" name="Complete 1-3" tags="" position="795,1191" size="100,100">Ardelia: See, Rakesh, he&#39;s lucid. 
-Leah: Let&#39;s calm down. 
-(if: leah_paranoia &gt;= 1) [Leah: Though something may still be off.]
-Rakesh: I am calm. He didn&#39;t answer my question.
-Ardelia: It must be grief. 
-Rakesh: He doesn&#39;t appear sad.
-Leah: When&#39;s the last time you saw someone grieving, Rakesh? Or experienced an emotion?
-Rakesh: I can recognize grief. Just like hysteria. 
-Leah: Fuck off. Smarmy-ass collared fuckwit.
-Ardelia: Please, stop. 
+[[Player looks at Ardelia]]</tw-passagedata><tw-passagedata pid="53" name="Player looks at Ardelia" tags="" position="631,1067" size="100,100">For 30 seconds, player is able to look into Ardelia&#39;s eyes. Can move Ardelia&#39;s head as she looks around. If the player looks at their body, they see it sitting, in an almost trance-like state.
 
-[[The voice cuts through the chatter: &quot;Find us silence.&quot; |Grief]]</tw-passagedata><tw-passagedata pid="25" name="Grief" tags="" position="800,1324" size="100,100">[[&quot;He&#39;s dead. I haven&#39;t handled it well.&quot; (set: rakesh_paranoia &amp; leah_paranoia += 1)|Grief A]] 
-[[&quot;He&#39;s... gone.&quot; |Grief B]]
-[[&quot;Should I cry?&quot; (set: rakesh_paranoia += 1)|Grief C]] </tw-passagedata><tw-passagedata pid="26" name="Grief A" tags="" position="653,1461" size="100,100">Rakesh: Going catatonic?
-Ardelia: They were friends. It&#39;s still somewhat of a normative response. Leah.
-Leah: I guess...
-Ardelia: What would you do?
-Leah: I&#39;d go on a bender. 
-Ardelia: See? We could be making a huge mistake. 
-Rakesh: This is skirting protocol. You risk all of us. 
-Leah: We still don&#39;t fully understand what&#39;s going on. We&#39;ve already lost one crew member. Put him in the lab for now. 
-
-[[Leah steps forward and punches in a code for the airlock. |End of Chapter 1]] </tw-passagedata><tw-passagedata pid="27" name="Grief B" tags="" position="794,1464" size="100,100">Ardelia: See? He&#39;s grieving. 
-Rakesh: A few sad words? That&#39;s his explanation? 
-Leah: Rakesh... I&#39;m not sure.
-Rakesh: That&#39;s all it takes to skirt protocl? Your indecision could expose us. 
-Leah: We still don&#39;t fully understand what&#39;s going on. We&#39;ve already lost one crew member. Put him in the lab for now. 
-
-[[Leah steps forward and punches in a code for the airlock. |End of Chapter 1]]</tw-passagedata><tw-passagedata pid="28" name="Grief C" tags="" position="938,1465" size="100,100">Rakesh: It could be convincing.
-Ardelia: You can&#39;t control how people react to loss.
-Rakesh: This is all still highly unusual.
-Leah: I don&#39;t know if it requires us to follow this protocol.
-Rakesh: Then you risk us all. 
-Leah: We still don&#39;t fully understand what&#39;s going on. We&#39;ve already lost one crew member. Put him in the lab for now. 
-
-[[Leah steps forward and punches in a code for the airlock. |End of Chapter 1]] </tw-passagedata><tw-passagedata pid="29" name="Player looks at Rakesh" tags="" position="674,1060" size="100,100">For 30 seconds, player is able to look through the man with glasses&#39; eyes. He can look around, but not move his body. If the player looks at their body, they see it sitting, in an almost trance-like state.
-
-Can glance down at tablet with the report on Marvin Gates&#39; death. Cause of death: Suicide by asphyxiation. Died in the airlock (set: $marv_is_dead to true)
-
-List of symptoms from Gabe Welsh. 
+Can glance down at tablet with the report on Marvin &quot;Marv&quot; Gates&#39; death. Cause of death: Asphyxiation. (set: $marv_is_dead to true)
 
 The player can overhear--
 
-Leah: He&#39;s spacing out again. 
-Ardelia: No, Gabe, please stay with us. Not after Marv. 
+Leah: What happened? 
+Rakesh: It appears to be another fog. He may not be entirely lucid. 
 
-[[After 30 seconds you are sucked back into your body. |Test 1-3]]</tw-passagedata></tw-storydata>
+[[You are sucked back into your body. |Test 1-3]]</tw-passagedata><tw-passagedata pid="54" name="Complete 1-3" tags="" position="804,1193" size="100,100">Ardelia: See, he&#39;s lucid. 
+Leah: Let&#39;s calm down. 
+(if: leah_paranoia &gt;= 1) [Leah: Though something may still be off.]
+Rakesh: I am calm. I&#39;m the only one being calm here.
+Ardelia: It must be grief. 
+Rakesh: He doesn&#39;t appear sad.
+Leah: When&#39;s the last time you saw someone grieving, Rakesh? Or maybe experienced a human emotion?
+Rakesh: I can recognize grief. Just like hysteria. 
+Leah: Fuck off. You smarmy-ass collared fuckwit.
+Ardelia: Please, stop. 
+
+[[The voice cuts through the chatter: &quot;What must they hear?&quot; |Grief]]</tw-passagedata><tw-passagedata pid="55" name="Grief" tags="" position="804,1324" size="100,100">[[&quot;I am sad.&quot; (set: rakesh_paranoia &amp; leah_paranoia += 1)|Grief A]] 
+[[&quot;He&#39;s... gone.&quot; |Grief B]]
+</tw-passagedata><tw-passagedata pid="56" name="Grief A" tags="" position="735,1461" size="100,100">Ardelia: See? He&#39;s grieving.
+Leah: I guess.
+Ardelia: Leah, we could be making a huge mistake.
+Rakesh: Leah, you must respect protocol. {Wait: 10}
+Leah: I&#39;m not convinced.
+Leah: We still don&#39;t fully understand what&#39;s going on. 
+
+[[Leah steps forward and punches in a code for the airlock. |End of Chapter 1]] </tw-passagedata><tw-passagedata pid="57" name="Grief B" tags="" position="859,1464" size="100,100">Ardelia: See? He&#39;s grieving. 
+Leah: Rakesh, I&#39;m not sure.
+Rakesh: The decision falls to you. 
+Leah: We still don&#39;t fully understand what&#39;s going on. 
+
+[[Leah steps forward and punches in a code for the airlock. |End of Chapter 1]] </tw-passagedata><tw-passagedata pid="58" name="Ch2testpass" tags="" position="1774,1115" size="100,100">[[Chapter 3 oponer]] </tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){i=!0,o=e}finally{try{!r&&s.return&&s.return()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
