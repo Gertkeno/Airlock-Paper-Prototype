@@ -344,10 +344,7 @@ Leah: Quiet. He's awake.
 As you drift out into space, you hear a voice...
 
 (if: $your_name is false)
-[Voice: To end just as we begin.
-Voice: No.
-(set: $your_name to true)
-]
+[Voice: To end just as we begin.]
 
 (else-if: $ship_name is false)
 [Voice: Perhaps one might learn.
@@ -361,8 +358,6 @@ Voice: Such frailty.
 (else-if: $marv_is_dead is false)
 [Voice: Perhaps one might see.
 Voice: Where do you start and end.
-
-(set: $marv_is_dead to true)
 ]
 
 [[A rush of blue light and you find yourself back in the airlock. |Opening debate]]
@@ -400,10 +395,8 @@ Rakesh: Welsh, please explain your behavior. {Timer: 60}
 [["Could you tell me what I've done? |Another bad joke]]
 [["..." |Protocol]]
 (if: $marv_is_dead is true)
-[[["Gates is dead." (set: ardelia_paranoia and leah_paranoia += 1)|Complete 1-3]]
+[["Gates is dead." |Complete 1-3]]
 [["Marv is gone." |Complete 1-3]]
-]
-
 
 # Player looks at Ardelia
 For 30 seconds, player is able to look into Ardelia's eyes. Can move Ardelia's head as she looks around. If the player looks at their body, they see it sitting, in an almost trance-like state.
@@ -432,7 +425,7 @@ Ardelia: Please, stop.
 [[The voice cuts through the chatter: "What must they hear?" |Grief]]
 
 # Grief
-[["I am sad." (set: rakesh_paranoia &amp; leah_paranoia += 1)|Grief A]]
+[["I am sad." |Grief A]]
 [["He's... gone." |Grief B]]
 
 

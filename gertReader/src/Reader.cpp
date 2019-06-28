@@ -28,6 +28,15 @@ Story::Story (const std::string & filename)
 		}
 		else if (word[0] == '(')
 		{
+			const std::string function {[&] ()
+			{
+				std::string f;
+				std::getline (c, f, ':');
+				return trunc_whitespacer (word.substr (1) + f);
+			}()};
+
+			std::cout << function << '\n';
+
 			nodes [currentChapter];
 		}
 		else if (word.find ("[[") == 0)
