@@ -5,7 +5,7 @@ Leah eyes snap to you and she says "Seems the engine has shut off forward moment
 [[Why me?|ch3SupGain]]
 [[On It boss?|ch3ReactorPuzzle]]
 [[Probably the fan belt. It is always the fan belt |ch3FanBelt]]
-(if: $knowsEnginer is true)[[I'll give it all she's got captain.|ch3ReactorPuzzle]]
+(if: $knowsEnginer is true) [[I'll give it all she's got captain.|ch3ReactorPuzzle]]
 
 # ch3SupGain
 Leah says "Why would I ask you?"
@@ -19,7 +19,7 @@ In the Engine Room, a massive Reactor sits humming with vacuum tubes ablaze with
 Leah pulls out her holstered gun and says "This is a Flame West revolver, given to me... its old. It will still but a lethal plasma-shell into you." She sighs "I do not want to fire this in this room, I do not want to fire this at all" She drinks from a flask.
 Leah Keeping the gun trained on you "So, show me how the reactor works."
 [[Sure, come over here, hold this heavy metal plate... please. |ReactorDial1]]
-(If: $knowsEnginer) [[Actually this is pretty complicated, I am going to need space.|ReactorDial0]]
+(if: $knowsEnginer) [[Actually this is pretty complicated, I am going to need space.|ReactorDial0]]
 
 # ch3FanBelt
 Adrelia Says "The engine has fan belts? I thought it was a fusion reactor."
@@ -52,14 +52,14 @@ You see with the Ardelia's eyes. You see Rekesh holding a key card  You see his 
 Rekesh looks at you puzzled and says "Why did you stop talking, these rocks are profitable for business, explain more"
 [[ Uh... Sorry had a weird thought| MarvToRek2.1]]
 [[ hey is that a keys card? | MarvToRek2.Key]]
-(If: $MarvRoom = true) [[[Oh Sorry was thinking of my many sisters| MarvToRek2.2]]]
-(If: $MarvRoom = true) [[[The mineral analysis does show promising rare earth element deposits. So that key card is for me? | MarvToRek2.Key]]]
+(if: $MarvRoom = true) [[Oh Sorry was thinking of my many sisters| MarvToRek2.2]]
+(if: $MarvRoom = true) [[The mineral analysis does show promising rare earth element deposits. So that key card is for me? | MarvToRek2.Key]]
 
 # RekToMarv
 Marv continues to discuss the various rocks and readings they found on the moon. untill he posses and says "Wait you stopped me for something what was it?" You look down and see the master key in your hand.
 [[ oh I just wanted to tell you I am going to be patrolling the halls|ExploreTime]]
-(If: $RekRoom = true)[[(set: $tension = $tension - 1) Oh the business is having great profitable turn over so you can afford that new geological pulse reader |ExploreTime]]
-(If: $MarvRoom = true)[[[(set: $tension = $tension - 1)Rock puns |ExploreTime]]]
+(if: $RekRoom = true)  [[ Oh the business is having great profitable turn over so you can afford that new geological pulse reader |ExploreTime]]
+(if: $MarvRoom = true) [[Rock puns |ExploreTime]]
 
 # LeahPossess
 You see through Leah's eyes. you hear her thoughts unraveling a secret.
@@ -80,10 +80,10 @@ A voice in your head chuckles.
 # MarvToRek2.1
 Rekesh says "weird thoughts like what? are you feeling okay you seemed a little shook all of the sudden."
 [[Oh it is nothing, now is that a key card? | MarvToRek2.Key]]
-(If: $RekRoom = true)[[(set: $tension = $tension - 1)That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]]
-(If: $MarvRoom = true) [[[Oh the obsidian formation on that moon seem to be caused by heat but their should't be any volcano's. | MarvToRek2.4]]]
-(If: $RekRoom = true)[[(set: $tension = $tension - 1)You know the org chart states that I should be holding the master key? | MarvToRek2.Key]]
-(If: $MarvRoom = true) [[[Don't expect perfection from Scientist we all have ellectric personalities. Is that a key? | MarvToRek2.Key]]]
+(if: $RekRoom = true)  [[That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]]
+(if: $MarvRoom = true) [[Oh the obsidian formation on that moon seem to be caused by heat but their should't be any volcano's. | MarvToRek2.4]]
+(if: $RekRoom = true)  [[You know the org chart states that I should be holding the master key? | MarvToRek2.Key]]
+(if: $MarvRoom = true) [[Don't expect perfection from Scientist we all have ellectric personalities. Is that a key? | MarvToRek2.Key]]
 
 # MarvToRek2.Key
 (set: $toldAboutKey to true)
@@ -96,23 +96,21 @@ I do not think the company knows best this time."
 # MarvToRek2.2
 Rekesh seems not to know what to say.  He opens his mouth to say something and thinks better of it. Awkward silence is broken by him saying "Yes children"
 [[Oh it is nothing, now is that a key card? | MarvToRek2.Key]]
-(If: $RekRoom = true)[[(set: $tension = $tension - 1)That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]]
-(If: $MarvRoom = true) [[[Oh the obsidian formation on that moon seem to be caused by heat but there shouldn't be any volcanoes. | MarvToRek2.4]]]
-(If: $RekRoom = true)[[(set: $tension = $tension = 1)You know the org chart states that I should be holding the master key? | MarvToRek2.Key]]
-(If: $MarvRoom = true) [[[Don't expect perfection from Geologist we all have faults. Is that a key? | MarvToRek2.Key]]]
+(if: $RekRoom = true) [[That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]]
+(if: $MarvRoom = true) [[Oh the obsidian formation on that moon seem to be caused by heat but there shouldn't be any volcanoes. | MarvToRek2.4]]
+(if: $RekRoom = true) [[You know the org chart states that I should be holding the master key? | MarvToRek2.Key]]
+(if: $MarvRoom = true) [[Don't expect perfection from Geologist we all have faults. Is that a key? | MarvToRek2.Key]]
 
 # MarvToRek2.3
 (set: $toldAboutKey to true)
 (set: $Marv23 to true)
 Rekesh perks up and says "Oh I am glad you enjoyed it. It will save the company 14 cents every year on cards and cake. The cake budget haunts me to this day. But I stopped you for a reason. This is the Master key to all the rooms. I need you to hold onto it."
-(If: ($MarvRoom = true and $Marv24 = false)) [[[(set: $tension = $tension - 1)Oh that reminds me of the obsidian formation on that moon seem to be caused by heat but there shouldn't be any volcanoes. | MarvToRek2.4]]]
 [[Thanks mate |ExploreTime]]
 
 # MarvToRek2.4
 (set: $toldAboutKey to true)
 (set: $Marv24 to true)
 Rekesh looks perplexed "That is interesting, I know glass sales are always solid. Better than gold. We might be able to corner the artisanal window market. But I stopped you for a reason. This is the Master key to all the rooms. I need you to hold onto it."
-(If: ($MarvRoom = true and $Marv23 = false))[[(set: $tension = $tension - 1) Oh that reminds me, That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]]
 [[Thanks mate |ExploreTime]]
 
 # ExploreTime
@@ -122,11 +120,11 @@ You have the keycard time to snoop some peoples rooms.
 # TryGetKey
 Rekesh looks at you and says "Okay what have I not considered? I know I am me but how do I know you are you?
 
-(If: $RekRoom = true)[[(set: $tension = $tension - 1)You drop a truth bomb on the man. | TryGetKeyG]]
-(If: $MarvRoom = true) [[[Have my reports changed any? kaleb is currently doing what he could do in his sleep | TryGetKeyG]]]
-(If: $LeahRoom = true)[[(set: $tension = $tension - 1)Look I do trust you, unlike Leah I know you have us all at heart. | TryGetKeyG]]
-(If: $MarvRoom = true) [[[(set: $tension = $tension - 1)I know we are all rocked by this but I am me.  | TryGetKeyG]]]
-[[(set: $tension = $tension + 3)I got nothing|LeahNotices]]
+(if: $RekRoom = true)  [[You drop a truth bomb on the man. | TryGetKeyG]]
+(if: $MarvRoom = true) [[Have my reports changed any? kaleb is currently doing what he could do in his sleep | TryGetKeyG]]
+(if: $LeahRoom = true) [[Look I do trust you, unlike Leah I know you have us all at heart. | TryGetKeyG]]
+(if: $MarvRoom = true) [[I know we are all rocked by this but I am me.  | TryGetKeyG]]
+[[I got nothing|LeahNotices]]
 
 # TryGetKeyG
 Rekesh Says "I am sorry for doubting you. Here take the key I am gonna lie down in my room"
@@ -147,8 +145,8 @@ You see Ardelia talking to Rekesh.
 They both stop talking in shock. Rekesh says "I thought you said you would watch him untill the job is done? what happened?
 [[ I trust him.|LeahRekMarv2]]
 [[ hey is that a keys card? |LeahMarvRek2.Key]]
-(If: $MarvRoom = true) [[[He is doing boring science stuff and i needed to stretch my legs |LeahRekMarv2]]]
-(If: $RekRoom = true) [[[Rekesh With Marv's passing I just wanted to apologize for how I have treated you Rekash.|LeahMarvRek2.Key]]]
+(if: $MarvRoom = true) [[He is doing boring science stuff and i needed to stretch my legs |LeahRekMarv2]]
+(if: $RekRoom = true) [[Rekesh With Marv's passing I just wanted to apologize for how I have treated you Rekash.|LeahMarvRek2.Key]]
 
 # LeahExplore
 You only have access to leah's room and other shared spaces.
@@ -157,17 +155,17 @@ You only have access to leah's room and other shared spaces.
 
 # LeahRekMarv2
 They stair at you wondering. Rekesh says well Ardelia should have the key her metrix are flawless.
-(If: $RekRoom = true)[[(set: $tension = $tension - 1)You drop a truth bomb on the man. |TryGetKeyGLeah]]
-(If: $LeahRoom = true)[[(set: $tension = $tension - 1)Look I do trust you, I know i do not show it but I do. |TryGetKeyGLeah]]
-(If: $MarvRoom = true) [[[(set: $tension = $tension - 1)I know we are all rocked by this but I should have the key.  |TryGetKeyGLeah]]]
-[[(set: $tension = $tension + 3)I got nothing|LeahNotices2]]
+(if: $RekRoom = true)  [[You drop a truth bomb on the man. |TryGetKeyGLeah]]
+(if: $LeahRoom = true) [[Look I do trust you, I know i do not show it but I do. |TryGetKeyGLeah]]
+(if: $MarvRoom = true) [[I know we are all rocked by this but I should have the key.  |TryGetKeyGLeah]]
+[[I got nothing|LeahNotices2]]
 
 # LeahMarvRek2.Key
 Rekesh looks at you and says "this keycard is the master key card. I was about to hand it over to Ardelia."
-(If: $RekRoom = true)[[(set: $tension = $tension - 1)You drop a truth bomb on the man. |TryGetKeyGLeah]]
-(If: $LeahRoom = true)[[(set: $tension = $tension - 1)Look I do trust you, I know i do not show it but I do. |TryGetKeyGLeah]]
-(If: $MarvRoom = true) [[[(set: $tension = $tension - 1)I know we are all rocked by this but I am me.  |TryGetKeyGLeah]]]
-[[(set: $tension = $tension + 3)I got nothing|LeahNotices2]]
+(if: $RekRoom = true)  [[You drop a truth bomb on the man. |TryGetKeyGLeah]]
+(if: $LeahRoom = true) [[Look I do trust you, I know i do not show it but I do. |TryGetKeyGLeah]]
+(if: $MarvRoom = true) [[I know we are all rocked by this but I am me.  |TryGetKeyGLeah]]
+[[I got nothing|LeahNotices2]]
 
 # TryGetKeyGLeah
 YOu have the gun and the key the power is all yours!
@@ -251,7 +249,7 @@ Rakesh grimmaces but says nothing in return. Tension is high and you want to sne
 
 # ch2pa
 (if: $ardelia_name is true) [ You brain blast your way into Adrelia's mind. ]
-(else:) [ You've melded minds with a member of the crew, short (relatively) and colourful. ]
+(else:) [ You've melded minds with a member of the crew, relatively short and colourful. ]
 
 Hearing the other two members arguing certainly annoys you, though why not eavesdrop a little?
 
@@ -338,8 +336,6 @@ Ardelia: I don't feel comfortable with this.
 Rakesh: It's protocol.
 Leah: Quiet. He's awake.
 
-
-
 # The Voice
 As you drift out into space, you hear a voice...
 
@@ -392,11 +388,12 @@ Ardelia: Quiet! Gabe, please look at me. Focus!
 Rakesh: Two correct answers and you both toss protocol aside.
 Rakesh: Welsh, please explain your behavior. {Timer: 60}
 
-[["Could you tell me what I've done? |Another bad joke]]
+[["Could you tell me what I've done?" |Another bad joke]]
 [["..." |Protocol]]
-(if: $marv_is_dead is true)
+(if: $marv_is_dead is true) [
 [["Gates is dead." |Complete 1-3]]
 [["Marv is gone." |Complete 1-3]]
+]
 
 # Player looks at Ardelia
 For 30 seconds, player is able to look into Ardelia's eyes. Can move Ardelia's head as she looks around. If the player looks at their body, they see it sitting, in an almost trance-like state.

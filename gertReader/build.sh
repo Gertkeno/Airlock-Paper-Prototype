@@ -4,6 +4,8 @@ build() {
 	g++ -c "$1" -o "obj/${1%.*}.o" -Wall -Wextra -g -O0
 }
 
+mkdir -p obj/src/
+
 if [ "$1" = "clean" ]; then
 	echo "Clean build"
 	rm obj/src/*.o
