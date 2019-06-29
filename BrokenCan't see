@@ -27,7 +27,7 @@
 
 
 
-</script><tw-passagedata pid="1" name="Chapter 3 oponer" tags="" position="NaN,NaN" size="100,100">(set: $paranoia to 0)
+</script><tw-passagedata pid="1" name="Chapter 3 oponer" tags="" position="0,0" size="100,100">(set: $paranoia to 0)
 (set: $knowsEnginer to false)
 A few days hace past and the crew have yet to let you return to work.  Everyone is still on edge but the tension in the ship is loosening its grip as you head towards $stationName.
 You are awaken by the Voice &quot;Prepare yourself today shall be taxing.&quot; 
@@ -36,99 +36,99 @@ $pilotName runs into your room.  Holding a $knowsKeyCard. You note this as odd a
 [[(set: $textChoice1 = &quot;ch3SupGain&quot;)Why me?|ParaPlus]] 
 [[On It boss?|ch3ReactorPuzzle]]
 [[Probably the fan belt. It is always the fan belt |ch3FanBelt]]
-(if: $knowsEnginer is true)[[(set: $textChoice2 = &quot;ch3ReactorPuzzle&quot;)I&#39;ll give it all she&#39;s got captain.|ParaMinus2]]</tw-passagedata><tw-passagedata pid="2" name="ch3SupGain" tags="" position="NaN,NaN" size="100,100">$pilotName says &quot;Why would I ask you?&quot; 
+(if: $knowsEnginer is true)[[(set: $textChoice2 = &quot;ch3ReactorPuzzle&quot;)I&#39;ll give it all she&#39;s got captain.|ParaMinus2]]</tw-passagedata><tw-passagedata pid="2" name="ch3SupGain" tags="" position="0,0" size="100,100">$pilotName says &quot;Why would I ask you?&quot; 
  [[I Dont Know|ParaPlus]] (Set: $textChoice1 = &quot;Ch3NotKelab&quot;)
  [[Because I work with the engine?|ParaPlus2]](Set: $textChoice2 = &quot;ch3ReactorPuzzle&quot;)
  (if: $knowsEnginer is true) [[I am just joking. I am the best engineer y&#39;all could afford.|ch3ReactorPuzzle]]
   (if: $knowsEnginer is true) [[Sorry, on it.|ParaMinus3]](set: $textChoice3 = &quot;ch3ReactorPuzzle&quot;)
-</tw-passagedata><tw-passagedata pid="3" name="ch3ReactorPuzzle" tags="" position="NaN,NaN" size="100,100">In the Engine Room, a massive Reactor sits silent with many vacuum tubes dimly lighting the room with oddly colored lights. 
+</tw-passagedata><tw-passagedata pid="3" name="ch3ReactorPuzzle" tags="" position="0,0" size="100,100">In the Engine Room, a massive Reactor sits silent with many vacuum tubes dimly lighting the room with oddly colored lights. 
 $pilotName pulls out her holstered gun and says &quot;This is a Flame West revolver, given to me... its old. It will still put a lethal plasma-shell into you.&quot; She sighs &quot;I do not want to fire this in this room, I do not want to fire this at all&quot; She drinks from a flask. $paranoia
 (if: $paranoia &lt; 1)[$pilotName holsters the weapon &quot;I am sorry. Could you show me how the reactor works?&quot; ](else:)[Leah Keeping the gun trained on you &quot;So, show me how the reactor works.&quot;]
 [[(set: $textChoice1 = &quot;ReactorDial_1&quot;)Sure, come over here, hold this heavy metal plate... please. |ParaPlus]]
 (If: $knowsEnginer) [[Actually this is pretty dangerious, I am going to need space.|ReactorDial_0]]
-</tw-passagedata><tw-passagedata pid="4" name="ch3FanBelt" tags="" position="NaN,NaN" size="100,100">While walking past $sciName over hearing says &quot;The engine has fan belts? I thought it was a fusion reactor.&quot;
+</tw-passagedata><tw-passagedata pid="4" name="ch3FanBelt" tags="" position="0,0" size="100,100">While walking past $sciName over hearing says &quot;The engine has fan belts? I thought it was a fusion reactor.&quot;
 $pilotName states &quot;yes why would the reactor need fan belts?&quot;
 $sciName interjects &quot;Why would I know? I am not the engineer, $youNameN...&quot;
 The death stare $pilotName shoots $sciName could kill a medium-sized horse. (set: $knowsEnginer to true)
 [[It is allways the fan belt.|ParaPlus]](Set: $textChoice1 = &quot;ch3ReactorPuzzle&quot;)
 [[Does fusion mean gassoline?| Ch3NotKelab]]
-</tw-passagedata><tw-passagedata pid="5" name=" Ch3NotKelab" tags="" position="NaN,NaN" size="100,100">$pilotName states &quot;that&#39;s not Kaleb and fires a round into your skull.&quot;
+</tw-passagedata><tw-passagedata pid="5" name=" Ch3NotKelab" tags="" position="0,0" size="100,100">$pilotName states &quot;that&#39;s not Kaleb and fires a round into your skull.&quot;
 As your body hits the floor you hear the Voice say &quot;Let&#39;s try again&quot;
 [[Chapter 3 oponer]] 
-</tw-passagedata><tw-passagedata pid="6" name="ReactorDial_1" tags="" position="NaN,NaN" size="100,100">While $pilotName is distracted with the heavy object you know you have time to possess someone else. not alot of time. You see $corpName talking to $sciName.
+</tw-passagedata><tw-passagedata pid="6" name="ReactorDial_1" tags="" position="0,0" size="100,100">While $pilotName is distracted with the heavy object you know you have time to possess someone else. not alot of time. You see $corpName talking to $sciName.
 [[Possess $sciName | MarvToRek]]
 [[Possess $corpName | RekToMarv]]
 [[Work on Reactor | ReactorWork]]
-</tw-passagedata><tw-passagedata pid="7" name="ReactorDial_0" tags="" position="NaN,NaN" size="100,100">$pilotName walks all the way to the back of the room.  She is still watching you and that gun is a concern. You see out of a window $corpName talking to $sciName holding a rock. 
+</tw-passagedata><tw-passagedata pid="7" name="ReactorDial_0" tags="" position="0,0" size="100,100">$pilotName walks all the way to the back of the room.  She is still watching you and that gun is a concern. You see out of a window $corpName talking to $sciName holding a rock. 
 [[Possess $sciName | MarvToRek]]
 [[Possess $corpName | RekToMarv]]
 [[Possess $pilotName | LeahPossess]]
 [[Work on Reactor | ReactorWork]]
-</tw-passagedata><tw-passagedata pid="8" name=" MarvToRek" tags="" position="NaN,NaN" size="100,100">You see with the Ardelia&#39;s eyes. You see Rekesh holding a key card  You see his thoughts he is a geologist named Marv. (set: $MarvID to true)
+</tw-passagedata><tw-passagedata pid="8" name=" MarvToRek" tags="" position="0,0" size="100,100">You see with the Ardelia&#39;s eyes. You see Rekesh holding a key card  You see his thoughts he is a geologist named Marv. (set: $MarvID to true)
 Rekesh looks at you puzzled and says &quot;Why did you stop talking, these rocks are profitable for business, explain more&quot;  
 [[($Tension = $Tension + 1) Uh... Sorry had a weird thought| MarvToRek2.1]]
 [[($Tension = $Tension + 1) hey is that a keys card? | MarvToRek2.Key]]
 (If: $MarvRoom = true) [[[Oh Sorry was thinking of my many sisters| MarvToRek2.2]]]
-(If: $MarvRoom = true) [[[The mineral analysis does show promising rare earth element deposits. So that key card is for me? | MarvToRek2.Key]]] </tw-passagedata><tw-passagedata pid="9" name=" RekToMarv" tags="" position="NaN,NaN" size="100,100">Marv continues to discuss the various rocks and readings they found on the moon. untill he posses and says &quot;Wait you stopped me for something what was it?&quot; You look down and see the master key in your hand.
+(If: $MarvRoom = true) [[[The mineral analysis does show promising rare earth element deposits. So that key card is for me? | MarvToRek2.Key]]] </tw-passagedata><tw-passagedata pid="9" name=" RekToMarv" tags="" position="0,0" size="100,100">Marv continues to discuss the various rocks and readings they found on the moon. untill he posses and says &quot;Wait you stopped me for something what was it?&quot; You look down and see the master key in your hand.
 [[(set:$Tension = $Tension + 1) oh I just wanted to tell you I am going to be patrolling the halls|ExploreTime]]
 (If: $RekRoom = true)[[(set: $tension = $tension - 1) Oh the business is having great profitable turn over so you can afford that new geological pulse reader |ExploreTime]] 
-(If: $MarvRoom = true)[[[(set: $tension = $tension - 1)Rock puns |ExploreTime]]]</tw-passagedata><tw-passagedata pid="10" name=" LeahPossess" tags="" position="NaN,NaN" size="100,100">You see through Leah&#39;s eyes. you hear her thoughts unraveling a secret.
+(If: $MarvRoom = true)[[[(set: $tension = $tension - 1)Rock puns |ExploreTime]]]</tw-passagedata><tw-passagedata pid="10" name=" LeahPossess" tags="" position="0,0" size="100,100">You see through Leah&#39;s eyes. you hear her thoughts unraveling a secret.
 (set: $LeahSecret to true)
 [[head outside |OutsideLeah]]
-[[Shoot reactor| ReactorExplodes]] </tw-passagedata><tw-passagedata pid="11" name=" ReactorWork" tags="" position="NaN,NaN" size="100,100">[[Try the Blue bulb| ReactorOverHeats]]</tw-passagedata><tw-passagedata pid="12" name=" ReactorOverHeats" tags="" position="NaN,NaN" size="100,100">[[Try the Red Bulb | ReactorExplodes]]</tw-passagedata><tw-passagedata pid="13" name=" ReactorExplodes" tags="" position="NaN,NaN" size="100,100">A voice in your head chuckles. 
-[[Chapter 3 oponer]] </tw-passagedata><tw-passagedata pid="14" name=" MarvToRek2.1" tags="" position="NaN,NaN" size="100,100">Rekesh says &quot;weird thoughts like what? are you feeling okay you seemed a little shook all of the sudden.&quot;
+[[Shoot reactor| ReactorExplodes]] </tw-passagedata><tw-passagedata pid="11" name=" ReactorWork" tags="" position="0,0" size="100,100">[[Try the Blue bulb| ReactorOverHeats]]</tw-passagedata><tw-passagedata pid="12" name=" ReactorOverHeats" tags="" position="0,0" size="100,100">[[Try the Red Bulb | ReactorExplodes]]</tw-passagedata><tw-passagedata pid="13" name=" ReactorExplodes" tags="" position="0,0" size="100,100">A voice in your head chuckles. 
+[[Chapter 3 oponer]] </tw-passagedata><tw-passagedata pid="14" name=" MarvToRek2.1" tags="" position="0,0" size="100,100">Rekesh says &quot;weird thoughts like what? are you feeling okay you seemed a little shook all of the sudden.&quot;
 [[ (set:$Tension = $Tension + 1) Oh it is nothing, now is that a key card? | MarvToRek2.Key]] 
 (If: $RekRoom = true)[[(set: $tension = $tension - 1)That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]] 
 (If: $MarvRoom = true) [[[Oh the obsidian formation on that moon seem to be caused by heat but their should&#39;t be any volcano&#39;s. | MarvToRek2.4]]]
 (If: $RekRoom = true)[[(set: $tension = $tension - 1)You know the org chart states that I should be holding the master key? | MarvToRek2.Key]] 
-(If: $MarvRoom = true) [[[Don&#39;t expect perfection from Scientist we all have ellectric personalities. Is that a key? | MarvToRek2.Key]]] </tw-passagedata><tw-passagedata pid="15" name=" MarvToRek2.Key" tags="" position="NaN,NaN" size="100,100">(set: $toldAboutKey to true)
+(If: $MarvRoom = true) [[[Don&#39;t expect perfection from Scientist we all have ellectric personalities. Is that a key? | MarvToRek2.Key]]] </tw-passagedata><tw-passagedata pid="15" name=" MarvToRek2.Key" tags="" position="0,0" size="100,100">(set: $toldAboutKey to true)
 Rekesh looks at you for a moment then says &quot;Oh yes it is. I was supposed to give this to you.  The master Key goes to the person with most corporate achievement points. You do beat me every year.&quot; He sighs. 
 (if: $Tension &lt; 1)[I feel like you are the only one I can trust. The company metrics are clearly right to trust you.&quot; ](else:)[I do not think the company knows best this time.&quot;]
 (if: $Tension &lt; 1) [[Thanks I will patrol the ship |ExploreTime]]
 (if: $Tension &gt; 1) [[Wait do not be so hasty| TryGetKey]]
-(if: ($Tension &gt; 1 and RekRoom = true)) [[Isnt the corporation where our trust should be?| TryGetKeyG]]</tw-passagedata><tw-passagedata pid="16" name=" MarvToRek2.2" tags="" position="NaN,NaN" size="100,100">Rekesh seems not to know what to say.  He opens his mouth to say something and thinks better of it. Awkward silence is broken by him saying &quot;Yes children&quot;
+(if: ($Tension &gt; 1 and RekRoom = true)) [[Isnt the corporation where our trust should be?| TryGetKeyG]]</tw-passagedata><tw-passagedata pid="16" name=" MarvToRek2.2" tags="" position="0,0" size="100,100">Rekesh seems not to know what to say.  He opens his mouth to say something and thinks better of it. Awkward silence is broken by him saying &quot;Yes children&quot;
 [[ (set:$Tension = $Tension + 1) Oh it is nothing, now is that a key card? | MarvToRek2.Key]] 
 (If: $RekRoom = true)[[(set: $tension = $tension - 1)That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]] 
 (If: $MarvRoom = true) [[[Oh the obsidian formation on that moon seem to be caused by heat but there shouldn&#39;t be any volcanoes. | MarvToRek2.4]]]
 (If: $RekRoom = true)[[(set: $tension = $tension = 1)You know the org chart states that I should be holding the master key? | MarvToRek2.Key]] 
-(If: $MarvRoom = true) [[[Don&#39;t expect perfection from Geologist we all have faults. Is that a key? | MarvToRek2.Key]]]  </tw-passagedata><tw-passagedata pid="17" name=" MarvToRek2.3" tags="" position="NaN,NaN" size="100,100">(set: $toldAboutKey to true)
+(If: $MarvRoom = true) [[[Don&#39;t expect perfection from Geologist we all have faults. Is that a key? | MarvToRek2.Key]]]  </tw-passagedata><tw-passagedata pid="17" name=" MarvToRek2.3" tags="" position="0,0" size="100,100">(set: $toldAboutKey to true)
 (set: $Marv23 to true)
 Rekesh perks up and says &quot;Oh I am glad you enjoyed it. It will save the company 14 cents every year on cards and cake. The cake budget haunts me to this day. But I stopped you for a reason. This is the Master key to all the rooms. I need you to hold onto it.&quot;
 (If: ($MarvRoom = true and $Marv24 = false)) [[[(set: $tension = $tension - 1)Oh that reminds me of the obsidian formation on that moon seem to be caused by heat but there shouldn&#39;t be any volcanoes. | MarvToRek2.4]]]
-[[Thanks mate |ExploreTime]]  </tw-passagedata><tw-passagedata pid="18" name=" MarvToRek2.4" tags="" position="NaN,NaN" size="100,100">(set: $toldAboutKey to true)
+[[Thanks mate |ExploreTime]]  </tw-passagedata><tw-passagedata pid="18" name=" MarvToRek2.4" tags="" position="0,0" size="100,100">(set: $toldAboutKey to true)
 (set: $Marv24 to true)
 Rekesh looks perplexed &quot;That is interesting, I know glass sales are always solid. Better than gold. We might be able to corner the artisanal window market. But I stopped you for a reason. This is the Master key to all the rooms. I need you to hold onto it.&quot;
 (If: ($MarvRoom = true and $Marv23 = false))[[(set: $tension = $tension - 1) Oh that reminds me, That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]] 
-[[Thanks mate |ExploreTime]]  </tw-passagedata><tw-passagedata pid="19" name="ExploreTime" tags="" position="NaN,NaN" size="100,100">You have the keycard time to snoop some peoples rooms. 
-[[tensionLock]]</tw-passagedata><tw-passagedata pid="20" name=" TryGetKey" tags="" position="NaN,NaN" size="100,100">Rekesh looks at you and says &quot;Okay what have I not considered? I know I am me but how do I know you are you?
+[[Thanks mate |ExploreTime]]  </tw-passagedata><tw-passagedata pid="19" name="ExploreTime" tags="" position="0,0" size="100,100">You have the keycard time to snoop some peoples rooms. 
+[[tensionLock]]</tw-passagedata><tw-passagedata pid="20" name=" TryGetKey" tags="" position="0,0" size="100,100">Rekesh looks at you and says &quot;Okay what have I not considered? I know I am me but how do I know you are you?
 
 (If: $RekRoom = true)[[(set: $tension = $tension - 1)You drop a truth bomb on the man. | TryGetKeyG]] 
 (If: $MarvRoom = true) [[[Have my reports changed any? kaleb is currently doing what he could do in his sleep | TryGetKeyG]]]
 (If: $LeahRoom = true)[[(set: $tension = $tension - 1)Look I do trust you, unlike Leah I know you have us all at heart. | TryGetKeyG]] 
 (If: $MarvRoom = true) [[[(set: $tension = $tension - 1)I know we are all rocked by this but I am me.  | TryGetKeyG]]] 
-[[(set: $tension = $tension + 3)I got nothing|LeahNotices]]</tw-passagedata><tw-passagedata pid="21" name=" TryGetKeyG" tags="" position="NaN,NaN" size="100,100">Rekesh Says &quot;I am sorry for doubting you. Here take the key I am gonna lie down in my room&quot;
-[[Thanks I will patrol the ship |ExploreTime]]</tw-passagedata><tw-passagedata pid="22" name="LeahNotices" tags="" position="NaN,NaN" size="100,100">Leah shakes you back to your body. The voice in your head louder than ever is hissing. 
+[[(set: $tension = $tension + 3)I got nothing|LeahNotices]]</tw-passagedata><tw-passagedata pid="21" name=" TryGetKeyG" tags="" position="0,0" size="100,100">Rekesh Says &quot;I am sorry for doubting you. Here take the key I am gonna lie down in my room&quot;
+[[Thanks I will patrol the ship |ExploreTime]]</tw-passagedata><tw-passagedata pid="22" name="LeahNotices" tags="" position="0,0" size="100,100">Leah shakes you back to your body. The voice in your head louder than ever is hissing. 
 Leah says &quot;what are you doing? You are not Kaleb!&quot;
 Leah vents the room and you slowly suffocate to death. 
-[[Chapter 3 oponer]]  </tw-passagedata><tw-passagedata pid="23" name="OutsideLeah" tags="" position="NaN,NaN" size="100,100">You see Ardelia talking to Rekesh.
+[[Chapter 3 oponer]]  </tw-passagedata><tw-passagedata pid="23" name="OutsideLeah" tags="" position="0,0" size="100,100">You see Ardelia talking to Rekesh.
 [[Walk over and talk |LeahToRekMarv]]
-[[Explore as Leah |LeahExplore]]</tw-passagedata><tw-passagedata pid="24" name="LeahToRekMarv" tags="" position="NaN,NaN" size="100,100">They both stop talking in shock. Rekesh says &quot;I thought you said you would watch him untill the job is done? what happened?
+[[Explore as Leah |LeahExplore]]</tw-passagedata><tw-passagedata pid="24" name="LeahToRekMarv" tags="" position="0,0" size="100,100">They both stop talking in shock. Rekesh says &quot;I thought you said you would watch him untill the job is done? what happened?
 [[($Tension = $Tension + 1) I trust him.|LeahRekMarv2]]
 [[($Tension = $Tension + 1) hey is that a keys card? |LeahMarvRek2.Key]]
 (If: $MarvRoom = true) [[[He is doing boring science stuff and i needed to stretch my legs |LeahRekMarv2]]]
-(If: $RekRoom = true) [[[($Tension = $Tension - 1)Rekesh With Marv&#39;s passing I just wanted to apologize for how I have treated you Rekash.|LeahMarvRek2.Key]]] </tw-passagedata><tw-passagedata pid="25" name="LeahExplore" tags="" position="NaN,NaN" size="100,100">You only have access to leah&#39;s room and other shared spaces. 
+(If: $RekRoom = true) [[[($Tension = $Tension - 1)Rekesh With Marv&#39;s passing I just wanted to apologize for how I have treated you Rekash.|LeahMarvRek2.Key]]] </tw-passagedata><tw-passagedata pid="25" name="LeahExplore" tags="" position="0,0" size="100,100">You only have access to leah&#39;s room and other shared spaces. 
 [[Walk over and talk |LeahToRekMarv]]
-[[tensionLock]]</tw-passagedata><tw-passagedata pid="26" name="LeahRekMarv2" tags="" position="NaN,NaN" size="100,100">They stair at you wondering. Rekesh says well Ardelia should have the key her metrix are flawless.  
+[[tensionLock]]</tw-passagedata><tw-passagedata pid="26" name="LeahRekMarv2" tags="" position="0,0" size="100,100">They stair at you wondering. Rekesh says well Ardelia should have the key her metrix are flawless.  
 (If: $RekRoom = true)[[(set: $tension = $tension - 1)You drop a truth bomb on the man. |TryGetKeyGLeah]] 
 (If: $LeahRoom = true)[[(set: $tension = $tension - 1)Look I do trust you, I know i do not show it but I do. |TryGetKeyGLeah]] 
 (If: $MarvRoom = true) [[[(set: $tension = $tension - 1)I know we are all rocked by this but I should have the key.  |TryGetKeyGLeah]]] 
-[[(set: $tension = $tension + 3)I got nothing|LeahNotices2]]</tw-passagedata><tw-passagedata pid="27" name="LeahMarvRek2.Key" tags="" position="NaN,NaN" size="100,100">Rekesh looks at you and says &quot;this keycard is the master key card. I was about to hand it over to Ardelia.&quot;
+[[(set: $tension = $tension + 3)I got nothing|LeahNotices2]]</tw-passagedata><tw-passagedata pid="27" name="LeahMarvRek2.Key" tags="" position="0,0" size="100,100">Rekesh looks at you and says &quot;this keycard is the master key card. I was about to hand it over to Ardelia.&quot;
 (If: $RekRoom = true)[[(set: $tension = $tension - 1)You drop a truth bomb on the man. |TryGetKeyGLeah]] 
 (If: $LeahRoom = true)[[(set: $tension = $tension - 1)Look I do trust you, I know i do not show it but I do. |TryGetKeyGLeah]] 
 (If: $MarvRoom = true) [[[(set: $tension = $tension - 1)I know we are all rocked by this but I am me.  |TryGetKeyGLeah]]] 
-[[(set: $tension = $tension + 3)I got nothing|LeahNotices2]]</tw-passagedata><tw-passagedata pid="28" name="TryGetKeyGLeah" tags="" position="NaN,NaN" size="100,100">YOu have the gun and the key the power is all yours!
-[[tensionLock]]</tw-passagedata><tw-passagedata pid="29" name="LeahNotices2" tags="" position="NaN,NaN" size="100,100">You snap to your body and hear shouting in the distance before you know it Leah burst in gun drawn. 
-[[ What happens next? | Ch3NotKelab]]</tw-passagedata><tw-passagedata pid="30" name="tensionLock" tags="" position="NaN,NaN" size="100,100">End so far. </tw-passagedata><tw-passagedata pid="31" name="Chapter 1: Start" tags="" position="NaN,NaN" size="100,100">Chapter 3 starts!
+[[(set: $tension = $tension + 3)I got nothing|LeahNotices2]]</tw-passagedata><tw-passagedata pid="28" name="TryGetKeyGLeah" tags="" position="0,0" size="100,100">YOu have the gun and the key the power is all yours!
+[[tensionLock]]</tw-passagedata><tw-passagedata pid="29" name="LeahNotices2" tags="" position="0,0" size="100,100">You snap to your body and hear shouting in the distance before you know it Leah burst in gun drawn. 
+[[ What happens next? | Ch3NotKelab]]</tw-passagedata><tw-passagedata pid="30" name="tensionLock" tags="" position="0,0" size="100,100">End so far. </tw-passagedata><tw-passagedata pid="31" name="Chapter 1: Start" tags="" position="0,0" size="100,100">Chapter 3 starts!
 
 [[GO to Chapter 3 |Chapter 3 oponer]] 
 (set: $MarvID to false)
@@ -161,20 +161,20 @@ Leah vents the room and you slowly suffocate to death.
 (set: $stationName = &quot;Dorado 51&quot;)
 (set: $deathCounter = 0)
 
-</tw-passagedata><tw-passagedata pid="32" name="how Write CHoices" tags="" position="NaN,NaN" size="100,100">text
+</tw-passagedata><tw-passagedata pid="32" name="how Write CHoices" tags="" position="0,0" size="100,100">text
 [[choice to raise paranoia |]]
 (set: $textChoice1 = &quot;event3&quot;)(set: $textWords1 = &quot;choice to raise paranoia&quot;)
 [[choice to lower paranoia | ]]
-(set: $textChoice2 = &quot;&quot;)(set: $textWords2 = &quot;choice to lower paranoia&quot;)</tw-passagedata><tw-passagedata pid="33" name="ParaPlus" tags="" position="NaN,NaN" size="100,100">(set: $paranoia = $paranoia + 1)
+(set: $textChoice2 = &quot;&quot;)(set: $textWords2 = &quot;choice to lower paranoia&quot;)</tw-passagedata><tw-passagedata pid="33" name="ParaPlus" tags="" position="0,0" size="100,100">(set: $paranoia = $paranoia + 1)
 (click: ?$textWords1)[(goto:$textChoice1)]
-</tw-passagedata><tw-passagedata pid="34" name="ParaMinus" tags="" position="NaN,NaN" size="100,100">(set: $paranoia = $paranoia - 1)
+</tw-passagedata><tw-passagedata pid="34" name="ParaMinus" tags="" position="0,0" size="100,100">(set: $paranoia = $paranoia - 1)
 (click: ?$textWords1)[(goto:$textChoice1)]
-</tw-passagedata><tw-passagedata pid="35" name="ParaPlus2" tags="" position="NaN,NaN" size="100,100">(set: $paranoia = $paranoia + 1)
-(click: ?$textWords2)[(goto:$textChoice2)]</tw-passagedata><tw-passagedata pid="36" name="ParaMinus2" tags="" position="NaN,NaN" size="100,100">(set: $paranoia = $paranoia - 1)
+</tw-passagedata><tw-passagedata pid="35" name="ParaPlus2" tags="" position="0,0" size="100,100">(set: $paranoia = $paranoia + 1)
+(click: ?$textWords2)[(goto:$textChoice2)]</tw-passagedata><tw-passagedata pid="36" name="ParaMinus2" tags="" position="0,0" size="100,100">(set: $paranoia = $paranoia - 1)
 (click: ?$textWords2)[(goto:$textChoice2)]
-</tw-passagedata><tw-passagedata pid="37" name="ParaPlus3" tags="" position="NaN,NaN" size="100,100">(set: $paranoia = $paranoia + 1)
+</tw-passagedata><tw-passagedata pid="37" name="ParaPlus3" tags="" position="0,0" size="100,100">(set: $paranoia = $paranoia + 1)
 (click: ?$textWords3)[(goto:$textChoice3)]
-</tw-passagedata><tw-passagedata pid="38" name="ParaMinus3" tags="" position="NaN,NaN" size="100,100">(set: $paranoia = $paranoia - 1)
+</tw-passagedata><tw-passagedata pid="38" name="ParaMinus3" tags="" position="0,0" size="100,100">(set: $paranoia = $paranoia - 1)
 (click: ?$textWords3)[(goto:$textChoice3)]</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){i=!0,o=e}finally{try{!r&&s.return&&s.return()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(){/**
