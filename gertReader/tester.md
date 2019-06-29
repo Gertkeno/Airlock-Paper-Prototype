@@ -5,14 +5,14 @@ Leah eyes snap to you and she says "Seems the engine has shut off forward moment
 [[Why me?|ch3SupGain]]
 [[On It boss?|ch3ReactorPuzzle]]
 [[Probably the fan belt. It is always the fan belt |ch3FanBelt]]
-(if: $knowsEnginer is true) [[I'll give it all she's got captain.|ch3ReactorPuzzle]]
+(if: $knowsEnginer) [[I'll give it all she's got captain.|ch3ReactorPuzzle]]
 
 # ch3SupGain
 Leah says "Why would I ask you?"
 [[I Dont Know| Ch3NotKelab]]
 [[Because I work with the engine?|ch3ReactorPuzzle]]
-(if: $knowsEnginer is true) [[I am just joking. I am the best engineer y'all could afford.|ch3ReactorPuzzle]]
-(if: $knowsEnginer is true) [[Sorry, on it.|ch3ReactorPuzzle]]
+(if: $knowsEnginer) [[I am just joking. I am the best engineer y'all could afford.|ch3ReactorPuzzle]]
+(if: $knowsEnginer) [[Sorry, on it.|ch3ReactorPuzzle]]
 
 # ch3ReactorPuzzle
 In the Engine Room, a massive Reactor sits humming with vacuum tubes ablaze with oddly colored lights.
@@ -25,7 +25,7 @@ Leah Keeping the gun trained on you "So, show me how the reactor works."
 Adrelia Says "The engine has fan belts? I thought it was a fusion reactor."
 Leah states "yes why would the reactor need fan belts?"
 Rekesh interjects "Why would I know? I am not the engineer, Kal...."
-The death stare Leah shoots Rekesh could kill a medium-sized horse. (set: $knowsEnginer to true)
+The death stare Leah shoots Rekesh could kill a medium-sized horse. (set: $knowsEnginer)
 [[It is allways the fan belt.|ch3ReactorPuzzle]]
 [[Does fusion mean gassoline?| Ch3NotKelab]]
 
@@ -48,7 +48,7 @@ Leah walks all the way to the back of the room.  She is still watching you and t
 [[Work on Reactor | ReactorWork]]
 
 # MarvToRek
-You see with the Ardelia's eyes. You see Rekesh holding a key card  You see his thoughts he is a geologist named Marv. (set: $MarvID to true)
+You see with the Ardelia's eyes. You see Rekesh holding a key card  You see his thoughts he is a geologist named Marv. (set: $MarvID)
 Rekesh looks at you puzzled and says "Why did you stop talking, these rocks are profitable for business, explain more"
 [[ Uh... Sorry had a weird thought| MarvToRek2.1]]
 [[ hey is that a keys card? | MarvToRek2.Key]]
@@ -63,7 +63,7 @@ Marv continues to discuss the various rocks and readings they found on the moon.
 
 # LeahPossess
 You see through Leah's eyes. you hear her thoughts unraveling a secret.
-(set: $LeahSecret to true)
+(set: $LeahSecret)
 [[head outside |OutsideLeah]]
 [[Shoot reactor| ReactorExplodes]]
 
@@ -86,7 +86,7 @@ Rekesh says "weird thoughts like what? are you feeling okay you seemed a little 
 (if: $MarvRoom = true) [[Don't expect perfection from Scientist we all have ellectric personalities. Is that a key? | MarvToRek2.Key]]
 
 # MarvToRek2.Key
-(set: $toldAboutKey to true)
+(set: $toldAboutKey)
 Rekesh looks at you for a moment then says "Oh yes it is. I was supposed to give this to you.  The master Key goes to the person with most corporate achievement points. You do beat me every year." He sighs.
 I do not think the company knows best this time."
 [[Thanks I will patrol the ship |ExploreTime]]
@@ -102,14 +102,14 @@ Rekesh seems not to know what to say.  He opens his mouth to say something and t
 (if: $MarvRoom = true) [[Don't expect perfection from Geologist we all have faults. Is that a key? | MarvToRek2.Key]]
 
 # MarvToRek2.3
-(set: $toldAboutKey to true)
-(set: $Marv23 to true)
+(set: $toldAboutKey)
+(set: $Marv23)
 Rekesh perks up and says "Oh I am glad you enjoyed it. It will save the company 14 cents every year on cards and cake. The cake budget haunts me to this day. But I stopped you for a reason. This is the Master key to all the rooms. I need you to hold onto it."
 [[Thanks mate |ExploreTime]]
 
 # MarvToRek2.4
-(set: $toldAboutKey to true)
-(set: $Marv24 to true)
+(set: $toldAboutKey)
+(set: $Marv24)
 Rekesh looks perplexed "That is interesting, I know glass sales are always solid. Better than gold. We might be able to corner the artisanal window market. But I stopped you for a reason. This is the Master key to all the rooms. I need you to hold onto it."
 [[Thanks mate |ExploreTime]]
 
@@ -192,7 +192,7 @@ As the screen fades to black, you hear the voice: [["We begin, when they end."|C
 The three figures look quizically then one shed's a tear and softly says "It's not Kaleb"
 The tallest of the three presses the eject button and you are sent on your way
 
-(set: $your_name to true)
+(set: $your_name)
 [[Drift into space]]
 
 # Drift into space
@@ -213,16 +213,16 @@ Once your sickness subsides you feel detached and now see an aura from each memb
 
 Pick a possesion target.
 
-[[ Possess the tallest|ch2pl]]
-[[ Possess Mr. white coat|ch2pr]]
-[[ Possess the young woman|ch2pa]]
+[[Possess the tallest|ch2pl]]
+[[Possess Mr. white coat|ch2pr]]
+[[Possess the young woman|ch2pa]]
 
 # ch2pr
-(if: $rakesh_name is true) [ You find yourself through the eyes of Rakesh. ]
+(if: $rakesh_name) [ You find yourself through the eyes of Rakesh. ]
 (else:) [ Forced into this man's mind and pristine white coat you now see through their eyes. ]
 
 At nearly the same time, by pure coincidence the tallest turns to you, the white coat, and states "If something is wrong with Kaleb he'd still know his name, this proves nothing! If it's really Kaleb in there he'd know the ships name, your name, my name, Ardelia's name, and our every routine."
-(set: $ardelia_name to true)
+(set: $ardelia_name)
 
 You, in the white coat, can only sit and stare at this lanky woman, to which she pouts and withdraws herself from your presence. The other, assumed "Adrelia" mutters "I still think it's him, or at worst just feeling real ill."
 
@@ -233,31 +233,31 @@ With a little more akward silence and staring you are pulled back into your orig
 [[return|ch2testp1]]
 
 # ch2pl
-(if: $leah_name is true) [ You're transported inside the great pilot Leah's mind, ] (else:) [ You merely blink and find yourself through a new view, ] if only you were actually this tall.
+(if: $leah_name) [ You're transported inside the great pilot Leah's mind, ] (else:) [ You merely blink and find yourself through a new view, ] if only you were actually this tall.
 
-Everyone soaks in silence for a short while until (if: $rakesh_name is true) [Rakesh] (else:) [the white coat] interrupts the beautiful nothing with "Leah, we're not against you," and with more courage states "We just don't want to jump to conclusions."
-(set: $leah_name to true)
+Everyone soaks in silence for a short while until (if: $rakesh_name) [Rakesh] (else:) [the white coat] interrupts the beautiful nothing with "Leah, we're not against you," and with more courage states "We just don't want to jump to conclusions."
+(set: $leah_name)
 
 He's looking right at you, and your looking right back. He quickly looks away, clearly terrified of the eye contact.
 
-(if: $ardelia_name is true) [Ardelia] (else:) [The third] blurts out "It's not a trial, rakesh."
-(set: $rakesh_name to true)
+(if: $ardelia_name) [Ardelia] (else:) [The third] blurts out "It's not a trial, rakesh."
+(set: $rakesh_name)
 
 Rakesh grimmaces but says nothing in return. Tension is high and you want to sneak away from this feels fest, and by pure coincidence you are pulled back to your original body.
 
 [[retreat|ch2testp1]]
 
 # ch2pa
-(if: $ardelia_name is true) [ You brain blast your way into Adrelia's mind. ]
+(if: $ardelia_name) [ You brain blast your way into Adrelia's mind. ]
 (else:) [ You've melded minds with a member of the crew, relatively short and colourful. ]
 
 Hearing the other two members arguing certainly annoys you, though why not eavesdrop a little?
 
 The tallest states as immutible fact "If something is wrong with Kaleb he'd still know his name, this proves nothing! If it's really Kaleb in there he'd know the ships name, your name, my name, Ardelia's name, and our every routine."
-(set: $ardelia_name to true)
+(set: $ardelia_name)
 
 This certainly puts Kaleb in the hot seat, luckily we're not quite him right now and luckily (if: $rakesh_name) [Rakesh] (else:) [the white coat] retorts "As if, you don't announce 'Welcome to a bright new day aboard the Kairos-3 This is your captain speaking-'"
-(set: $ship_name to true)
+(set: $ship_name)
 
 But the tallest cuts him off brandishing her teeth, and as yellow as they may be this certainly scares everyone, and by pure coincidence you're pulled back to your original body.
 
@@ -266,12 +266,12 @@ But the tallest cuts him off brandishing her teeth, and as yellow as they may be
 # ch2testp1
 You're approached by the three crew members, the tallest leads with "Kaleb, we've decided we need more information from you, to see if you are still yourself." With a deep breath she continues "If you fail this test I have no choice but to eject you from this ship, as is procedure."
 
-Everyone looks away breifly as (if: $leah_name is true) [Leah] (else:) [the tallest] begins to question, "What is my name?" she asks.
+Everyone looks away breifly as (if: $leah_name) [Leah] (else:) [the tallest] begins to question, "What is my name?" she asks.
 
 [[Margret|ch2testdie]]
 [[Chad|ch2testdie]]
 [[It's my right to remain silent|ch2testdie]]
-(if: $leah_name is true) [[Leah|ch2testp2]]
+(if: $leah_name) [[Leah|ch2testp2]]
 
 # ch2testdie
 (if: $leah_name) [Leah] (else:) [The tallest] is quick to slam the eject button. The airlock bay fails to open. Sadly they have to foresight to press the button a second time and now your in space, dying.
@@ -286,28 +286,28 @@ With some relief from the others Leah presses on.
 [[Kaleb|ch2testdie]]
 [[Mary|ch2testdie]]
 [[Arduino|ch2testdie]]
-(if: $ardelia_name is true) [[Ardelia|ch2testp3]]
+(if: $ardelia_name) [[Ardelia|ch2testp3]]
 
 # ch2testp3
 Adrelia smiles. Leah puts on her thinking scowl and breaths in.
 
 "What ship are we on?"
 
-(if: $rakesh_name is true) [Rakesh] (else:) [The white coat] quickly blurts out "He might not know that, we shouldn't-"
+(if: $rakesh_name) [Rakesh] (else:) [The white coat] quickly blurts out "He might not know that, we shouldn't-"
 
 Leah rudely interrupts with "Fine, if you don't know the ship's name what's his?"
 
 [[Phone a friend?|ch2testdie]]
 [[The Scrapper mk2|ch2testdie]]
 [[Randy|ch2testdie]]
-(if: $ship_name is true) [[Kairos-3|Ch2testpass]]
-(if: $rakesh_name is true) [[Rakesh|Ch2testpass]]
+(if: $ship_name) [[Kairos-3|Ch2testpass]]
+(if: $rakesh_name) [[Rakesh|Ch2testpass]]
 
 # Test 1-1
 Leah: I need you to answer this question.
 Leah: What is your name?
 
-(if: $your_name is true) [ [["Gabe." |Complete Test 1-1]] ]
+(if: $your_name) [ [["Gabe." |Complete Test 1-1]] ]
 [["..." |Protocol]]
 
 # Protocol
@@ -328,7 +328,7 @@ Ardelia: Okay. Okay. Gabe. Gabe, do you know where you are? {Timer: 60}
 
 [["The airlock." |A bad joke]]
 [["..." |Protocol]]
-(if: $ship_name is true)
+(if: $ship_name)
 [ [["The Kairos-3."|Complete Test 1-2]]]
 
 # Opening debate
@@ -348,7 +348,7 @@ As you drift out into space, you hear a voice...
 You see the name "Kairos-3" as you drift out from the ship.
 
 Voice: Such frailty.
-(set: $ship_name to true)
+(set: $ship_name)
 ]
 
 (else-if: $marv_is_dead is false)
@@ -390,7 +390,7 @@ Rakesh: Welsh, please explain your behavior. {Timer: 60}
 
 [["Could you tell me what I've done?" |Another bad joke]]
 [["..." |Protocol]]
-(if: $marv_is_dead is true) [
+(if: $marv_is_dead) [
 [["Gates is dead." |Complete 1-3]]
 [["Marv is gone." |Complete 1-3]]
 ]
@@ -398,7 +398,7 @@ Rakesh: Welsh, please explain your behavior. {Timer: 60}
 # Player looks at Ardelia
 For 30 seconds, player is able to look into Ardelia's eyes. Can move Ardelia's head as she looks around. If the player looks at their body, they see it sitting, in an almost trance-like state.
 
-Can glance down at tablet with the report on Marvin "Marv" Gates' death. Cause of death: Asphyxiation. (set: $marv_is_dead to true)
+Can glance down at tablet with the report on Marvin "Marv" Gates' death. Cause of death: Asphyxiation. (set: $marv_is_dead)
 
 The player can overhear--
 

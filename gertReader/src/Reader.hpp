@@ -31,8 +31,12 @@ class Story
 	using Chapter = std::list <Field>;
 
 	std::map <std::string, Chapter> nodes;
+
+	void graph (const std::string & s, int indent);
 public:
 	Story (const std::string & filename);
 
-	void graph (const std::string & start, int indent = 0);
+	void graph (const std::string & start) {graph (start, 0);}
+
+	void play (std::string start);
 };

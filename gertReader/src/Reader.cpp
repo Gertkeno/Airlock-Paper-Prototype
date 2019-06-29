@@ -6,7 +6,7 @@
 #include <cstring>
 #include "stringfuncs.hpp"
 
-extern std::map <std::string, bool> variables;
+static std::map <std::string, bool> variables;
 
 Story::Story (const std::string & filename)
 {
@@ -34,11 +34,11 @@ Story::Story (const std::string & filename)
 		}
 		else if (word[0] == '(')
 		{
+			const auto breakfind {word.find (':')};
 			std::string function {[&] ()
 			{
-				const auto endfind {word.find (':')};
-				if (endfind != std::string::npos)
-					return trunc_whitespacer (word.substr (1, endfind-1));
+				if (breakfind != std::string::npos)
+					return trunc_whitespacer (word.substr (1, breakfind-1));
 
 				std::string f;
 				std::getline (c, f, ':');
@@ -61,7 +61,16 @@ Story::Story (const std::string & filename)
 			else
 				throw std::runtime_error {"Unkown function of type \"" + function + "\""};
 
-			c >> line.parameters;
+			const auto endfind {word.find (')')};
+			if (endfind == std::string::npos)
+			{
+				std::string t;
+				std::getline (c, t, ')');
+				line.parameters = trunc_whitespacer (t);
+			}
+			else
+				line.parameters = trunc_whitespacer (word.substr (breakfind, endfind-breakfind));
+
 			#ifndef NDEBUG
 			std::cout << "FUNCTION:\n\ttype: " << line.type << "\n\tparameter: \"" << line.parameters << "\"\n";
 			#endif
@@ -143,11 +152,82 @@ void Story::graph (const std::string & s, int indent)
 	else
 		ips [s] = true;
 
-	for (auto & i : nodes [s])
+	for (auto & i : nodes.at (s))
 	{
 		if (i.type == Field::LINK_TO)
 		{
 			graph (i.parameters, indent+1);
 		}
+	}
+}
+
+void Story::play (std::string c)
+{
+	enum c_t
+	{
+		TRUE,
+		FALSE,
+		IGNORE,
+	} past {IGNORE};
+
+	int input {1};
+	while (input != 0)
+	{
+		int linkIndex {1};
+		for (auto & i : nodes.at (c))
+		{
+			switch (i.type)
+			{
+			case Field::BASIC_TEXT:
+				std::cout << i.text << ' ';
+				past = IGNORE;
+				break;
+			case Field::LINK_TO:
+				if (past != FALSE)
+					std::cout << linkIndex++ << ") " << i.text << ' ';
+				break;
+			case Field::FUNC_IF:
+				if (variables [i.parameters])
+					past = TRUE;
+				else
+					past = FALSE;
+				break;
+			case Field::FUNC_ELSE_IF:
+				if (past == FALSE and variables [i.parameters])
+					past = TRUE;
+				break;
+			case Field::FUNC_ELSE:
+				if (past == TRUE)
+					past = FALSE;
+				else if (past == FALSE)
+					past = TRUE;
+				break;
+			case Field::CONDITIONAL_TEXT:
+				if (past != FALSE)
+					std::cout << i.text << ' ';
+				break;
+			case Field::FUNC_SET:
+				variables [i.parameters] = true;
+				break;
+			case Field::FUNC_UNSET:
+				variables [i.parameters] = false;
+				break;
+			}
+		}
+
+		std::cin >> input;
+		
+		int copy {input};
+		for (auto & i : nodes.at (c))
+		{
+			if (i.type != Field::LINK_TO)
+				continue;
+			if (copy-- <= 1)
+			{
+				c = i.parameters;
+				break;
+			}
+		}
+		std::cout << std::endl;
 	}
 }

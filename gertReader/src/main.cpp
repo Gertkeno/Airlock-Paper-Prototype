@@ -16,6 +16,7 @@ int main (int argc, char ** argv)
 			{
 				Story test (argv [i]);
 				test.graph ("Chapter 2");
+				test.play ("Chapter 2");
 			}
 			catch (const std::runtime_error & e)
 			{
