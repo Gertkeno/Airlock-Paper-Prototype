@@ -1,5 +1,6 @@
+// I had to change a lot of this stuff lol
+
 # Chapter 3 oponer
-(set: $knowsEnginer to false)
 The questions are over. A collective sigh of relief hangs in the air.  Everyone returns to eating slowly and quietly.  The silence is cut by the lurch of the ship going to a sudden stop.
 Leah eyes snap to you and she says "Seems the engine has shut off forward momentum. Kaleb why don't you go fix it?".  A small smile graces her face.
 [[Why me?|ch3SupGain]]
@@ -48,18 +49,19 @@ Leah walks all the way to the back of the room.  She is still watching you and t
 [[Work on Reactor | ReactorWork]]
 
 # MarvToRek
-You see with the Ardelia's eyes. You see Rekesh holding a key card  You see his thoughts he is a geologist named Marv. (set: $MarvID)
+(set: $MarvID)
+You see with the Ardelia's eyes. You see Rekesh holding a key card  You see his thoughts he is a geologist named Marv.
 Rekesh looks at you puzzled and says "Why did you stop talking, these rocks are profitable for business, explain more"
 [[ Uh... Sorry had a weird thought| MarvToRek2.1]]
 [[ hey is that a keys card? | MarvToRek2.Key]]
-(if: $MarvRoom = true) [[Oh Sorry was thinking of my many sisters| MarvToRek2.2]]
-(if: $MarvRoom = true) [[The mineral analysis does show promising rare earth element deposits. So that key card is for me? | MarvToRek2.Key]]
+(if: $MarvRoom) [[Oh Sorry was thinking of my many sisters| MarvToRek2.2]]
+(if: $MarvRoom) [[The mineral analysis does show promising rare earth element deposits. So that key card is for me? | MarvToRek2.Key]]
 
 # RekToMarv
 Marv continues to discuss the various rocks and readings they found on the moon. untill he posses and says "Wait you stopped me for something what was it?" You look down and see the master key in your hand.
 [[ oh I just wanted to tell you I am going to be patrolling the halls|ExploreTime]]
-(if: $RekRoom = true)  [[ Oh the business is having great profitable turn over so you can afford that new geological pulse reader |ExploreTime]]
-(if: $MarvRoom = true) [[Rock puns |ExploreTime]]
+(if: $RekRoom)  [[ Oh the business is having great profitable turn over so you can afford that new geological pulse reader |ExploreTime]]
+(if: $MarvRoom) [[Rock puns |ExploreTime]]
 
 # LeahPossess
 You see through Leah's eyes. you hear her thoughts unraveling a secret.
@@ -218,7 +220,7 @@ Pick a possesion target.
 [[Possess the young woman|ch2pa]]
 
 # ch2pr
-(if: $rakesh_name) [ You find yourself through the eyes of Rakesh. ]
+(if: $rakesh_name) [You find yourself through the eyes of Rakesh. ]
 (else:) [ Forced into this man's mind and pristine white coat you now see through their eyes. ]
 
 At nearly the same time, by pure coincidence the tallest turns to you, the white coat, and states "If something is wrong with Kaleb he'd still know his name, this proves nothing! If it's really Kaleb in there he'd know the ships name, your name, my name, Ardelia's name, and our every routine."

@@ -23,6 +23,9 @@ Story::Story (const std::string & filename)
 			 std::string line;
 			 std::getline (c, line);
 			 currentChapter = trunc_whitespacer (word.substr (1) + line);
+			 if (firstChapter.empty())
+				firstChapter = currentChapter;
+
 			 #ifndef NDEBUG
 			 std::cout << "CHAPTER: \"" << currentChapter << "\"\n";
 			 #endif
@@ -54,6 +57,8 @@ Story::Story (const std::string & filename)
 				line.type = Field::FUNC_ELSE_IF;
 			else if (function == "else")
 				line.type = Field::FUNC_ELSE;
+			else if (function == "and")
+				line.type = Field::FUNC_AND;
 			else if (function == "set")
 				line.type = Field::FUNC_SET;
 			else if (function == "unset")
@@ -156,6 +161,8 @@ void Story::graph (const std::string & s, int indent)
 	else
 		ips [s] = true;
 
+	if (nodes.count (s) == 0)
+		throw std::runtime_error {"Cannot graph chapter \"" + s + "\", since it does not exist!"};
 	for (auto & i : nodes.at (s))
 	{
 		if (i.type == Field::LINK_TO)
@@ -177,6 +184,9 @@ void Story::play (std::string c)
 	int input {1};
 	while (input != 0)
 	{
+		if (nodes.count (c) == 0)
+			throw std::runtime_error {"Cannot play chapter \"" + c + "\" since it does not exist!"};
+
 		int linkIndex {1};
 		for (auto & i : nodes.at (c))
 		{
@@ -194,18 +204,24 @@ void Story::play (std::string c)
 				if (past == FALSE)
 					break;
 				std::cout << i.text << ' ';
-				if (i.carriageReturn)
-					std::cout << std::endl;
-				break;
+				// just a heads up this is super gross syntax, but false fallthroughs are nice
+				if (false) {
+				[[fallthrough]];
 			case Field::LINK_TO:
 				if (past == FALSE)
 					break;
-				std::cout << linkIndex++ << ") " << i.text << ' ';
+				std::cout << '[' << linkIndex++ << ' ' << i.text << "] ";
+				}
 				if (i.carriageReturn)
 					std::cout << std::endl;
+				past = IGNORE;
 				break;
 
 			// functional non-text
+			case Field::FUNC_AND:
+				if (past == FALSE)
+					break;
+				[[fallthrough]];
 			case Field::FUNC_IF:
 				if (variables [i.parameters])
 					past = TRUE;

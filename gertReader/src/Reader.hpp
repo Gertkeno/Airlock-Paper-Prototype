@@ -20,7 +20,8 @@ class Story
 			FUNC_ELSE,		// 4
 			FUNC_SET,		// 5
 			FUNC_UNSET,		// 6
-			CONDITIONAL_TEXT,	// 7
+			FUNC_AND,		// 7
+			CONDITIONAL_TEXT,	// 8
 		} type;
 
 		std::string parameters;
@@ -31,11 +32,14 @@ class Story
 	using Chapter = std::list <Field>;
 
 	std::map <std::string, Chapter> nodes;
+	std::string firstChapter;
 
 	void graph (const std::string & s, int indent);
 public:
 	Story (const std::string & filename);
 
 	void graph (const std::string & start) {graph (start, 0);}
+	void graph() {graph (firstChapter);}
 	void play (std::string start);
+	void play () {play (firstChapter);}
 };
