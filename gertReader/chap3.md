@@ -1,8 +1,8 @@
 # Chapter 3 oponer
-A few days hace past and the crew have yet to let you return to work.  Everyone is still on edge but the tension in the ship is loosening its grip as you head towards $stationName.
+A few days hace past and the crew have yet to let you return to work.  Everyone is still on edge but the tension in the ship is loosening its grip as you head towards Dorado 51.
 You are awaken by the Voice "Prepare yourself today shall be taxing."
 You are thrown from bed by the lurch of the ship going to a sudden stop.
-$pilotName runs into your room.  Holding a $knowsKeyCard. You note this as odd as the rooms have a biometric scan to keep people out of eachother's rooms. "Seems the engine has shut off forward momentum. $youNameN why don't you go fix it?".
+Peyton runs into your room.  Holding a strange keycard. You note this as odd as the rooms have a biometric scan to keep people out of eachother's rooms. "Seems the engine has shut off forward momentum. Gabe why don't you go fix it?".
 
 // added unset function so you can toggle these off/on on respawn situations
 // everything is false by default
@@ -14,7 +14,7 @@ $pilotName runs into your room.  Holding a $knowsKeyCard. You note this as odd a
 (IF: $knowsEnginer)[[I'll give it all she's got captain. | ch3ReactorPuzzle ]]
 
 # ch3SupGain
-$pilotName says "Why would I ask you?"
+Peyton says "Why would I ask you?"
 [[I Dont Know | Ch3NotKelab]]
 [[Because I work with the engine? | ch3ReactorPuzzle]]
 (if: $knowsEnginer) [[I am just joking. I am the best engineer y'all could afford.|ch3ReactorPuzzle]]
@@ -22,7 +22,7 @@ $pilotName says "Why would I ask you?"
 
 # ch3ReactorPuzzle
 In the Engine Room, a massive Reactor sits silent with many vacuum tubes dimly lighting the room with oddly colored lights.
-$pilotName pulls out her holstered gun and says "This is a Flame West revolver, given to me... its old. It will still put a lethal plasma-shell into you." She sighs "I do not want to fire this in this room, I do not want to fire this at all" She drinks from a flask.
+Peyton pulls out her holstered gun and says "This is a Flame West revolver, given to me... its old. It will still put a lethal plasma-shell into you." She sighs "I do not want to fire this in this room, I do not want to fire this at all" She drinks from a flask.
 (if: $paranoia) [Leah Keeping the gun trained on you "So, show me how the reactor works."]
 (else:) [Leah holsters the weapon "I am sorry. Could you show me how the reactor works?"]
 
@@ -30,31 +30,31 @@ $pilotName pulls out her holstered gun and says "This is a Flame West revolver, 
 (If: $knowsEnginer) [[Actually this is pretty dangerious, I am going to need space. | ReactorDial0]]
 
 # ch3FanBelt
-While walking past $sciName over hearing says "The engine has fan belts? I thought it was a fusion reactor."
-$pilotName states "yes why would the reactor need fan belts?"
-$sciName interjects "Why would I know? I am not the engineer, $youNameN..."
-The death stare $pilotName shoots $sciName could kill a medium-sized horse.
+While walking past Esme over hearing says "The engine has fan belts? I thought it was a fusion reactor."
+Peyton states "yes why would the reactor need fan belts?"
+Esme interjects "Why would I know? I am not the engineer, Gabe..."
+The death stare Peyton shoots Esme could kill a medium-sized horse.
 (set: $knowsEnginer)
 (set: $paranoia)
 [[It is allways the fan belt. | ch3ReactorPuzzle]]
 [[Does fusion mean gassoline? | Ch3NotKelab]]
 
 # Ch3NotKelab
-$pilotName states "that's not Kaleb and fires a round into your skull."
+Peyton states "that's not Kaleb and fires a round into your skull."
 As your body hits the floor you hear the Voice say "Let's try again"
 [[Chapter 3 oponer]]
 
 # ReactorDial1
-While $pilotName is distracted with the heavy object you know you have time to possess someone else. not alot of time. You see $corpName talking to $sciName.
-[[Possess $sciName | MarvToRek]]
-[[Possess $corpName | RekToMarv]]
+While Peyton is distracted with the heavy object you know you have time to possess someone else. not alot of time. You see Rakesh talking to Esme.
+[[Possess Esme | MarvToRek]]
+[[Possess Rakesh | RekToMarv]]
 [[Work on Reactor | ReactorWork]]
 
 # ReactorDial0
-Leah walks all the way to the back of the room.  She is still watching you and that gun is a concern. You see out of a window $corpName talking to $sciName holding a rock.
-[[Possess $sciName | MarvToRek]]
-[[Possess $corpName | RekToMarv]]
-[[Possess $pilotName | LeahPossess]]
+Leah walks all the way to the back of the room.  She is still watching you and that gun is a concern. You see out of a window Rakesh talking to Esme holding a rock.
+[[Possess Esme | MarvToRek]]
+[[Possess Rakesh | RekToMarv]]
+[[Possess Peyton | LeahPossess]]
 [[Work on Reactor | ReactorWork]]
 
 # MarvToRek
@@ -219,15 +219,15 @@ End so far.
 //(set: $textWords3 = "")
 //(set: $textWords4 = "")
 //(set: $youNameF = "Gabriel")
-//(set: $youNameN = "Gabe")
-//(set: $pilotName = "Peyton")
-//(set: $sciName = "Esme")
-//(set: $corpName = "Rekesh")
+//(set: Gabe = "Gabe")
+//(set: Peyton = "Peyton")
+//(set: Esme = "Esme")
+//(set: Rakesh = "Rekesh")
 //(set: $deadNameF = "Marvin")
 //(set: $deadNameN = "Marv")
 //(set: $deadNameN = "Andras")
 //(set: $shipName = "Karn 1369")
-//(set: $stationName = "Dorado 51")
+//(set: Dorado 51 = "Dorado 51")
 //(set: $deathCounter = 0)
 
 //#how Write CHoices

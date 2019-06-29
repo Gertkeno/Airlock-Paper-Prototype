@@ -1,7 +1,9 @@
 #!/bin/bash
 
+CXX="g++"
+
 build() {
-	g++ -c "$1" -o "obj/${1%.*}.o" -Wall -Wextra -g -O0
+	$CXX -c "$1" -o "obj/${1%.*}.o" -Wall -Wextra -g -O0
 }
 
 mkdir -p obj/src/
@@ -31,4 +33,4 @@ md5sum src/*.cpp > .hashes
 
 echo "Linking ..."
 OBJ_LIST=`find obj/ -type f -iname "*.o"`
-g++ -o gr $OBJ_LIST -lSDL2
+$CXX -o gr $OBJ_LIST -lSDL2

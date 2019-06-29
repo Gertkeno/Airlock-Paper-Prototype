@@ -33,6 +33,7 @@ int main (int argc, char ** argv)
 	else
 	{
 		std::cout << "No input files" << std::endl;
+		SDL_ShowSimpleMessageBox (SDL_MESSAGEBOX_ERROR, "Hey, Listen", "This is a command line application, you must drag a file onto the executable, or open it in cmd", nullptr);
 	}
 
 	SDL_Quit();
