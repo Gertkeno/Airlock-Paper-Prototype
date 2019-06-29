@@ -136,6 +136,10 @@ Story::Story (const std::string & filename)
 
 			nodes [currentChapter].push_back (line);
 		}
+
+		// user formatting ;)
+		if (c.peek() == '\n')
+			nodes [currentChapter].back().carriageReturn = true;
 	}
 }
 
@@ -181,11 +185,27 @@ void Story::play (std::string c)
 			case Field::BASIC_TEXT:
 				std::cout << i.text << ' ';
 				past = IGNORE;
+				if (i.carriageReturn)
+					std::cout << std::endl;
+				break;
+
+			// conditional
+			case Field::CONDITIONAL_TEXT:
+				if (past == FALSE)
+					break;
+				std::cout << i.text << ' ';
+				if (i.carriageReturn)
+					std::cout << std::endl;
 				break;
 			case Field::LINK_TO:
-				if (past != FALSE)
-					std::cout << linkIndex++ << ") " << i.text << ' ';
+				if (past == FALSE)
+					break;
+				std::cout << linkIndex++ << ") " << i.text << ' ';
+				if (i.carriageReturn)
+					std::cout << std::endl;
 				break;
+
+			// functional non-text
 			case Field::FUNC_IF:
 				if (variables [i.parameters])
 					past = TRUE;
@@ -202,10 +222,6 @@ void Story::play (std::string c)
 				else if (past == FALSE)
 					past = TRUE;
 				break;
-			case Field::CONDITIONAL_TEXT:
-				if (past != FALSE)
-					std::cout << i.text << ' ';
-				break;
 			case Field::FUNC_SET:
 				variables [i.parameters] = true;
 				break;
@@ -215,6 +231,7 @@ void Story::play (std::string c)
 			}
 		}
 
+		std::cout << "\n:";
 		std::cin >> input;
 		
 		int copy {input};

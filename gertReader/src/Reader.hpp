@@ -24,9 +24,9 @@ class Story
 		} type;
 
 		std::string parameters;
-		bool lineBreak;
+		bool carriageReturn;
 
-		Field() : type (BASIC_TEXT), lineBreak (false) {}
+		Field() : type (BASIC_TEXT), carriageReturn (false) {}
 	};
 	using Chapter = std::list <Field>;
 
@@ -37,6 +37,5 @@ public:
 	Story (const std::string & filename);
 
 	void graph (const std::string & start) {graph (start, 0);}
-
 	void play (std::string start);
 };
