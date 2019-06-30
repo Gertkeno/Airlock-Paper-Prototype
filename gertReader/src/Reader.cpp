@@ -143,7 +143,7 @@ Story::Story (const std::string & filename)
 		}
 
 		// user formatting ;)
-		if (c.peek() == '\n')
+		if (c.peek() == '\n' and not nodes [currentChapter].empty())
 			nodes [currentChapter].back().carriageReturn = true;
 	}
 }

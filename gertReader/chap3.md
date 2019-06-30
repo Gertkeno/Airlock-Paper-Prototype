@@ -68,7 +68,8 @@ Rekesh looks at you puzzled and says "Why did you stop talking, these rocks are 
 
 # RekToMarv
 Marv continues to discuss the various rocks and readings they found on the moon. untill he posses and says "Wait you stopped me for something what was it?" You look down and see the master key in your hand.
-(if: $highTension) [[oh I just wanted to tell you I am going to be patrolling the halls | ExploreTime]]
+
+[[oh I just wanted to tell you I am going to be patrolling the halls | ExploreTime]]
 (If: $RekRoom)     [[Oh the business is having great profitable turn over so you can afford that new geological pulse reader | ExploreTime]]
 (If: $MarvRoom)    [[Rock puns | ExploreTime]]
 
@@ -131,7 +132,7 @@ Rekesh looks perplexed "That is interesting, I know glass sales are always solid
 (If: $MarvRoom) (else:) (and: $Marv23) [[ Oh that reminds me, That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]]
 [[Thanks mate |ExploreTime]]
 
-#ExploreTime
+# ExploreTime
 You have the keycard time to snoop some peoples rooms.
 [[tensionLock]]
 
