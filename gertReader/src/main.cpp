@@ -23,13 +23,21 @@ inline bool loop_gui (Font * f, SDL_Event * e, Window * w)
 			guistory = new Story (e->drop.file);
 			guichapter = guistory->get_first_chapter();
 			break;
+		case SDL_MOUSEBUTTONUP:
+			const auto clicked {guistory->get_clicked (e->button.x, e->button.y)};
+			if (clicked.empty())
+				break;
+			guichapter = clicked;
+			break;
 		}
 	}
 
 	SDL_RenderClear (w->get_render());
 	if (guistory != nullptr)
 	{
-		guistory->draw (f, guichapter);
+		int width, height;
+		SDL_GetWindowSize (w->get_ptr(), &width, &height);
+		guistory->draw (f, guichapter, width);
 	}
 	//f->draw_at (0, 0, 'a');
 

@@ -46,5 +46,7 @@ public:
 	void play() {play (firstChapter);}
 
 	std::string get_first_chapter() const {return firstChapter;}
-	void draw (Font * f, std::string chapter);
+	void draw (Font * f, std::string chapter, const int maxw) const;
+
+	std::string get_clicked (int x, int y) const;
 };

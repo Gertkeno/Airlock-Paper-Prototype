@@ -275,6 +275,12 @@ void Story::play (std::string c)
 	}
 }
 
+inline void cr (SDL_Point & pos)
+{
+	pos.y += 33;
+	pos.x = 0;
+}
+
 inline void draw_string (SDL_Point & pos, Font * f, const std::string & s)
 {
 	for (auto & i : s)
@@ -284,25 +290,35 @@ inline void draw_string (SDL_Point & pos, Font * f, const std::string & s)
 	}
 }
 
-inline void cr (SDL_Point & pos)
-{
-	pos.y += 33;
-	pos.x = 0;
-}
+std::map <std::string, SDL_Rect> clickables;
 
-void Story::draw (Font * f, std::string c)
+void Story::draw (Font * f, std::string c, const int maxw) const
 {
-	c_t past {IGNORE};
-
 	if (nodes.count (c) == 0)
 		throw std::runtime_error {"Couldn't draw chapter \"" + c + "\" because it does not exist!"};
 
+	clickables.clear();
+
+	c_t past {IGNORE};
 	SDL_Point cursor {0, 0};
+	auto word_break {[&] (const std::string & s)
+	{
+		if (cursor.x + s.length() * f->width > static_cast <unsigned> (maxw))
+			cr (cursor);
+	}};
+
+	auto create_clickable {[&] (const std::string & text, const std::string & link)
+	{
+		const int width (text.length() * f->width);
+		clickables [link] = SDL_Rect {cursor.x, cursor.y, width, 33};
+	}};
+
 	for (auto & i : nodes.at (c))
 	{
 		switch (i.type)
 		{
 		case Field::BASIC_TEXT:
+			word_break (i.text);
 			draw_string (cursor, f, i.text + ' ');
 			past = IGNORE;
 			if (i.carriageReturn)
@@ -313,6 +329,7 @@ void Story::draw (Font * f, std::string c)
 		case Field::CONDITIONAL_TEXT:
 			if (past == FALSE)
 				break;
+			word_break (i.text);
 			draw_string (cursor, f, i.text + ' ');
 			// just a heads up this is super gross syntax, but false fallthroughs are nice
 			if (false) {
@@ -321,6 +338,8 @@ void Story::draw (Font * f, std::string c)
 			if (past == FALSE)
 				break;
 			std::string t {"[" + i.text + "] "};
+			word_break (t);
+			create_clickable (t, i.parameters);
 			draw_string (cursor, f, t);
 			}
 			if (i.carriageReturn)
@@ -357,4 +376,22 @@ void Story::draw (Font * f, std::string c)
 			break;
 		}
 	}
+}
+
+std::string Story::get_clicked (int x, int y) const
+{
+	for (auto & i : clickables)
+	{
+		if (x < i.second.x)
+			continue;
+		if (x > i.second.x + i.second.w)
+			continue;
+		if (y < i.second.y)
+			continue;
+		if (y > i.second.y + i.second.h)
+			continue;
+		return i.first;
+	}
+
+	return std::string();
 }
