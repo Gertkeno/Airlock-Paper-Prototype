@@ -3,6 +3,12 @@
 
 Window::Window (const char * title)
 {
-	SDL_CreateWindowAndRenderer (800, 600, SDL_WINDOW_RESIZABLE, &ptr, &rend);
-	SDL_SetWindowTitle (ptr, title);
+	SDL_CreateWindowAndRenderer (800, 600, SDL_WINDOW_RESIZABLE, &_ptr, &_rend);
+	SDL_SetWindowTitle (_ptr, title);
+}
+
+Window::~Window()
+{
+	SDL_DestroyRenderer (_rend);
+	SDL_DestroyWindow (_ptr);
 }

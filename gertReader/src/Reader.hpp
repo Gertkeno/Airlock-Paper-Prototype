@@ -4,7 +4,8 @@
 #include <map>
 #include <iostream>
 
-// Not supporting else-if since it's hard to do and easy to emulate
+class Window;
+class Font;
 
 class Story
 {
@@ -40,6 +41,10 @@ public:
 
 	void graph (const std::string & start) {graph (start, 0);}
 	void graph() {graph (firstChapter);}
+
 	void play (std::string start);
-	void play () {play (firstChapter);}
+	void play() {play (firstChapter);}
+
+	std::string get_first_chapter() const {return firstChapter;}
+	void draw (Font * f, std::string chapter);
 };

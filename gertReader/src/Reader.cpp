@@ -1,10 +1,15 @@
 #include "Reader.hpp"
+
 #include <fstream>
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
 #include <cstring>
+
+#include <SDL2/SDL.h>
+
 #include "stringfuncs.hpp"
+#include "Font.hpp"
 
 static std::map <std::string, bool> variables;
 
@@ -148,6 +153,8 @@ Story::Story (const std::string & filename)
 	}
 }
 
+// BAD GRAPH
+
 void Story::graph (const std::string & s, int indent)
 {
 	static std::map <std::string, bool> ips;
@@ -172,14 +179,17 @@ void Story::graph (const std::string & s, int indent)
 	}
 }
 
+enum c_t
+{
+	TRUE,
+	FALSE,
+	IGNORE,
+};
+
+// CLI PLAYER
 void Story::play (std::string c)
 {
-	enum c_t
-	{
-		TRUE,
-		FALSE,
-		IGNORE,
-	} past {IGNORE};
+	c_t past {IGNORE};
 
 	int input {1};
 	while (input != 0)
@@ -262,5 +272,89 @@ void Story::play (std::string c)
 			}
 		}
 		std::cout << std::endl;
+	}
+}
+
+inline void draw_string (SDL_Point & pos, Font * f, const std::string & s)
+{
+	for (auto & i : s)
+	{
+		f->draw_at (pos, i);
+		pos.x += f->width;
+	}
+}
+
+inline void cr (SDL_Point & pos)
+{
+	pos.y += 33;
+	pos.x = 0;
+}
+
+void Story::draw (Font * f, std::string c)
+{
+	c_t past {IGNORE};
+
+	if (nodes.count (c) == 0)
+		throw std::runtime_error {"Couldn't draw chapter \"" + c + "\" because it does not exist!"};
+
+	SDL_Point cursor {0, 0};
+	for (auto & i : nodes.at (c))
+	{
+		switch (i.type)
+		{
+		case Field::BASIC_TEXT:
+			draw_string (cursor, f, i.text + ' ');
+			past = IGNORE;
+			if (i.carriageReturn)
+				cr (cursor);
+			break;
+
+		// conditional
+		case Field::CONDITIONAL_TEXT:
+			if (past == FALSE)
+				break;
+			draw_string (cursor, f, i.text + ' ');
+			// just a heads up this is super gross syntax, but false fallthroughs are nice
+			if (false) {
+			[[fallthrough]];
+		case Field::LINK_TO:
+			if (past == FALSE)
+				break;
+			std::string t {"[" + i.text + "] "};
+			draw_string (cursor, f, t);
+			}
+			if (i.carriageReturn)
+				cr (cursor);
+			past = IGNORE;
+			break;
+
+		// functional non-text
+		case Field::FUNC_AND:
+			if (past == FALSE)
+				break;
+			[[fallthrough]];
+		case Field::FUNC_IF:
+			if (variables [i.parameters])
+				past = TRUE;
+			else
+				past = FALSE;
+			break;
+		case Field::FUNC_ELSE_IF:
+			if (past == FALSE and variables [i.parameters])
+				past = TRUE;
+			break;
+		case Field::FUNC_ELSE:
+			if (past == TRUE)
+				past = FALSE;
+			else if (past == FALSE)
+				past = TRUE;
+			break;
+		case Field::FUNC_SET:
+			variables [i.parameters] = true;
+			break;
+		case Field::FUNC_UNSET:
+			variables [i.parameters] = false;
+			break;
+		}
 	}
 }

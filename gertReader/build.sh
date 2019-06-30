@@ -11,7 +11,7 @@ mkdir -p obj/src/
 if [ "$1" = "clean" ]; then
 	echo "Clean build"
 	rm obj/src/*.o
-	for i in src/*.cpp; do
+	for i in src/*.c*; do
 		echo "Building $i ..."
 		build $i
 	done

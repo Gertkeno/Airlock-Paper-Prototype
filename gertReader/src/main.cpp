@@ -2,8 +2,44 @@
 #include <stdexcept>
 #include <iostream>
 #include "Reader.hpp"
+#include "Window.hpp"
+#include "Font.hpp"
 
-int main (int argc, char ** argv)
+Story * guistory {nullptr};
+
+inline bool loop_gui (Font * f, SDL_Event * e, Window * w)
+{
+	static std::string guichapter;
+	while (SDL_PollEvent (e))
+	{
+		switch (e->type)
+		{
+		case SDL_QUIT:
+			return false;
+		case SDL_DROPFILE:
+			if (guistory != nullptr)
+				delete guistory;
+			std::cout << "Loading story file " << e->drop.file << std::endl;
+			guistory = new Story (e->drop.file);
+			guichapter = guistory->get_first_chapter();
+			break;
+		}
+	}
+
+	SDL_RenderClear (w->get_render());
+	if (guistory != nullptr)
+	{
+		guistory->draw (f, guichapter);
+	}
+	//f->draw_at (0, 0, 'a');
+
+	SDL_RenderPresent (w->get_render());
+
+	SDL_Delay (32);
+	return true;
+}
+
+int main (int argc, char * argv [])
 {
 	if (SDL_Init (SDL_INIT_VIDEO) != 0)
 		throw std::runtime_error {"Couldn't init SDL" + std::string (SDL_GetError())};
@@ -33,7 +69,24 @@ int main (int argc, char ** argv)
 	else
 	{
 		std::cout << "No input files" << std::endl;
-		SDL_ShowSimpleMessageBox (SDL_MESSAGEBOX_ERROR, "Hey, Listen", "This is a command line application, you must drag a file onto the executable, or open it in cmd", nullptr);
+		//SDL_ShowSimpleMessageBox (SDL_MESSAGEBOX_ERROR, "Hey, Listen", "This is a command line application, you must drag a file onto the executable, or open it in cmd", nullptr);
+
+		Window win("gert reader");
+
+		extern unsigned char font_bmp;
+		extern unsigned int font_bmp_len;
+		Font font (&font_bmp, font_bmp_len, win.get_render(), 16);
+
+		SDL_Event e;
+		try
+		{
+			while (loop_gui (&font, &e, &win));
+		}
+		catch (const std::runtime_error & e)
+		{
+			std::cerr << "runtime error: " << e.what() << std::endl;
+			SDL_ShowSimpleMessageBox (SDL_MESSAGEBOX_ERROR, ">:(", e.what(), nullptr);
+		}
 	}
 
 	SDL_Quit();
