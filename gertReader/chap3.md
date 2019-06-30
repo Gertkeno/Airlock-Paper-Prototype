@@ -63,8 +63,8 @@ You see with the Ardelia's eyes. You see Rekesh holding a key card  You see his 
 Rekesh looks at you puzzled and says "Why did you stop talking, these rocks are profitable for business, explain more"
 [[ Uh... Sorry had a weird thought| MarvToRek2.1]]
 [[ hey is that a keys card? | MarvToRek2.Key]]
-(If: $MarvRoom) [[[Oh Sorry was thinking of my many sisters | MarvToRek2.2]]]
-(If: $MarvRoom) [[[The mineral analysis does show promising rare earth element deposits. So that key card is for me? | MarvToRek2.Key]]]
+(If: $MarvRoom) [[Oh Sorry was thinking of my many sisters | MarvToRek2.2]]
+(If: $MarvRoom) [[The mineral analysis does show promising rare earth element deposits. So that key card is for me? | MarvToRek2.Key]]
 
 # RekToMarv
 Marv continues to discuss the various rocks and readings they found on the moon. untill he posses and says "Wait you stopped me for something what was it?" You look down and see the master key in your hand.
@@ -93,9 +93,9 @@ A voice in your head chuckles.
 Rekesh says "weird thoughts like what? are you feeling okay you seemed a little shook all of the sudden."
 [[Oh it is nothing, now is that a key card? | MarvToRek2.Key]]
 (If: $RekRoom)  [[That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]]
-(If: $MarvRoom) [[[Oh the obsidian formation on that moon seem to be caused by heat but their should't be any volcano's. | MarvToRek2.4]]]
+(If: $MarvRoom) [[Oh the obsidian formation on that moon seem to be caused by heat but their should't be any volcano's. | MarvToRek2.4]]
 (If: $RekRoom)  [[You know the org chart states that I should be holding the master key? | MarvToRek2.Key]]
-(If: $MarvRoom) [[[Don't expect perfection from Scientist we all have ellectric personalities. Is that a key? | MarvToRek2.Key]]]
+(If: $MarvRoom) [[Don't expect perfection from Scientist we all have ellectric personalities. Is that a key? | MarvToRek2.Key]]
 
 # MarvToRek2.Key
 (set: $toldAboutKey)
@@ -114,9 +114,9 @@ Rekesh seems not to know what to say.  He opens his mouth to say something and t
 [[Oh it is nothing, now is that a key card? | MarvToRek2.Key]]
 
 (If: $RekRoom)  [[That memo you sent was really great about how all birthdays should be consolidated into one date. | MarvToRek2.3]]
-(If: $MarvRoom) [[[Oh the obsidian formation on that moon seem to be caused by heat but there shouldn't be any volcanoes. | MarvToRek2.4]]]
+(If: $MarvRoom) [[Oh the obsidian formation on that moon seem to be caused by heat but there shouldn't be any volcanoes. | MarvToRek2.4]]
 (If: $RekRoom)  [[You know the org chart states that I should be holding the master key? | MarvToRek2.Key]]
-(If: $MarvRoom) [[[Don't expect perfection from Geologist we all have faults. Is that a key? | MarvToRek2.Key]]]
+(If: $MarvRoom) [[Don't expect perfection from Geologist we all have faults. Is that a key? | MarvToRek2.Key]]
 
 # MarvToRek2.3
 (set: $toldAboutKey)

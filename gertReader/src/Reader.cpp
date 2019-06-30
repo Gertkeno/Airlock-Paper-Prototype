@@ -281,15 +281,6 @@ inline void cr (SDL_Point & pos)
 	pos.x = 0;
 }
 
-inline void draw_string (SDL_Point & pos, Font * f, const std::string & s)
-{
-	for (auto & i : s)
-	{
-		f->draw_at (pos, i);
-		pos.x += f->width;
-	}
-}
-
 std::map <std::string, SDL_Rect> clickables;
 
 void Story::draw (Font * f, std::string c, const int maxw) const
@@ -319,7 +310,7 @@ void Story::draw (Font * f, std::string c, const int maxw) const
 		{
 		case Field::BASIC_TEXT:
 			word_break (i.text);
-			draw_string (cursor, f, i.text + ' ');
+			cursor.x = f->draw_line (cursor, i.text + ' ');
 			past = IGNORE;
 			if (i.carriageReturn)
 				cr (cursor);
@@ -330,7 +321,7 @@ void Story::draw (Font * f, std::string c, const int maxw) const
 			if (past == FALSE)
 				break;
 			word_break (i.text);
-			draw_string (cursor, f, i.text + ' ');
+			cursor.x = f->draw_line (cursor, i.text + ' ');
 			// just a heads up this is super gross syntax, but false fallthroughs are nice
 			if (false) {
 			[[fallthrough]];
@@ -340,7 +331,7 @@ void Story::draw (Font * f, std::string c, const int maxw) const
 			std::string t {"[" + i.text + "] "};
 			word_break (t);
 			create_clickable (t, i.parameters);
-			draw_string (cursor, f, t);
+			cursor.x = f->draw_line (cursor, t, color::BLUE);
 			}
 			if (i.carriageReturn)
 				cr (cursor);

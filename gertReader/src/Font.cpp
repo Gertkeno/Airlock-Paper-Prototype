@@ -22,8 +22,23 @@ Font::~Font()
 	SDL_DestroyTexture (_ptr);
 }
 
-void Font::draw_at (int x, int y, char l)
+void Font::draw_at (int x, int y, char l, SDL_Color c)
 {
 	SDL_Rect src {(l%16)*32, (l/16)*32, width, 32}, dst {x, y, width, 32};
+	SDL_SetTextureColorMod (_ptr, c.r, c.g, c.b);
 	SDL_RenderCopy (_render, _ptr, &src, &dst);
+}
+
+int Font::draw_line (SDL_Point p, const std::string & s, SDL_Color c)
+{
+	SDL_SetTextureColorMod (_ptr, c.r, c.g, c.b);
+	SDL_Rect src, dst {p.x, p.y, width, 32};
+	for (auto & l : s)
+	{
+		src = {(l%16)*32, (l/16)*32, width, 32};
+		SDL_RenderCopy (_render, _ptr, &src, &dst);
+		dst.x += width;
+	}
+
+	return dst.x;
 }
