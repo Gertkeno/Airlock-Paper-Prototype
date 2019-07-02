@@ -64,12 +64,12 @@ int main (int argc, char * argv [])
 			}
 			catch (const std::runtime_error & e)
 			{
-				std::cerr << "runtime error: " << e.what() << std::endl;
+				std::cerr << argv [i] << '\t' << "runtime error:\t" << e.what() << std::endl;
 				SDL_ShowSimpleMessageBox (SDL_MESSAGEBOX_ERROR, ">:(", e.what(), nullptr);
 			}
 			catch (const std::exception & e)
 			{
-				std::cerr << e.what() << std::endl;
+				std::cerr << argv [i] << '\t' << e.what() << std::endl;
 				SDL_ShowSimpleMessageBox (SDL_MESSAGEBOX_ERROR, "Oops!", "This is probably my fault", nullptr);
 			}
 		}

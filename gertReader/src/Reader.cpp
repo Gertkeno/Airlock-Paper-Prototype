@@ -151,6 +151,19 @@ Story::Story (const std::string & filename)
 		if (c.peek() == '\n' and not nodes [currentChapter].empty())
 			nodes [currentChapter].back().carriageReturn = true;
 	}
+
+	// post compile checks
+	for (auto & i : nodes)
+	{
+		for (auto & f : i.second)
+		{
+			if (f.type == Field::LINK_TO)
+			{
+				if (nodes.count (f.parameters) == 0)
+					throw std::runtime_error {"Chapter \"" + i.first + "\" links to \"" + f.parameters + "\", which does not exist!"};
+			}
+		}
+	}
 }
 
 // BAD GRAPH
