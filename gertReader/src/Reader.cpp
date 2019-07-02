@@ -69,7 +69,7 @@ Story::Story (const std::string & filename)
 			else if (function == "unset")
 				line.type = Field::FUNC_UNSET;
 			else
-				throw std::runtime_error {"Unkown function of type \"" + function + "\""};
+				throw std::runtime_error {"In chapter \"" + currentChapter + "\" Unkown function of type \"" + function + "\""};
 
 			const auto endfind {word.find (')')};
 			if (endfind == std::string::npos)
@@ -101,7 +101,7 @@ Story::Story (const std::string & filename)
 				std::getline (c, endAppender, ']');
 				word += endAppender;
 				if (c.get() != ']')
-					throw std::runtime_error {"Missing last ']' in link: \"" + word + '"'};
+					throw std::runtime_error {"In chapter \"" + currentChapter + "\" Missing last ']' in link: \"" + word + '"'};
 			}
 			else
 				word = word.substr (0, endfind);
