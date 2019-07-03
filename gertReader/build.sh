@@ -7,10 +7,10 @@ build() {
 }
 
 hashed_build() {
-	for i in src/*.c*; do
-		echo "Building $i ..."
-		if [ "`md5sum $i`" != "`grep $i .hashes`" ]; then
-			build $i $1
+	for file in src/*.c*; do
+		echo "Building $file ..."
+		if [ "`md5sum $file`" != "`grep $file .hashes`" ]; then
+			build $file $1
 		else
 			echo "No change"
 		fi
@@ -20,9 +20,9 @@ hashed_build() {
 clean_build() {
 	echo "Clean build"
 	rm obj/src/*.o
-	for i in src/*.c*; do
-		echo "Building $i ..."
-		build $i $1
+	for file in src/*.c*; do
+		echo "Building $file ..."
+		build $file $1
 	done
 }
 
@@ -36,7 +36,7 @@ elif [ -z "$1" ]; then
 	hashed_build "-g -O0"
 else
 	echo "Just $1 ..."
-	build $1
+	build $1 "-g -O0"
 fi
 
 md5sum src/*.cpp > .hashes
