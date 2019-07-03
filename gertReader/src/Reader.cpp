@@ -164,6 +164,10 @@ Story::Story (const std::string & filename)
 			}
 		}
 	}
+
+	#ifndef NDEBUG
+	std::cout << "=== DONE READING ===\n";
+	#endif
 }
 
 // BAD GRAPH
@@ -190,6 +194,7 @@ void Story::graph (const std::string & s, int indent)
 			graph (i.parameters, indent+1);
 		}
 	}
+	std::cout << "=== GRAPH END ===" << std::endl;
 }
 
 enum c_t
@@ -199,155 +204,24 @@ enum c_t
 	IGNORE,
 };
 
-// CLI PLAYER
-void Story::play (std::string c)
+void Story::engine (const std::string & chapter, writer_f f) const
 {
 	c_t past {IGNORE};
 
-	int input {1};
-	while (input != 0)
-	{
-		if (nodes.count (c) == 0)
-			throw std::runtime_error {"Cannot play chapter \"" + c + "\" since it does not exist!"};
-
-		int linkIndex {1};
-		for (auto & i : nodes.at (c))
-		{
-			switch (i.type)
-			{
-			case Field::BASIC_TEXT:
-				std::cout << i.text << ' ';
-				past = IGNORE;
-				if (i.carriageReturn)
-					std::cout << std::endl;
-				break;
-
-			// conditional
-			case Field::CONDITIONAL_TEXT:
-				if (past == FALSE)
-					break;
-				std::cout << i.text << ' ';
-				// just a heads up this is super gross syntax, but false fallthroughs are nice
-				if (false) {
-				[[fallthrough]];
-			case Field::LINK_TO:
-				if (past == FALSE)
-					break;
-				std::cout << '[' << linkIndex++ << ' ' << i.text << "] ";
-				}
-				if (i.carriageReturn)
-					std::cout << std::endl;
-				past = IGNORE;
-				break;
-
-			// functional non-text
-			case Field::FUNC_AND:
-				if (past == FALSE)
-					break;
-				[[fallthrough]];
-			case Field::FUNC_IF:
-				if (variables [i.parameters])
-					past = TRUE;
-				else
-					past = FALSE;
-				break;
-			case Field::FUNC_ELSE_IF:
-				if (past == FALSE and variables [i.parameters])
-					past = TRUE;
-				break;
-			case Field::FUNC_ELSE:
-				if (past == TRUE)
-					past = FALSE;
-				else if (past == FALSE)
-					past = TRUE;
-				break;
-			case Field::FUNC_SET:
-				variables [i.parameters] = true;
-				break;
-			case Field::FUNC_UNSET:
-				variables [i.parameters] = false;
-				break;
-			}
-		}
-
-		std::cout << "\n:";
-		std::cin >> input;
-		
-		int copy {input};
-		for (auto & i : nodes.at (c))
-		{
-			if (i.type != Field::LINK_TO)
-				continue;
-			if (copy-- <= 1)
-			{
-				c = i.parameters;
-				break;
-			}
-		}
-		std::cout << std::endl;
-	}
-}
-
-inline void cr (SDL_Point & pos)
-{
-	pos.y += 33;
-	pos.x = 0;
-}
-
-std::map <std::string, SDL_Rect> clickables;
-
-void Story::draw (Font * f, std::string c, const int maxw) const
-{
-	if (nodes.count (c) == 0)
-		throw std::runtime_error {"Couldn't draw chapter \"" + c + "\" because it does not exist!"};
-
-	clickables.clear();
-
-	c_t past {IGNORE};
-	SDL_Point cursor {0, 0};
-	auto word_break {[&] (const std::string & s)
-	{
-		if (cursor.x + s.length() * f->width > static_cast <unsigned> (maxw))
-			cr (cursor);
-	}};
-
-	auto create_clickable {[&] (const std::string & text, const std::string & link)
-	{
-		const int width (text.length() * f->width);
-		clickables [link] = SDL_Rect {cursor.x, cursor.y, width, 33};
-	}};
-
-	for (auto & i : nodes.at (c))
+	for (auto & i : nodes.at (chapter))
 	{
 		switch (i.type)
 		{
 		case Field::BASIC_TEXT:
-			word_break (i.text);
-			cursor.x = f->draw_line (cursor, i.text + ' ');
+			f (i);
 			past = IGNORE;
-			if (i.carriageReturn)
-				cr (cursor);
 			break;
 
 		// conditional
 		case Field::CONDITIONAL_TEXT:
-			if (past == FALSE)
-				break;
-			word_break (i.text);
-			cursor.x = f->draw_line (cursor, i.text + ' ');
-			// just a heads up this is super gross syntax, but false fallthroughs are nice
-			if (false) {
-			[[fallthrough]];
 		case Field::LINK_TO:
-			if (past == FALSE)
-				break;
-			std::string t {"[" + i.text + "] "};
-			word_break (t);
-			create_clickable (t, i.parameters);
-			cursor.x = f->draw_line (cursor, t, color::BLUE);
-			}
-			if (i.carriageReturn)
-				cr (cursor);
+			if (past != FALSE)
+				f (i);
 			past = IGNORE;
 			break;
 
@@ -373,13 +247,122 @@ void Story::draw (Font * f, std::string c, const int maxw) const
 				past = TRUE;
 			break;
 		case Field::FUNC_SET:
-			variables [i.parameters] = true;
+			if (past != FALSE)
+				variables [i.parameters] = true;
+			past = IGNORE;
 			break;
 		case Field::FUNC_UNSET:
-			variables [i.parameters] = false;
+			if (past != FALSE)
+				variables [i.parameters] = false;
+			past = IGNORE;
 			break;
 		}
 	}
+}
+
+// CLI PLAYER
+static std::map <std::string, int> cli_link_to;
+static int linkIndex;
+
+void text_adventure (const Story::Field & f)
+{
+	if (f.type == Story::Field::LINK_TO)
+	{
+		cli_link_to [f.parameters] = linkIndex;
+		std::cout << '[' << linkIndex << ' ' << f.text << "] ";
+		++linkIndex;
+		if (f.carriageReturn)
+			std::cout << std::endl;
+	}
+	else
+	{
+		std::cout << f.text << ' ';
+		if (f.carriageReturn)
+			std::cout << std::endl;
+	}
+}
+
+void Story::play (std::string c) const
+{
+	int input {1};
+	while (input != 0)
+	{
+		if (nodes.count (c) == 0)
+			throw std::runtime_error {"Cannot play chapter \"" + c + "\" since it does not exist!"};
+
+		linkIndex = 1;
+		cli_link_to.clear();
+		engine (c, text_adventure);
+
+		std::cout << "\n:";
+		std::cin >> input;
+		
+		for (auto & i : cli_link_to)
+		{
+			if (i.second == input)
+			{
+				c = i.first;
+				break;
+			}
+		}
+
+		std::cout << std::endl;
+	}
+}
+
+// GUI PLAYER
+inline void cr (SDL_Point & pos)
+{
+	pos.y += 33;
+	pos.x = 0;
+}
+
+extern Font * gfont;
+static std::map <std::string, SDL_Rect> clickables;
+static SDL_Point cursor;
+
+void gui_adventure (const Story::Field & f, unsigned maxw)
+{
+	auto word_break {[&] (const std::string & s)
+	{
+		if (cursor.x + s.length() * gfont->width > maxw)
+			cr (cursor);
+	}};
+
+	auto create_clickable {[&] (const std::string & text, const std::string & link)
+	{
+		const int width (text.length() * gfont->width);
+		clickables [link] = SDL_Rect {cursor.x, cursor.y, width, 33};
+	}};
+
+	if (f.type == Story::Field::LINK_TO)
+	{
+		const std::string t {"[" + f.text + "] "};
+		word_break (t);
+		create_clickable (t, f.parameters);
+		cursor.x = gfont->draw_line (cursor, t, color::BLUE);
+		if (f.carriageReturn)
+			cr (cursor);
+	}
+	else
+	{
+		word_break (f.text);
+		cursor.x = gfont->draw_line (cursor, f.text + ' ');
+		if (f.carriageReturn)
+			cr (cursor);
+	}
+}
+
+void Story::draw (std::string c, const int maxw) const
+{
+	if (nodes.count (c) == 0)
+		throw std::runtime_error {"Couldn't draw chapter \"" + c + "\" because it does not exist!"};
+
+	clickables.clear();
+	cursor = {0, 0};
+
+	using namespace std::placeholders;
+	engine (c, std::bind (gui_adventure, _1, maxw));
 }
 
 std::string Story::get_clicked (int x, int y) const

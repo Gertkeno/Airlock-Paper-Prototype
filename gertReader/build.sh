@@ -39,7 +39,7 @@ else
 	build $1
 fi
 
-md5sum src/*.cpp > .hashes
+md5sum src/*.c* > .hashes
 
 echo "Linking ..."
 OBJ_LIST=`find obj/ -type f -iname "*.o"`

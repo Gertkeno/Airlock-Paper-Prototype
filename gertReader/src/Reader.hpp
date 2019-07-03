@@ -3,12 +3,14 @@
 #include <list>
 #include <map>
 #include <iostream>
+#include <functional>
 
 class Window;
 class Font;
 
 class Story
 {
+public:
 	struct Field
 	{
 		std::string text;
@@ -30,23 +32,27 @@ class Story
 
 		Field() : type (BASIC_TEXT), carriageReturn (false) {}
 	};
+private:
 	using Chapter = std::list <Field>;
 
 	std::map <std::string, Chapter> nodes;
 	std::string firstChapter;
 
 	void graph (const std::string & s, int indent);
+
+	using writer_f = std::function <void (const Field &)>;
+	void engine (const std::string & chapter, writer_f) const;
 public:
 	Story (const std::string & filename);
 
 	void graph (const std::string & start) {graph (start, 0);}
 	void graph() {graph (firstChapter);}
 
-	void play (std::string start);
-	void play() {play (firstChapter);}
+	void play (std::string start) const;
+	void play() const {play (firstChapter);}
 
 	std::string get_first_chapter() const {return firstChapter;}
-	void draw (Font * f, std::string chapter, const int maxw) const;
+	void draw (std::string chapter, const int maxw) const;
 
 	std::string get_clicked (int x, int y) const;
 };

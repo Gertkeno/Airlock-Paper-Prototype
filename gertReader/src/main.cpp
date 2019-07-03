@@ -5,9 +5,11 @@
 #include "Window.hpp"
 #include "Font.hpp"
 
+// bad
 Story * guistory {nullptr};
+Font * gfont;
 
-inline bool loop_gui (Font * f, SDL_Event * e, Window * w)
+inline bool loop_gui (SDL_Event * e, Window * w)
 {
 	static std::string guichapter;
 	while (SDL_PollEvent (e))
@@ -37,7 +39,7 @@ inline bool loop_gui (Font * f, SDL_Event * e, Window * w)
 	{
 		int width, height;
 		SDL_GetWindowSize (w->get_ptr(), &width, &height);
-		guistory->draw (f, guichapter, width);
+		guistory->draw (guichapter, width);
 	}
 	//f->draw_at (0, 0, 'a');
 
@@ -85,18 +87,20 @@ int main (int argc, char * argv [])
 
 		extern unsigned char font_bmp;
 		extern unsigned int font_bmp_len;
-		Font font (&font_bmp, font_bmp_len, win.get_render(), 16);
+		gfont = new Font (&font_bmp, font_bmp_len, win.get_render(), 16);
 
 		SDL_Event e;
 		try
 		{
-			while (loop_gui (&font, &e, &win));
+			while (loop_gui (&e, &win));
 		}
 		catch (const std::runtime_error & e)
 		{
 			std::cerr << "runtime error: " << e.what() << std::endl;
 			SDL_ShowSimpleMessageBox (SDL_MESSAGEBOX_ERROR, ">:(", e.what(), nullptr);
 		}
+
+		delete gfont;
 	}
 
 	SDL_Quit();
