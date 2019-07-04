@@ -50,6 +50,7 @@ Now when you go back to Chapter [[Functions]] you'll see another link for the ch
 # Conditionals
 IF alters how other functions behave and if text/links are shown
 
+(if: conditional_example) [Example text!!!!]
 (if: conditional_example) (else:) [[show example]]
 (if: conditional_example) [[hide example]]
 

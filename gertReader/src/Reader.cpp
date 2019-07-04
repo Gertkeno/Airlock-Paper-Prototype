@@ -5,6 +5,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cstring>
+#include <vector>
 
 #include <SDL2/SDL.h>
 
@@ -261,16 +262,14 @@ void Story::engine (const std::string & chapter, writer_f f) const
 }
 
 // CLI PLAYER
-static std::map <std::string, int> cli_link_to;
-static int linkIndex;
+static std::vector <std::string> cli_link_to;
 
 void text_adventure (const Story::Field & f)
 {
 	if (f.type == Story::Field::LINK_TO)
 	{
-		cli_link_to [f.parameters] = linkIndex;
-		std::cout << '[' << linkIndex << ' ' << f.text << "] ";
-		++linkIndex;
+		cli_link_to.push_back (f.parameters);
+		std::cout << '[' << cli_link_to.size() << ' ' << f.text << "] ";
 		if (f.carriageReturn)
 			std::cout << std::endl;
 	}
@@ -290,20 +289,15 @@ void Story::play (std::string c) const
 		if (nodes.count (c) == 0)
 			throw std::runtime_error {"Cannot play chapter \"" + c + "\" since it does not exist!"};
 
-		linkIndex = 1;
 		cli_link_to.clear();
 		engine (c, text_adventure);
 
 		std::cout << "\n:";
 		std::cin >> input;
 		
-		for (auto & i : cli_link_to)
+		if (cli_link_to.size() > static_cast <unsigned> (input-1))
 		{
-			if (i.second == input)
-			{
-				c = i.first;
-				break;
-			}
+			c = cli_link_to [input-1];
 		}
 
 		std::cout << std::endl;
