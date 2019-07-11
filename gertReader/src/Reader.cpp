@@ -13,6 +13,7 @@
 #include "Font.hpp"
 
 static std::map <std::string, bool> variables;
+static int paranoia {0};
 
 Story::Story (const std::string & filename)
 {
@@ -56,9 +57,15 @@ Story::Story (const std::string & filename)
 			if (function == "if")
 				line.type = Field::Attrib::CONDITIONAL;
 			else if (function == "set")
-				line.type = Field::Attrib::FUNC_SET;
+				line.type = Field::Attrib::SET;
 			else if (function == "unset")
-				line.type = Field::Attrib::FUNC_UNSET;
+				line.type = Field::Attrib::UNSET;
+			else if (function == "raise")
+				line.type = Field::Attrib::RAISE;
+			else if (function == "lower")
+				line.type = Field::Attrib::LOWER;
+			else if (function == "link")
+				line.type = Field::Attrib::LINK_TO;
 			else
 				throw std::runtime_error {"In chapter \"" + currentChapter + "\" Unkown function of type \"" + function + "\""};
 
@@ -114,42 +121,47 @@ Story::Story (const std::string & filename)
 	#endif
 }
 
-bool Story::Field::parse_functional() const
-{
-	bool conditionalMet = true;
-	for (auto & f : func)
-	{
-		if (f.type != Attrib::CONDITIONAL)
-			continue;
-		conditionalMet = variables [f.parameters];
-		break;
-	}
-
-	if (not conditionalMet)
-		return conditionalMet;
-	
-	for (auto & f : func)
-	{
-		switch (f.type)
-		{
-		case Attrib::FUNC_SET:
-			variables [f.parameters] = true;
-			break;
-		case Attrib::FUNC_UNSET:
-			variables [f.parameters] = false;
-			break;
-		}
-	}
-
-	return true;
-}
-
 void Story::engine (const std::string & chapter, writer_f f) const
 {
 	for (auto & i : nodes.at (chapter))
 	{
-		if (i.parse_functional())
-			f (i);
+		bool conditionalMet = true;
+		for (auto & f : i.func)
+		{
+			if (f.type != Field::Attrib::CONDITIONAL)
+				continue;
+			conditionalMet = variables [f.parameters];
+			break;
+		}
+
+		if (not conditionalMet)
+			continue;
+		
+		for (auto & f : i.func)
+		{
+			switch (f.type)
+			{
+			case Field::Attrib::SET:
+				variables [f.parameters] = true;
+				break;
+			case Field::Attrib::UNSET:
+				variables [f.parameters] = false;
+				break;
+			case Field::Attrib::RAISE:
+				paranoia += std::stoi (f.parameters);
+				break;
+			case Field::Attrib::LOWER:
+				paranoia -= std::stoi (f.parameters);
+				break;
+			case Field::Attrib::LINK_TO:
+			// need to be linkable
+				//chapterBuffer = f.parameters;
+				break;
+			case Field::Attrib::CHOICE:
+			case Field::Attrib::CONDITIONAL:
+				break;
+			}
+		}
 	}
 }
 

@@ -1,53 +1,52 @@
 #include <SDL2/SDL.h>
 #include <stdexcept>
 #include <iostream>
-#include "Reader.hpp"
+#include "gr2.hpp"
 #include "Window.hpp"
 #include "Font.hpp"
 
 // bad
-Story * guistory {nullptr};
 Font * gfont;
 
-inline bool loop_gui (SDL_Event * e, Window * w)
-{
-	static std::string guichapter;
-	while (SDL_PollEvent (e))
-	{
-		switch (e->type)
-		{
-		case SDL_QUIT:
-			return false;
-		case SDL_DROPFILE:
-			if (guistory != nullptr)
-				delete guistory;
-			std::cout << "Loading story file " << e->drop.file << std::endl;
-			guistory = new Story (e->drop.file);
-			guichapter = guistory->get_first_chapter();
-			break;
-		case SDL_MOUSEBUTTONUP:
-			const auto clicked {guistory->get_clicked (e->button.x, e->button.y)};
-			if (clicked.empty())
-				break;
-			guichapter = clicked;
-			break;
-		}
-	}
-
-	SDL_RenderClear (w->get_render());
-	if (guistory != nullptr)
-	{
-		int width, height;
-		SDL_GetWindowSize (w->get_ptr(), &width, &height);
-		guistory->draw (guichapter, width);
-	}
-	//f->draw_at (0, 0, 'a');
-
-	SDL_RenderPresent (w->get_render());
-
-	SDL_Delay (32);
-	return true;
-}
+//inline bool loop_gui (SDL_Event * e, Window * w)
+//{
+	//static std::string guichapter;
+	//while (SDL_PollEvent (e))
+	//{
+		//switch (e->type)
+		//{
+		//case SDL_QUIT:
+			//return false;
+		//case SDL_DROPFILE:
+			//if (guistory != nullptr)
+				//delete guistory;
+			//std::cout << "Loading story file " << e->drop.file << std::endl;
+			//guistory = new Story (e->drop.file);
+			//guichapter = guistory->get_first_chapter();
+			//break;
+		//case SDL_MOUSEBUTTONUP:
+			//const auto clicked {guistory->get_clicked (e->button.x, e->button.y)};
+			//if (clicked.empty())
+				//break;
+			//guichapter = clicked;
+			//break;
+		//}
+	//}
+//
+	//SDL_RenderClear (w->get_render());
+	//if (guistory != nullptr)
+	//{
+		//int width, height;
+		//SDL_GetWindowSize (w->get_ptr(), &width, &height);
+		//guistory->draw (guichapter, width);
+	//}
+	////f->draw_at (0, 0, 'a');
+//
+	//SDL_RenderPresent (w->get_render());
+//
+	//SDL_Delay (32);
+	//return true;
+//}
 
 int main (int argc, char * argv [])
 {
@@ -60,8 +59,8 @@ int main (int argc, char * argv [])
 		{
 			try
 			{
-				Story test (argv [i]);
-				test.play();
+				gr2 test (argv [i]);
+				//test.play();
 			}
 			catch (const std::runtime_error & e)
 			{
@@ -89,7 +88,7 @@ int main (int argc, char * argv [])
 		SDL_Event e;
 		try
 		{
-			while (loop_gui (&e, &win));
+			//while (loop_gui (&e, &win));
 		}
 		catch (const std::runtime_error & e)
 		{

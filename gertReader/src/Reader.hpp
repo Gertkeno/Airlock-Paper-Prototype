@@ -22,20 +22,24 @@ public:
 				CHOICE,
 				LINK_TO,
 				CONDITIONAL,
-				FUNC_SET,
-				FUNC_UNSET,
+				SET,
+				UNSET,
+				RAISE,
+				LOWER,
 			} type;
 
 			std::string parameters;
 		};
 		std::list <Attrib> func;
-		bool parse_functional() const;
 	};
 private:
 	using Chapter = std::list <Field>;
 
 	std::map <std::string, Chapter> nodes;
 	std::string firstChapter;
+	int chapterProgress;
+
+	std::list <Field *> choices;
 
 	using writer_f = std::function <void (const Field &)>;
 	void engine (const std::string & chapter, writer_f) const;
