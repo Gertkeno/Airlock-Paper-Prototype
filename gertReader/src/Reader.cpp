@@ -21,8 +21,10 @@ Story::Story (const std::string & filename)
 		throw std::runtime_error {"Couldn't open file: " + filename};
 
 	std::string word;
-	std::string currentChapter = "Start";
-	while (c >> word)
+	std::string currentChapter {"Start"};
+	bool inChoiceBlock {false};
+	int line {1};
+	while (std::getline (c, word))
 	{
 		if (word [0] == '#')
 		{
@@ -41,104 +43,44 @@ Story::Story (const std::string & filename)
 			std::getline (c, word);
 			continue;
 		}
-		else if (word[0] == '(')
+		else if (word[0] == '~')
 		{
 			const auto breakfind {word.find (':')};
-			std::string function {[&] ()
-			{
-				if (breakfind != std::string::npos)
-					return trunc_whitespacer (word.substr (1, breakfind-1));
-
-				std::string f;
-				std::getline (c, f, ':');
-				return trunc_whitespacer (word.substr (1) + f);
-			}()};
+			if (breakfind == std::string::npos)
+				throw std::runtime_error {"Missing ending : in function declaration " + std::to_string (line)};
+			std::string function {trunc_whitespacer (word.substr (1, breakfind-1))};
 
 			std::transform (function.begin(), function.end(), function.begin(), tolower);
 
-			Field line;
+			Field::Attrib line;
 			if (function == "if")
-				line.type = Field::FUNC_IF;
-			else if (function == "else-if")
-				line.type = Field::FUNC_ELSE_IF;
-			else if (function == "else")
-				line.type = Field::FUNC_ELSE;
-			else if (function == "and")
-				line.type = Field::FUNC_AND;
+				line.type = Field::Attrib::CONDITIONAL;
 			else if (function == "set")
-				line.type = Field::FUNC_SET;
+				line.type = Field::Attrib::FUNC_SET;
 			else if (function == "unset")
-				line.type = Field::FUNC_UNSET;
+				line.type = Field::Attrib::FUNC_UNSET;
 			else
 				throw std::runtime_error {"In chapter \"" + currentChapter + "\" Unkown function of type \"" + function + "\""};
 
-			const auto endfind {word.find (')')};
-			if (endfind == std::string::npos)
-			{
-				std::string t;
-				std::getline (c, t, ')');
-				line.parameters = trunc_whitespacer (t);
-			}
-			else
-				line.parameters = trunc_whitespacer (word.substr (breakfind, endfind-breakfind));
+			line.parameters = trunc_whitespacer (word.substr (breakfind));
 
 			#ifndef NDEBUG
 			std::cout << "FUNCTION:\n\ttype: " << line.type << "\n\tparameter: \"" << line.parameters << "\"\n";
 			#endif
 
-			nodes [currentChapter].push_back (line);
+			nodes [currentChapter].back().func.push_back (line);
 		}
-		else if (word.find ("[[") == 0)
+		else if (word [0] == '{')
 		{
-			#ifndef NDEBUG
-			std::cout << "LINK: \"" << word << "\"\n";
-			#endif
-			Field line;
-			line.type = Field::LINK_TO;
-			const auto endfind {word.find ("]]")};
-			if (endfind == std::string::npos)
-			{
-				std::string endAppender;
-				std::getline (c, endAppender, ']');
-				word += endAppender;
-				if (c.get() != ']')
-					throw std::runtime_error {"In chapter \"" + currentChapter + "\" Missing last ']' in link: \"" + word + '"'};
-			}
-			else
-				word = word.substr (0, endfind);
-
-			const auto breakfind {word.find ('|')};
-			if (breakfind == std::string::npos)
-			{
-				line.text = trunc_whitespacer (word.substr (2));
-				line.parameters	= line.text;
-			}
-			else
-			{
-				line.text = trunc_whitespacer (word.substr (2, breakfind-2));
-				line.parameters = trunc_whitespacer (word.substr (breakfind+1));
-			}
-
-			#ifndef NDEBUG
-			std::cout << "\ttext: \"" << line.text << "\"\n\tlink: \"" << line.parameters << "\"\n";
-			#endif
-			nodes [currentChapter].push_back (line);
+			if (inChoiceBlock)
+				throw std::runtime_error {"Unexpected { inside of choice block: " + std::to_string (line)};
+			inChoiceBlock = true;
 		}
-		else if (word[0] == '[')
+		else if (word [0] == '}')
 		{
-			Field line;
-			line.type = Field::CONDITIONAL_TEXT;
-			const auto breakfind {word.find ("]")};
-			if (breakfind == std::string::npos)
-			{
-				std::string addr;
-				std::getline (c, addr, ']');
-				line.text = trunc_whitespacer (word.substr (1) + addr);
-			}
-			else
-				line.text = trunc_whitespacer (word.substr(1, breakfind-1));
-
-			nodes [currentChapter].push_back (line);
+			if (not inChoiceBlock)
+				throw std::runtime_error {"Unexpected } before choice block start " + std::to_string (line)};
+			inChoiceBlock = false;
 		}
 		else
 		{
@@ -148,9 +90,7 @@ Story::Story (const std::string & filename)
 			nodes [currentChapter].push_back (line);
 		}
 
-		// user formatting ;)
-		if (c.peek() == '\n' and not nodes [currentChapter].empty())
-			nodes [currentChapter].back().carriageReturn = true;
+		++line;
 	}
 
 	// post compile checks
@@ -158,10 +98,13 @@ Story::Story (const std::string & filename)
 	{
 		for (auto & f : i.second)
 		{
-			if (f.type == Field::LINK_TO)
+			for (auto & c : f.func)
 			{
-				if (nodes.count (f.parameters) == 0)
-					throw std::runtime_error {"Chapter \"" + i.first + "\" links to \"" + f.parameters + "\", which does not exist!"};
+				if (c.type == Field::Attrib::LINK_TO)
+				{
+					if (nodes.count (c.parameters) == 0)
+						throw std::runtime_error {"Chapter \"" + i.first + "\" links to \"" + c.parameters + "\", which does not exist!"};
+				}
 			}
 		}
 	}
@@ -171,93 +114,42 @@ Story::Story (const std::string & filename)
 	#endif
 }
 
-// BAD GRAPH
-
-void Story::graph (const std::string & s, int indent)
+bool Story::Field::parse_functional() const
 {
-	static std::map <std::string, bool> ips;
-	if (indent == 0)
-		ips.clear();
-
-	std::cout << std::string (indent, '\t');
-	std::cout << "#" << s << '\n';
-	if (ips [s])
-		return;
-	else
-		ips [s] = true;
-
-	if (nodes.count (s) == 0)
-		throw std::runtime_error {"Cannot graph chapter \"" + s + "\", since it does not exist!"};
-	for (auto & i : nodes.at (s))
+	bool conditionalMet = true;
+	for (auto & f : func)
 	{
-		if (i.type == Field::LINK_TO)
+		if (f.type != Attrib::CONDITIONAL)
+			continue;
+		conditionalMet = variables [f.parameters];
+		break;
+	}
+
+	if (not conditionalMet)
+		return conditionalMet;
+	
+	for (auto & f : func)
+	{
+		switch (f.type)
 		{
-			graph (i.parameters, indent+1);
+		case Attrib::FUNC_SET:
+			variables [f.parameters] = true;
+			break;
+		case Attrib::FUNC_UNSET:
+			variables [f.parameters] = false;
+			break;
 		}
 	}
-	std::cout << "=== GRAPH END ===" << std::endl;
-}
 
-enum c_t
-{
-	TRUE,
-	FALSE,
-	IGNORE,
-};
+	return true;
+}
 
 void Story::engine (const std::string & chapter, writer_f f) const
 {
-	c_t past {IGNORE};
-
 	for (auto & i : nodes.at (chapter))
 	{
-		switch (i.type)
-		{
-		case Field::BASIC_TEXT:
+		if (i.parse_functional())
 			f (i);
-			past = IGNORE;
-			break;
-
-		// conditional
-		case Field::CONDITIONAL_TEXT:
-		case Field::LINK_TO:
-			if (past != FALSE)
-				f (i);
-			past = IGNORE;
-			break;
-
-		// functional non-text
-		case Field::FUNC_AND:
-			if (past == FALSE)
-				break;
-			[[fallthrough]];
-		case Field::FUNC_IF:
-			if (variables [i.parameters])
-				past = TRUE;
-			else
-				past = FALSE;
-			break;
-		case Field::FUNC_ELSE_IF:
-			if (past == FALSE and variables [i.parameters])
-				past = TRUE;
-			break;
-		case Field::FUNC_ELSE:
-			if (past == TRUE)
-				past = FALSE;
-			else if (past == FALSE)
-				past = TRUE;
-			break;
-		case Field::FUNC_SET:
-			if (past != FALSE)
-				variables [i.parameters] = true;
-			past = IGNORE;
-			break;
-		case Field::FUNC_UNSET:
-			if (past != FALSE)
-				variables [i.parameters] = false;
-			past = IGNORE;
-			break;
-		}
 	}
 }
 
@@ -266,19 +158,15 @@ static std::vector <std::string> cli_link_to;
 
 void text_adventure (const Story::Field & f)
 {
-	if (f.type == Story::Field::LINK_TO)
-	{
-		cli_link_to.push_back (f.parameters);
-		std::cout << '[' << cli_link_to.size() << ' ' << f.text << "] ";
-		if (f.carriageReturn)
-			std::cout << std::endl;
-	}
-	else
-	{
+	// if (f.type == Story::Field::LINK_TO)
+	// {
+		// cli_link_to.push_back (f.parameters);
+		// std::cout << '[' << cli_link_to.size() << ' ' << f.text << "] ";
+	// }
+	// else
+	// {
 		std::cout << f.text << ' ';
-		if (f.carriageReturn)
-			std::cout << std::endl;
-	}
+	// }
 }
 
 void Story::play (std::string c) const
@@ -329,22 +217,18 @@ void gui_adventure (const Story::Field & f, unsigned maxw)
 		clickables [link] = SDL_Rect {cursor.x, cursor.y, width, 33};
 	}};
 
-	if (f.type == Story::Field::LINK_TO)
-	{
-		const std::string t {"[" + f.text + "] "};
-		word_break (t);
-		create_clickable (t, f.parameters);
-		cursor.x = gfont->draw_line (cursor, t, color::BLUE);
-		if (f.carriageReturn)
-			cr (cursor);
-	}
-	else
-	{
+	// if (f.type == Story::Field::LINK_TO)
+	// {
+		// const std::string t {"[" + f.text + "] "};
+		// word_break (t);
+		// create_clickable (t, f.parameters);
+		// cursor.x = gfont->draw_line (cursor, t, color::BLUE);
+	// }
+	// else
+	// {
 		word_break (f.text);
 		cursor.x = gfont->draw_line (cursor, f.text + ' ');
-		if (f.carriageReturn)
-			cr (cursor);
-	}
+	// }
 }
 
 void Story::draw (std::string c, const int maxw) const

@@ -61,9 +61,6 @@ int main (int argc, char * argv [])
 			try
 			{
 				Story test (argv [i]);
-#ifndef NDEBUG
-				test.graph();
-#endif
 				test.play();
 			}
 			catch (const std::runtime_error & e)
