@@ -13,6 +13,7 @@
 extern Font * gfont;
 
 gr2::gr2 (const std::string & filename)
+	: _chapterProgress {0}
 {
 	std::ifstream c (filename);
 	if (not c.is_open())
@@ -117,16 +118,66 @@ gr2::gr2 (const std::string & filename)
 	#ifndef NDEBUG
 	std::cout << "=== DONE READING ===\n";
 	#endif
+
+	_currentChapter = _firstChapter;
+}
+
+static std::map <std::string, bool> variables;
+static int paranoia;
+
+void gr2::process_text (const Line & c)
+{
+	bool conditionalMatch = true;
+	for (auto & i : c.attributes)
+	{
+		if (i.type == Line::Attrib::CONDITIONAL)
+			conditionalMatch = variables [i.parameters];
+		else
+			continue;
+		break;
+	}
+
+	if (not conditionalMatch)
+		return;
+	for (auto & i : c.attributes)
+	{
+		switch (i.type)
+		{
+		case Line::Attrib::LINK_TO:
+			_currentChapter = i.parameters;
+			_chapterProgress = 0;
+			break;
+		case Line::Attrib::SET:
+			variables [i.parameters] = true;
+			break;
+		case Line::Attrib::UNSET:
+			variables [i.parameters] = false;
+			break;
+		case Line::Attrib::RAISE:
+			paranoia += std::stoi (i.parameters);
+			break;
+		case Line::Attrib::LOWER:
+			paranoia -= std::stoi (i.parameters);
+			break;
+		case Line::Attrib::CONDITIONAL:
+		case Line::Attrib::NAME:
+			break;
+		}
+	}
+}
+
+void gr2::draw() const
+{
 }
 
 void gr2::draw (Window * w) const
 {
 }
 
-void gr2::select_option (int i)
+bool gr2::select_option (int i)
 {
 }
 
-void gr2::select_option (int x, int y)
+bool gr2::select_option (int x, int y)
 {
 }

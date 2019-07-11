@@ -44,12 +44,13 @@ class gr2
 	std::map <std::string, _Node> _chapters;
 	std::string _firstChapter;
 
-	void place_text (const Line & c) const;
+	bool place_text (const Line & c) const;
 	void process_text (const Line & c);
 public:
 	gr2 (const std::string  & filename);
 
 	void draw (Window * w) const;
-	void select_option (int i);
-	void select_option (int x, int y);
+	void draw() const;
+	bool select_option (int i);
+	bool select_option (int x, int y);
 };
