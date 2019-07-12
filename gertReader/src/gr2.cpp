@@ -43,7 +43,6 @@ gr2::gr2 (const std::string & filename)
 		}
 		else if (word [0] == '~')
 		{
-			std::cout << "Function start\n";
 			const auto breakfind {word.find (':')};
 			if (breakfind == std::string::npos)
 				throw std::runtime_error {"Missing ending : in function declaration " + std::to_string (line)};
@@ -113,6 +112,7 @@ gr2::gr2 (const std::string & filename)
 				}
 			}
 		}
+		std::cout << std::endl;
 	}
 
 	#ifndef NDEBUG
@@ -125,7 +125,7 @@ gr2::gr2 (const std::string & filename)
 static std::map <std::string, bool> variables;
 static int paranoia;
 
-void gr2::process_text (const Line & c)
+bool gr2::process_text (const Line & c)
 {
 	bool conditionalMatch = true;
 	for (auto & i : c.attributes)
@@ -138,7 +138,8 @@ void gr2::process_text (const Line & c)
 	}
 
 	if (not conditionalMatch)
-		return;
+		return conditionalMatch;
+
 	for (auto & i : c.attributes)
 	{
 		switch (i.type)
@@ -164,6 +165,7 @@ void gr2::process_text (const Line & c)
 			break;
 		}
 	}
+	return true;
 }
 
 void gr2::draw() const
@@ -180,4 +182,11 @@ bool gr2::select_option (int i)
 
 bool gr2::select_option (int x, int y)
 {
+}
+
+void gr2::cli_play()
+{
+	// load next line based on process_text
+	// if (process_text (current_stage))
+	// _dialogue = line text
 }

@@ -40,15 +40,21 @@ class gr2
 	std::string _currentChapter;
 	int _chapterProgress;
 
+	// STORAGE
 	using _Node = std::list <Line>;
 	std::map <std::string, _Node> _chapters;
 	std::string _firstChapter;
 
-	bool place_text (const Line & c) const;
-	void process_text (const Line & c);
+	// PLAY DATA
+	std::string _dialogue, _nameplate;
+	std::list <std::string *> _choices;
+
+	// true if text is to be displayed / not ignored
+	bool process_text (const Line & c);
 public:
 	gr2 (const std::string  & filename);
 
+	void cli_play();
 	void draw (Window * w) const;
 	void draw() const;
 	bool select_option (int i);
