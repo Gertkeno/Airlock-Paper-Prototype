@@ -85,7 +85,7 @@ int main (int argc, char * argv [])
 		extern unsigned int font_bmp_len;
 		gfont = new Font (&font_bmp, font_bmp_len, win.get_render(), 16);
 
-		SDL_Event e;
+		//SDL_Event e;
 		try
 		{
 			//while (loop_gui (&e, &win));

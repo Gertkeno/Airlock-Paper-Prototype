@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <fstream>
 
+#include <SDL2/SDL.h>
+
 #include "stringfuncs.hpp"
 #include "Window.hpp"
 #include "Font.hpp"
@@ -138,7 +140,12 @@ bool gr2::process_text (const Line & c)
 	}
 
 	if (not conditionalMatch)
-		return conditionalMatch;
+		return false;
+
+	if (c.choice)
+		_choices.push_back (& c);
+	else
+		_dialogue = c.text;
 
 	for (auto & i : c.attributes)
 	{
@@ -160,8 +167,10 @@ bool gr2::process_text (const Line & c)
 		case Line::Attrib::LOWER:
 			paranoia -= std::stoi (i.parameters);
 			break;
-		case Line::Attrib::CONDITIONAL:
 		case Line::Attrib::NAME:
+			_nameplate = i.parameters;
+			break;
+		case Line::Attrib::CONDITIONAL:
 			break;
 		}
 	}
@@ -176,17 +185,34 @@ void gr2::draw (Window * w) const
 {
 }
 
-bool gr2::select_option (int i)
+bool gr2::select_option (unsigned i)
 {
+	if (i >= _choices.size())
+		return false;
 }
 
 bool gr2::select_option (int x, int y)
 {
 }
 
-void gr2::cli_play()
+bool gr2::cli_play()
 {
 	// load next line based on process_text
 	// if (process_text (current_stage))
 	// _dialogue = line text
+	const auto & currentChapter {_chapters.at (_currentChapter)};
+	if (_chapterProgress >= currentChapter.size())
+	{
+		// exit game lol
+		return false;
+	}
+
+	auto chapterLine {currentChapter.begin()};
+	std::advance (chapterLine, _chapterProgress);
+	_choices.clear();
+	while (not process_text (*chapterLine))
+	{
+		++_chapterProgress;
+	}
+	return true;
 }
