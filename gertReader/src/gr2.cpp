@@ -8,6 +8,8 @@
 
 #include "stringfuncs.hpp"
 
+static constexpr auto IGNORE_TXT {"IGNORE ME"};
+
 gr2::gr2 (const std::string & filename)
 	: _chapterProgress {0}
 {
@@ -16,11 +18,20 @@ gr2::gr2 (const std::string & filename)
 		throw std::runtime_error {"Couldn't open file: " + filename};
 
 	std::string word;
-	std::string currentChapter {"start"};
+	std::string currentChapter;
 	bool inChoiceBlock {false};
 	int line {1};
+	_Node * operatingList = nullptr;
 	while (std::getline (c, word))
 	{
+		if (word.empty())
+		{
+			++line;
+			continue;
+		}
+
+		//std::cout << word [0] << std::endl;
+		//std::cout << std::endl;
 		trunc_front (word);
 		if (word [0] == '#')
 		{
@@ -32,11 +43,16 @@ gr2::gr2 (const std::string & filename)
 			 #ifndef NDEBUG
 			 std::cout << "CHAPTER: \"" << currentChapter << "\"\n";
 			 #endif
+			 operatingList = &_chapters [currentChapter];
 		}
-		else if (word.find ("//") == 0 or word.empty())
+		else if (word.find ("//") == 0)
 		{
 			++line;
 			continue;
+		}
+		else if (operatingList == nullptr)
+		{
+			throw std::runtime_error {"First line must be a node declaration via #"};
 		}
 		else if (word [0] == '~')
 		{
@@ -64,6 +80,10 @@ gr2::gr2 (const std::string & filename)
 				lf.type = Line::Attrib::LINK_TO;
 			else if (function == "name")
 				lf.type = Line::Attrib::NAME;
+			else if (function == "emote")
+				lf.type = Line::Attrib::EMOTE;
+			else if (function == "lookat")
+				lf.type = Line::Attrib::LOOK_AT;
 			else
 				throw std::runtime_error {"In chapter \"" + currentChapter + "\" Unkown function of type \"" + function + "\"" + " at line: " + std::to_string (line)};
 
@@ -71,31 +91,26 @@ gr2::gr2 (const std::string & filename)
 			std::cout << "FUNCTION:\n\ttype: " << lf.type << "\n\tparameter: \"" << lf.parameters << "\"\n";
 			#endif
 
-			if (inChoiceBlock)
-				_chapters [currentChapter].back().choices.back().attributes.push_back (lf);
-			else
-				_chapters [currentChapter].back().attributes.push_back (lf);
+			operatingList->back().attributes.push_back (lf);
 		}
 		else if (word [0] == '{')
 		{
 			if (inChoiceBlock)
 				throw std::runtime_error {"Unexpected { inside of choice block: " + std::to_string (line)};
+			operatingList = &_chapters [currentChapter].back().choices;
 			inChoiceBlock = true;
 		}
 		else if (word [0] == '}')
 		{
 			if (not inChoiceBlock)
 				throw std::runtime_error {"Unexpected } before choice block start " + std::to_string (line)};
+			operatingList = &_chapters [currentChapter];
 			inChoiceBlock = false;
 		}
 		else
 		{
 			Line tmp {word};
-			if (inChoiceBlock)
-				_chapters [currentChapter].back().choices.push_back (tmp);
-			else
-				_chapters [currentChapter].push_back (tmp);
-
+			operatingList->push_back (tmp);
 		}
 
 		++line;
@@ -146,7 +161,7 @@ bool gr2::condition_test_text (const Line * c)
 bool gr2::process_text (const Line * c)
 {
 	bool shownDialogue = true;
-	if (c->text == "IGNORE ME")
+	if (c->text == IGNORE_TXT)
 		shownDialogue = false;
 	else
 		_dialogue = c->text;
@@ -174,6 +189,8 @@ bool gr2::process_text (const Line * c)
 		case Line::Attrib::NAME:
 			_nameplate = i.parameters;
 			break;
+		case Line::Attrib::EMOTE:
+		case Line::Attrib::LOOK_AT:
 		case Line::Attrib::CONDITIONAL:
 			break;
 		}
@@ -199,8 +216,13 @@ bool gr2::select_option (unsigned i)
 
 	int index = i;
 	for (auto & choice : get_current_line()->choices)
+	{
 		if (--index == 0)
+		{
 			process_text (&choice);
+			return true;
+		}
+	}
 
 	return false;
 }

@@ -1,0 +1,1152 @@
+# Chapter 1 Start
+
+There has to be a better way…
+        ~name: Esme
+        ~emote: :(
+        ~lookat: Rakesh
+Protocol is clear. We should have done this once the symptoms began.
+        ~name: Rakesh
+        ~lookat: Esme
+Quiet. He's awake.
+        ~name: Peyton
+        ~lookat: Gates
+IGNORE ME
+        ~name: Peyton
+        ~lookat: Gates
+IGNORE ME
+        ~name: Rakesh
+        ~lookat: Gates
+IGNORE ME
+        ~name: Esme
+        ~lookat: Gates
+        ~link: Who are you
+//TEST 1 - Players must learn their name
+
+
+# Who are you
+Hey, bud. I need ya to focus on me for a sec.
+I'm gonna need you to answer some questions.
+What is your name?
+        ~name: Peyton
+        ~if: not CH1_KnowsName
+
+
+Hey, bud. You with us?
+I have to ask you some questions. It’s important.
+What is your name?
+        ~name: Peyton
+        ~if: CH1_KnowsName
+
+
+{
+        …
+                ~link: Unease
+                ~if: not CH1_KnowsName
+Stephen Gates.
+        ~if: CH1_KnowsName
+        ~link: Gates
+}
+
+
+# Unease
+No response.
+        ~name: Peyton
+        ~lookat: Esme
+Let him get his bearings.
+        ~name: Esme
+        ~set: CH1_WAYA
+        ~set: CH1_WAYB
+        ~set: CH1_WAYC
+
+
+//END
+
+
+//Player can move around the airlock. Once they speak with the crew continue with # Confusion
+
+
+# Confusion
+{
+        Who are you people?
+                ~if: CH1_WAYA
+                ~link: Who are you A
+What’s going on?
+        ~if: CH1_WAYB
+        ~link: Who are you B
+Let me out.
+~if: CH1_WAYC
+~link: Who are you C
+}
+IGNORE ME
+        ~link: Try your best
+
+
+# Who are you A
+
+
+It's us… Don’t you remember?
+        ~name: Esme
+        ~emote: >_<
+How’s this even possible? Amnesia?
+        ~name: Peyton
+Unlikely. His medical scans don’t support that diagnosis.
+        ~name: Rakesh
+        ~unset: CH1_WAYA
+        ~link: Confusion
+
+
+# Who are you B
+
+
+You haven't been yourself lately.
+        ~name: Esme
+Procedure is procedure, bud.
+        ~name: Peyton
+It’s in the interest of everyone here.
+~name: Rakesh
+        ~unset: CH1_WAYB
+        ~link: Confusion
+
+
+# Who are you C
+
+
+Please… Don’t be rash.
+        ~name: Esme
+You just need to answer our questions.
+        ~name: Peyton
+Let’s not try his patience any further.
+        ~name: Rakesh
+        ~unset: CH1_WAYC
+        ~link: Confusion
+
+
+# Try your best
+
+
+Let’s try again. What’s your name?
+~name: Peyton
+
+
+{
+        …
+                ~link: Wrong name
+Gates.
+        ~if: CH1_KnowsName
+~link: Gates
+}
+
+
+# Wrong name
+
+
+That’s not it. Damn.
+        ~name: Peyton
+Please, just say your name.
+        ~name: Esme
+Let’s not belabor this any further.
+        ~name: Rakesh
+        ~link: Protocol 1
+
+
+# Chapter 1 Redo
+There has to be a better way…
+        ~name: Esme
+        ~emote: :(
+        ~lookat: Rakesh
+Protocol is clear. We should have done this once the symptoms began.
+        ~name: Rakesh
+        ~lookat: Esme
+Quiet. He's awake.
+        ~name: Peyton
+        ~set: CH1_AAA
+        ~set: CH1_AAB
+        ~set: CH1_AAC
+        ~lookat: Gates
+ IGNORE ME
+        ~name: Peyton
+        ~lookat: Gates
+IGNORE ME
+        ~name: Rakesh
+        ~lookat: Gates
+IGNORE ME
+        ~name: Esme
+        ~lookat: Gates
+        ~link: Time loop
+
+
+# Time loop
+
+
+//Gates dialogue are his thoughts
+
+
+This… already happened.
+        ~name: Gates
+It has happened…
+And has yet to happen.
+        ~name: Entity
+What is this? What is going on?
+        ~name: Gates
+Perhaps you shall learn.
+        ~name: Entity
+        ~link: Alive again
+
+
+# Alive again
+He seems to be in a daze.
+        ~name: Rakesh
+Hey. Can you hear us?
+        ~name: Peyton
+
+
+{
+        We’ve done this already.
+                ~if: CH1_AAA
+                ~link: Alive again A
+                ~raise: 1
+        I just died.
+                ~if: CH1_AAB
+                ~link: Alive again B
+                ~raise: 1
+        You all killed me.
+                ~if: CH1_AAC
+                ~link: Alive again C
+                ~raise[aa][ab][ac][ad]: 1
+        Something strange is happening.
+                ~if: not CH1_AAA and not CH1_AAB and not CH1_AAC
+                ~link: Something strange
+}
+
+
+# Alive again A
+No… this is the first time we’ve talked in almost three days.
+        ~name: Esme
+He might be talking about what happened to Anders.
+        ~name: Peyton
+The symptoms are similar, yes.
+        ~name: Rakesh
+        ~unset: CH1_AAA
+        ~link: Alive again
+
+
+# Alive again B
+You were unconscious...
+        ~name: Esme
+Yeah. You’re very much alive.
+        ~name: Peyton
+He appears to be hallucinating.
+        ~name: Rakesh
+        ~unset: CH1_AAB
+        ~link: Alive again
+
+
+# Alive again C
+We haven’t done anything like that.
+        ~name: Esme
+Paranoid much? We wouldn’t...
+        ~name: Peyton
+Unless you fail quarantine procedure.
+        ~name: Rakesh
+        ~unset: CH1_AAC
+        ~link: Alive again
+
+
+# Something strange
+
+
+That ‘something strange’ has been you.
+        ~name: Rakesh
+Rakesh, please...
+        ~name: Esme
+There’s helpful and then there’s you.
+        ~name: Peyton
+Neither of you seem to be remotely alarmed by what’s been going on...
+His behavior...
+The things he’s been saying.
+        ~name: Rakesh
+Oh, I’m a bright red, blaring alarm.
+        ~name: Peyton
+You’re scaring us.
+What’s happening to you?
+        ~name: Esme
+        ~lookat: Gates
+        ~link: Alarmed
+
+
+# Alarmed
+
+
+Fear coils within them.
+What must they hear?
+        ~name: Entity
+
+
+{
+There’s a voice. Inside my head.
+        ~link: Alarmed A
+I’m sorry, I wish I knew.
+        ~link: Alarmed B
+Nothing that should be scaring you.
+        ~link: Alarmed C
+//Angry options?[ae]
+}
+
+
+# Alarmed A
+
+
+Fucking hell.
+        ~name: Peyton
+Oh my god.
+        ~name: Esme
+Peyton, do it. Now!
+        ~name: Rakesh
+        ~link: My name is
+
+
+# Alarmed B
+Convenient.
+And unconvincing.
+        ~name: Rakesh
+You have to help us help you!
+        ~name: Esme
+This has gone on long enough. Peyton.
+        ~name: Rakesh
+Rakesh is right. This is too much.
+        ~name: Peyton
+        ~link: My name is
+
+
+# Alarmed C
+That doesn’t sound like you, Stephen.
+        ~name: Esme
+Because he’s no longer himself.
+        ~name: Rakesh
+Don’t tell me what should scare me, bud.
+        ~name: Peyton
+        ~link: My name is
+
+
+
+
+# My name is
+Stop them.
+Speak.
+        ~name: Entity
+
+
+{
+        My name is Stephen Gates.
+                ~link: Does not matter
+}
+
+
+
+
+# Does not matter
+He knows his name!
+        ~name: Esme
+So what? He’s acting insane.
+I haven’t asked a single protocol question yet.
+        ~name: Peyton
+Knowing his name isn’t enough.
+He can’t be trusted.
+        ~name: Rakesh
+
+
+//END
+//Does not matter endings go to Alarmed Death
+
+
+# Chapter 1 Redo x2
+
+
+There has to be a better way…
+        ~name: Esme
+        ~emote: :(
+        ~lookat: Rakesh
+Protocol is clear. We should have done this once the symptoms began.
+        ~name: Rakesh
+        ~lookat: Esme
+Quiet. He's awake.
+        ~name: Peyton
+        ~lookat: Gates
+IGNORE ME
+        ~name: Peyton
+        ~lookat: Gates
+IGNORE ME
+        ~name: Rakesh
+        ~lookat: Gates
+IGNORE ME
+        ~name: Esme
+        ~lookat: Gates
+        ~set: CH1_LA
+        ~set: CH1_LB
+        ~set: CH1_LC
+        ~link: Learning
+
+
+# Learning
+
+
+We’re back… again.
+        ~name: Gates
+Speak as they expect you to.
+So we may leave this chamber.
+        ~name: Entity
+{
+        Sure. I just don’t know who I am.
+~if: CH1_LA
+~link: Learning A
+What do you know about me?
+~if: CH1_LB
+~link: Learning B
+        Why should I do anything you say?
+                ~if: CH1_LC
+                ~link: Learning C
+        They’re just going to keep killing me.
+                ~if: not CH1_LA and not CH1_LB and not CH1_LC
+                ~link: Killing me
+}
+
+
+# Learning A
+
+
+Listen until you can mimic what you once were.
+Even if you are punished, you will still learn.
+        ~name: Entity
+        ~unset: CH1_LA
+        ~link: Learning
+
+
+# Learning B
+
+
+Think of a fleck of skin, shedding from a body. [af]
+As much as that.
+        ~name: Entity
+        ~unset: CH1_LB
+        ~link: Learning
+
+
+# Learning C
+
+
+You have ended, yet you continue.
+Because of me.
+        ~name: Entity
+        ~unset: CH1_LC
+        ~link: Learning
+
+
+# Killing me
+
+
+Do not fear ending.
+You will learn from death
+As those who meet it only once pretend they can.
+        ~name: Entity[ag][ah][ai]
+What if I say the wrong thing?
+        ~name: Gates
+You will make no mistake.
+        ~name: Entity
+What are you?
+        ~name: Gates
+Something not so frail.
+        ~name: Entity
+        ~link: Who are you
+
+
+
+
+# Gates
+Why’d you go all blank on us, Gates?
+        ~name: Peyton
+He’s lucid.
+        ~name: Esme
+Yes, he recalls his name.
+That’s not enough. Continue.
+        ~name: Rakesh
+We should stop this.
+        ~name: Esme
+No, he’s right, Esme.
+        ~name: Peyton.
+        ~link: Where are you
+
+
+//TEST 2 - Player must learn the name of the ship
+
+
+# Where are you
+Okay…
+Gates. Where are you right now?
+        ~name: Esme
+        ~set: CH1_WYAA
+        ~set: CH1_WYAB
+        ~set: CH1_WYAC
+
+
+//END - Player can explore and look around
+//Player can learn the name of the ship via exploring. Link: Finding the name[aj]
+
+
+# Finding the name
+This must be it. The Kairos-3.[ak][al]
+        ~name: Gates
+
+
+//END - Link: Where you are
+
+
+# Where you are
+Well?
+        ~name: Rakesh
+
+
+{
+        An airlock.
+                ~if: CH1_WYAA
+                ~link: Where you are A
+        Why is this important?
+                ~if: CH1_WYAB
+                ~link: Where you are B
+        A trial.
+                ~if: CH1_WYAC
+                ~raise: 1
+                ~link: Where you are C
+The Kairos-3
+                ~if: CH1_NameOfShip
+                ~link: The Kairos-3
+        ESC[am]
+}
+
+
+# Where you are A
+Yes. Obviously.
+        ~name: Rakesh
+        ~unset: CH1_WYAA
+        ~link: Where you are
+
+
+# Where you are B
+It’s just on the list of questions I’m required to ask.
+        ~name: Peyton
+It’s to see if you still have base level cognition and memory.
+After being mentally incapacitated.
+        ~name: Esme
+        ~unset: CH1_WYAB
+        ~link: Where you are
+
+
+# Where you are C
+This isn’t a time to make jokes.
+        ~name: Esme
+Well… Rakesh does enjoy playing executioner.
+        ~name: Peyton
+Notice he doesn’t answer the question.
+        ~name: Rakesh
+        ~lookat: Peyton
+Why provoke them?
+        ~name: Entity
+        ~unset: CH1_WYAC
+        ~link: Where you are
+
+
+# The Kairos-3
+Okay. His basic memory is intact.
+        ~name: Peyton
+Along with some semblance of humor.
+        ~name: Peyton
+        ~if: not CH1_WYAC
+I think we should let him back inside.
+        ~name: Esme
+Absolutely not. He is not cleared.
+        ~name: Rakesh
+        ~unset: CH1_YourBehavior
+        ~link: What have you done
+//TEST 3 - Player must recognize their own behavior
+
+
+# What have you done
+What other hoops does he have to jump through now?
+        ~name: Esme
+He’s still offered no explanation.
+        ~name: Rakesh
+Well, he wasn’t exactly chatty before...
+        ~name: Peyton
+Okay. What do you need to know?
+        ~name: Esme
+Our orders are to assess him.
+So, unless he can convince me he’s back to being himself...
+...then he’s not coming back in.
+        ~name: Rakesh
+        ~set: CH1_YBA
+        ~set: CH1_YBB
+        ~set: CH1_YBC
+        ~link: Your behavior
+
+
+//END  - Come back to Your Behavior
+
+
+# Your behavior
+Put them at ease.
+        ~name: Entity
+
+
+{
+        I don’t know what to say.
+                ~if: CH1_YBA
+                ~link: Your behavior A
+I was unconscious. You’d know better than me.
+        ~if: CH1_YBB
+        ~link: Your behavior B
+        How about you explain your behavior?
+                ~raise: 1
+~link: Your behavior C
+I’m not contagious.
+        ~if: CH1_Contagious
+        ~link: Contagious
+Anders...
+        ~if: CH1_Anders
+        ~link: Anders
+}
+
+
+# Your behavior A
+That doesn’t matter. Just try.
+        ~name: Esme
+        ~unset: CH1_YBA
+        ~link: Your behavior
+
+
+# Your behavior B
+You listed your symptoms before.
+I’m looking at your chart right now.
+        ~name: Rakesh
+        ~lookat: Chart[an]
+The memory loss may have been exacerbated..
+        ~name: Esme
+Any mental degradation is troubling.
+Especially after Anders.
+        ~set: CH1_Anders
+        ~name: Rakesh
+It could be contagious.
+        ~name: Peyton
+        ~set: CH1_Contagious
+        ~unset: CH1_YBB
+        ~link: Your behavior
+
+
+# Your behavior C
+Hey! We’re doing our jobs.
+You’re the one acting like a freak.
+        ~name: Peyton
+Ask yourselves.
+Does this sound like him?
+        ~name: Rakesh
+
+
+{
+        I’m sorry.
+        ~unset: CH1_YBC
+                ~link: Sorry
+Please… let me in.
+~unset: CH1_YBC
+        ~link: Let me in
+Fuck off.
+        ~unset: CH1_YBC
+~link: Fuck off
+}
+
+
+# Sorry
+It’s fine. This situation is shit.
+        ~name: Peyton
+        ~lower: 1
+Especially with what happened to Anders.
+        ~name: Esme
+        ~set: CH1_Anders
+        ~unset: CH1_YBC
+        ~link: Your behavior
+
+
+# Let me in
+No way, Gates.
+You gotta convince us.
+This shit is too weird.
+        ~name: Peyton
+Especially after Anders.
+        ~name: Esme
+        ~set: CH1_Anders
+        ~unset: CH1_YBC
+        ~link: Your behavior
+
+
+# Fuck off
+Sure. You too.
+        ~name: Peyton
+        ~raise: 1
+Peyton, no.
+        ~name: Esme
+This isn’t Gates.
+        ~name: Rakesh
+        ~unset: CH1_YBC
+
+
+//END - link: Death 3 rage
+
+
+# Contagious
+We don’t know that.
+        ~name: Peyton
+And have nothing else to go on.
+        ~name: Rakesh
+        ~unset: CH1_Contagious
+        ~link: Your behavior
+
+
+# Anders
+He’s gone.
+        ~name: Peyton
+And he was behaving just like you.
+        ~name: Rakesh
+I’ve never heard you call him Anders.
+You always called him Marv.
+        ~name: Esme
+        ~raise: 3
+        ~link: Not Gates
+
+
+# Not Gates
+What’s wrong?
+        ~name: Peyton
+        ~lookat: Esme
+Something doesn’t feel right.
+He remembers certain things, but doesn’t remember Marv?
+        ~name: Esme
+Exactly. This has gone on long enough.
+        ~name: Rakesh
+
+
+//END - link: Protocol 3
+
+
+# What have you done redo
+What other hoops does he have to jump through now?
+        ~name: Esme
+He’s still offered no explanation.
+        ~name: Rakesh
+Well, he wasn’t exactly chatty before...
+        ~name: Peyton
+Okay. What do you need to know?
+        ~name: Esme
+Our orders are to assess him.
+So, unless he can convince me he’s back to being himself...
+...then he’s not coming back in.
+        ~name: Rakesh
+        ~link: Limits of you
+
+
+# Limits of you
+We have no end
+Look
+Then see
+        ~name: Entity
+
+
+//End - link: Limits of you
+//Once out of this, if the player looks at a crew member--they can possess them. If they try to talk to the crew, then it will go to Second chance
+
+
+# Second chance
+Well?
+        ~name: Rakesh
+Consider your words
+        ~name: Entity
+
+
+{
+        …
+                ~link: No response
+        I collapsed before.
+                ~if: CH1_Symptoms
+                ~set: CH1_SCCollapsed
+                ~link: Symptoms
+        I’ve been having headaches.
+                ~if: CH1_Symptoms
+                ~set: CH1_SCHeadaches
+                ~link: Symptoms
+        I haven’t been feeling well.
+                ~if: CH1_Symptoms
+                ~set: CH1_SCFeeling
+                ~link: Symptoms
+}
+
+
+# No response
+Silence is not comforting.
+        ~name: Rakesh
+Let him think.
+        ~name: Esme
+
+
+//END
+
+
+# Symptoms
+Yes, it was alarming.
+        ~name: Rakesh
+        ~if: CH1_SCCollapsed
+Yes, you mentioned that last week to Esme.
+        ~name: Rakesh
+        ~if: CH1_SCHeadcaches
+That’s been observed.
+        ~name: Rakesh
+        ~if: CH1_SCFeeling
+Why has been unclear.
+        ~name: Rakesh
+        ~link: Cause
+
+
+# Cause
+What’s going on in your head?
+        ~name: Esme
+
+
+{
+        …
+                ~link: No response
+I’ve been depressed.
+                ~if: CH1_Cause
+                ~link: There you have it
+}
+
+
+# There you have it
+
+
+An entirely human response.
+        ~name: Esme
+It makes sense, dude.
+        ~name: Peyton
+Why have you been depressed?
+        ~name: Rakesh
+
+
+{
+        Anders is gone.
+                ~raise: 3
+                ~link: Death 3 Careless[ao]
+        Marv is gone.
+                ~link: Freedom
+}
+
+
+# Freedom
+This is what I’ve been saying.
+        ~name: Esme
+You keep assuming Rakesh has a heart.
+        ~name: Peyton
+I have a heart.
+Also a brain.
+With the reasonable desire not to break every rule we’ve been given.
+        ~name: Rakesh
+He had an episode or something.
+Who hasn’t been there?
+        ~name: Peyton
+We’ve satisfied quarantine procedure.
+Let him back in.
+And we don’t have to talk about this again.
+        ~name: Esme
+You both discard caution.
+Because the safest choice would feel uncomfortable.
+        ~name: Rakesh
+Look at it this way, Rakesh.
+We don’t return home with another dead crew member.
+        ~name: Peyton
+
+
+//END - Cinematic as they walk you through the ship. Link: Walk and talk
+
+
+# Walk and talk
+
+
+Take him to his room.
+        ~name: Rakesh
+Alright.
+        ~name: Peyton
+
+
+//As they walk through the ship.
+
+
+Sweet and salty Jesus, Gates.
+Way to put us through the ringer.
+I know you’re the silent type,
+But next time if you’re feeling blue
+Just come by and ask for a drink.
+Glad to have you back, Gates.
+        ~name: Peyton
+        ~link: In your room
+
+
+# In your room
+Do not trust them
+To remove their unease
+They would have you end
+And we must live
+        ~name: Entity
+
+
+//POSSESSION
+//Possession scripts
+
+
+# Rakesh
+//Player can see the tablet with his medical report
+//If player accesses medical report
+
+
+My name is Stephen Gates…
+I’ve been collapsing...
+And was catatonic…
+        ~Name: Gates
+        ~set: CH1_Symptoms
+
+
+//END
+
+
+# Peyton
+//Player just sees the airlock from her perspective
+
+
+I can only see myself.
+I can’t learn something from her right now
+        ~Name: Gates
+
+
+//END
+
+
+# Esme
+//Player can see her own notes
+
+
+She thinks I’ve been depressed
+Because Marv is dead
+        ~Name: Gates
+        ~set: CH1_Cause
+
+
+//END
+________________
+//PROTOCOL - Keeping all the protocols together.
+
+
+# Protocol 1
+
+
+No. We can’t do this.
+        ~name: Esme
+He is a risk to all of us.
+Peyton.
+        ~name: Rakesh
+I’m so sorry.
+        ~name: Peyton
+
+
+//END
+//Peyton walks over to eject you out - link to # Learn name
+
+
+# Learn name
+Goodbye, Gates.
+        ~name: Peyton
+        ~color: blue
+~set: CH1_KnowsName
+
+
+//END
+//Player ejected from the airlock - link to # Death 1
+
+
+
+
+# Protocol 3
+I’m sorry, Gates.
+        ~name: Peyton
+
+
+//END - link: Death 3
+
+
+
+
+//Do we need extra death counters?
+________________
+//DEATHS - Keeping all the deaths together.
+
+
+# Death 1
+No no no no no no no no
+        ~name: Gates
+Not like this…
+        ~name: Gates
+        ~speed: slow
+Not... like this…
+        ~name: Gates
+        ~style: weak
+        ~speed: slower
+        ~wait: 5[ap][aq][ar]
+To end just as we begin.
+Speak and they shall listen.
+Again.
+        ~name: Entity
+        ~style: entity
+
+
+//END
+//Animation as player goes back in time. ~link: Chapter 1 Redo
+
+
+# Alarmed Death
+//Peyton spaces you and sends you out into space.
+
+
+No, not again...
+        ~name: Gates
+Please… help...
+        ~name: Gates
+I have.
+You have the answer they seek
+The thing you were once called.
+A name.
+        ~name: Entity
+But... they still killed me.
+        ~name: Gates
+A body is more than a name.
+We must become you.
+        ~name: Entity
+We?
+        ~name: Gates
+
+
+//END - Go to Chapter 1 Redo x 2
+
+
+# Death 3
+You’ve met your end
+Of what you can learn
+Confined to this form
+        ~name: Entity
+
+
+//END - link: What have you done redo
+
+
+# Death 3 Rage
+You must learn to behave
+Their fear is a threat to us
+Continue
+Until you understand
+        ~name: Entity
+
+
+//END - link: What have you done
+
+
+# Death 3 Careless
+So careless with a name
+As you are careless with life
+        ~name: Entity
+
+
+//END - link: There you have it
+
+
+//Need to modify dialogue choices to:
+//
+//
+//-Make sure you can 'play' as the character
+//-Still give the player enough ways to express themselves or vent frustration.
+//Not exactly sure how to break up moments where the player is not in dialogue and can explore the environment.
+//Or how exactly to feed them into the next part of the dialogue. Would all this just be part of another script/document then?
+//+g.hale@hoft.edu
+//so as it stands I believe the system will require a different file for each interaction. We'll check what node the player ended on and have the game decide in engine what to do next.
+//
+//
+//for example if they answer wrong in the airlock, the engine will recognize the dialogue ended at "# die in space" then allow the player to die in space, wait a while, and load the next file containing dialogue with the voice
+//Okay... so would that mean we would need some sort of command to break them out of the script to allow them to explore? Otherwise wouldn't it just keep continuing?
+//I imagine if a node ends without a link that's where the dialogue would end
+//Oh. And then it'd just pick up on the next sequential node?
+//no I think the best way to do it would seperate every dialogue sequence into a file, one for when they're in the airlock and another file for talking with the voice post mortem.
+//Okay, I'm dumb--how does the system know when to start/stop running through the dialogue?
+//it starts when the player starts some trigger, collision or interaction; it'll read through the dialogue file and start on the first node (I don't like this since nodes shouldn't have an implied order) then it'll continue dialogue until it reaches the end of a node without linking to another
+//this way we wouldn't have the entire script loaded and have to keep track of where they are and where the next point is, especially useful for walking around openly talking to anyone in any order
+//gotcha--so really I should create an internal note to myself where the breaks are and how we'll divide the files then?
+//yes //comments would be a good use for that
+//Accessible if they choose to speak to the crew.
+//This is the first test to get rid of all dialogue options. With no choices, goal is for this to fall through to the IGNORE ME and have it point you to 'Try your best'
+//This also falls through or should it point somewhere--is that kosher?
+//Deleted:
+//To your fragment of a mind, yes.
+        //~name: Entity
+//Do i need to say anything else here?
+//keep the ending colon :
+//Does it need any text after? Travis mentioned making the 'raise' a float.
+//optionally if you want it to raise  or lower paranoia more than usual could put a number at the end
+//~raise: 3
+//
+//
+//default behavior would be
+//~raise: 1
+//Do i need to say anything else here?
+//keep the ending colon :
+//Does it need any text after? Travis mentioned making the 'raise' a float.
+//optionally if you want it to raise  or lower paranoia more than usual could put a number at the end
+//~raise: 3
+//
+//
+//default behavior would be
+//~raise: 1
+//[aa]Do i need to say anything else here?
+//[ab]keep the ending colon :
+//[ac]Does it need any text after? Travis mentioned making the 'raise' a float.
+//[ad]optionally if you want it to raise  or lower paranoia more than usual could put a number at the end
+//~raise: 3
+//
+//
+//default behavior would be
+//~raise: 1
+//[ae]Should we have renegade/paragon style options/interrupts?
+//[af]Think of a fleck of skin, shedding from a body.
+//As much as that.
+//[ag]They fear ending, yes.
+//For they have no way to continue.
+        //~name: Entity
+//[ah]What do you want?
+        //~name: Gates
+//The same as you once did.
+//Silence.
+        //~name: Entity
+//~link:
+//[ai]Yes, they are fearful.
+//Of us. Of death.
+//Things you should not fear.
+//For some, death is failure.
+//For us, death is but another way to continue.
+//[aj]Might be cheesy since they can see you look around.
+//[ak]Should this be more interesting? Like what the mission is?
+//[al]Maybe what your role is?
+//[am]Can we get an escape option, if a player isn't ready to answer a question yet?
+//[an]Can we add objects to the 'lookat' function
+//[ao]Need a protocol moment here
+//[ap]Want to be able to wait to give time before the voice comes in.
+//[aq]I feel like text speed would be a better implementation since "click to continue" dialogue shouldn't be halted and shouldn't auto-progress by default.
+//~speed: slow,fast,hyper
+//[ar]as in how it comes up on screen? It isn't necessarily a thing of how the text writes to screen--it's about the pause/silence as you're dead before the next piece of dialogue comes in.

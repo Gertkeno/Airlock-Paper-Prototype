@@ -17,6 +17,8 @@ struct Line
 			RAISE,
 			LOWER,
 			NAME,
+			EMOTE,
+			LOOK_AT,
 		} type;
 
 		std::string parameters;
