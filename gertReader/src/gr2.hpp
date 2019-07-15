@@ -6,7 +6,6 @@
 struct Line
 {
 	std::string text;
-	bool choice;
 	struct Attrib
 	{
 		enum type_t
@@ -24,11 +23,11 @@ struct Line
 	};
 
 	std::list <Attrib> attributes;
+	std::list <Line> choices;
 
-	Line() : choice (false) {}
-	Line (std::string t, bool c)
+	Line() {}
+	Line (std::string t)
 		: text (t)
-		, choice (c)
 	{}
 };
 
@@ -47,16 +46,14 @@ class gr2
 
 	// PLAY DATA
 	std::string _dialogue, _nameplate;
-	std::list <const Line *> _choices;
 
+	const Line * get_current_line() const;
 	// true if text is to be displayed / not ignored
-	bool process_text (const Line & c);
+	bool process_text (const Line * c);
+	bool condition_test_text (const Line * c);
 public:
 	gr2 (const std::string  & filename);
 
-	bool cli_play();
-	void draw (Window * w) const;
-	void draw() const;
+	void cli_play();
 	bool select_option (unsigned i);
-	bool select_option (int x, int y);
 };

@@ -6,13 +6,7 @@
 #include <algorithm>
 #include <fstream>
 
-#include <SDL2/SDL.h>
-
 #include "stringfuncs.hpp"
-#include "Window.hpp"
-#include "Font.hpp"
-
-extern Font * gfont;
 
 gr2::gr2 (const std::string & filename)
 	: _chapterProgress {0}
@@ -22,7 +16,7 @@ gr2::gr2 (const std::string & filename)
 		throw std::runtime_error {"Couldn't open file: " + filename};
 
 	std::string word;
-	std::string currentChapter {"Start"};
+	std::string currentChapter {"start"};
 	bool inChoiceBlock {false};
 	int line {1};
 	while (std::getline (c, word))
@@ -31,6 +25,7 @@ gr2::gr2 (const std::string & filename)
 		if (word [0] == '#')
 		{
 			 currentChapter = trunc_whitespacer (word.substr (1));
+			 strlower (currentChapter);
 			 if (_firstChapter.empty())
 				_firstChapter = currentChapter;
 
@@ -38,9 +33,9 @@ gr2::gr2 (const std::string & filename)
 			 std::cout << "CHAPTER: \"" << currentChapter << "\"\n";
 			 #endif
 		}
-		else if (word.find ("//") == 0)
+		else if (word.find ("//") == 0 or word.empty())
 		{
-			std::getline (c, word);
+			++line;
 			continue;
 		}
 		else if (word [0] == '~')
@@ -49,10 +44,12 @@ gr2::gr2 (const std::string & filename)
 			if (breakfind == std::string::npos)
 				throw std::runtime_error {"Missing ending : in function declaration " + std::to_string (line)};
 			std::string function {trunc_whitespacer (word.substr (1, breakfind-1))};
-
-			std::transform (function.begin(), function.end(), function.begin(), tolower);
+			strlower (function);
 
 			Line::Attrib lf;
+			lf.parameters = trunc_whitespacer (word.substr (breakfind+1));
+			strlower (lf.parameters);
+
 			if (function == "if")
 				lf.type = Line::Attrib::CONDITIONAL;
 			else if (function == "set")
@@ -70,13 +67,14 @@ gr2::gr2 (const std::string & filename)
 			else
 				throw std::runtime_error {"In chapter \"" + currentChapter + "\" Unkown function of type \"" + function + "\"" + " at line: " + std::to_string (line)};
 
-			lf.parameters = trunc_whitespacer (word.substr (breakfind+1));
-
 			#ifndef NDEBUG
 			std::cout << "FUNCTION:\n\ttype: " << lf.type << "\n\tparameter: \"" << lf.parameters << "\"\n";
 			#endif
 
-			_chapters [currentChapter].back().attributes.push_back (lf);
+			if (inChoiceBlock)
+				_chapters [currentChapter].back().choices.back().attributes.push_back (lf);
+			else
+				_chapters [currentChapter].back().attributes.push_back (lf);
 		}
 		else if (word [0] == '{')
 		{
@@ -92,9 +90,12 @@ gr2::gr2 (const std::string & filename)
 		}
 		else
 		{
-			Line line {word, inChoiceBlock};
+			Line tmp {word};
+			if (inChoiceBlock)
+				_chapters [currentChapter].back().choices.push_back (tmp);
+			else
+				_chapters [currentChapter].push_back (tmp);
 
-			_chapters [currentChapter].push_back (line);
 		}
 
 		++line;
@@ -127,10 +128,10 @@ gr2::gr2 (const std::string & filename)
 static std::map <std::string, bool> variables;
 static int paranoia;
 
-bool gr2::process_text (const Line & c)
+bool gr2::condition_test_text (const Line * c)
 {
 	bool conditionalMatch = true;
-	for (auto & i : c.attributes)
+	for (auto & i : c->attributes)
 	{
 		if (i.type == Line::Attrib::CONDITIONAL)
 			conditionalMatch = variables [i.parameters];
@@ -139,15 +140,18 @@ bool gr2::process_text (const Line & c)
 		break;
 	}
 
-	if (not conditionalMatch)
-		return false;
+	return conditionalMatch;
+}
 
-	if (c.choice)
-		_choices.push_back (& c);
+bool gr2::process_text (const Line * c)
+{
+	bool shownDialogue = true;
+	if (c->text == "IGNORE ME")
+		shownDialogue = false;
 	else
-		_dialogue = c.text;
+		_dialogue = c->text;
 
-	for (auto & i : c.attributes)
+	for (auto & i : c->attributes)
 	{
 		switch (i.type)
 		{
@@ -174,45 +178,67 @@ bool gr2::process_text (const Line & c)
 			break;
 		}
 	}
-	return true;
+	return shownDialogue;
 }
 
-void gr2::draw() const
+const Line * gr2::get_current_line() const
 {
-}
+	const _Node & currentChapter {_chapters.at (_currentChapter)};
+	if (_chapterProgress >= currentChapter.size())
+		return nullptr;
 
-void gr2::draw (Window * w) const
-{
+	auto chapterLine {currentChapter.begin()};
+	std::advance (chapterLine, _chapterProgress);
+	return &*chapterLine;
 }
 
 bool gr2::select_option (unsigned i)
 {
-	if (i >= _choices.size())
-		return false;
+	if (get_current_line()->choices.empty())
+		return true;
+
+	int index = i;
+	for (auto & choice : get_current_line()->choices)
+		if (--index == 0)
+			process_text (&choice);
+
+	return false;
 }
 
-bool gr2::select_option (int x, int y)
-{
-}
-
-bool gr2::cli_play()
+// for testing
+void gr2::cli_play()
 {
 	// load next line based on process_text
 	// if (process_text (current_stage))
 	// _dialogue = line text
-	const auto & currentChapter {_chapters.at (_currentChapter)};
-	if (_chapterProgress >= currentChapter.size())
-	{
-		// exit game lol
-		return false;
-	}
 
-	auto chapterLine {currentChapter.begin()};
-	std::advance (chapterLine, _chapterProgress);
-	_choices.clear();
-	while (not process_text (*chapterLine))
+	while (get_current_line() != nullptr)
 	{
-		++_chapterProgress;
+		if (condition_test_text (get_current_line()) and process_text (get_current_line()))
+		{
+			std::cout << _nameplate << ":\n" << _dialogue;
+			if (not get_current_line()->choices.empty())
+			{
+				std::cout << "\n\n";
+				int choicesIndex {0};
+				for (auto & i : get_current_line()->choices)
+				{
+					std::cout << ++choicesIndex << ") " << i.text << '\n';
+				}
+			}
+			std::cout << "\n//";
+
+			int userChoice;
+			std::cin >> userChoice;
+			if (userChoice == 0)
+				break;
+
+			if (select_option (userChoice))
+			{
+				++_chapterProgress;
+			}
+		}
+		else
+			++_chapterProgress;
 	}
-	return true;
 }

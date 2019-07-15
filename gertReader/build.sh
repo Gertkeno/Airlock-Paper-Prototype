@@ -43,4 +43,4 @@ md5sum src/*.c* > .hashes
 
 echo "Linking ..."
 OBJ_LIST=`find obj/ -type f -iname "*.o"`
-$CXX -o gr $OBJ_LIST -lSDL2
+$CXX -o gr $OBJ_LIST

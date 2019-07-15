@@ -27,3 +27,8 @@ inline std::string trunc_whitespacer (std::string r)
 	trunc_whitespace (r);
 	return r;
 }
+
+inline void strlower (std::string & c)
+{
+	std::transform (c.begin(), c.end(), c.begin(), tolower);
+}
