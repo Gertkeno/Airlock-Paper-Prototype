@@ -14,6 +14,7 @@ another line of text
 	no sir
 		~link: No
 	lol third option
+		~if: thirdVisit
 		~link: third
 	fallthrough
 }
@@ -24,10 +25,12 @@ please display my choices
 
 # Yes command
 
+Wow good job
 correct response
+	~set: thirdVisit
+	~link: Welcome
 
 # No
-
 false flag operation
 
 #third

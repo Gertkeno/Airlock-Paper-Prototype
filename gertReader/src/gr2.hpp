@@ -19,9 +19,12 @@ struct Line
 			NAME,
 			EMOTE,
 			LOOK_AT,
+			WAIT,
 		} type;
 
 		std::string parameters;
+
+		static type_t str_to_type (const std::string &);
 	};
 
 	std::list <Attrib> attributes;

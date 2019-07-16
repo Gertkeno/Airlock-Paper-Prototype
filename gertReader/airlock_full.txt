@@ -32,16 +32,15 @@ What is your name?
 
 
 Hey, bud. You with us?
+        ~name: Peyton
 I have to ask you some questions. It’s important.
 What is your name?
-        ~name: Peyton
-        ~if: CH1_KnowsName
 
 
 {
         …
-                ~link: Unease
-                ~if: not CH1_KnowsName
+		~link: Unease
+		~if: not CH1_KnowsName
 Stephen Gates.
         ~if: CH1_KnowsName
         ~link: Gates
@@ -66,23 +65,21 @@ Let him get his bearings.
 
 
 # Confusion
+What is it?
+	~name: Peyton
 {
-        Who are you people?
-                ~if: CH1_WAYA
-                ~link: Who are you A
+Who are you people?
+		~if: CH1_WAYA
+		~link: Who are you A
 What’s going on?
         ~if: CH1_WAYB
         ~link: Who are you B
 Let me out.
-~if: CH1_WAYC
-~link: Who are you C
+		~if: CH1_WAYC
+		~link: Who are you C
 }
-IGNORE ME
-        ~link: Try your best
-
 
 # Who are you A
-
 
 It's us… Don’t you remember?
         ~name: Esme
@@ -212,7 +209,7 @@ Hey. Can you hear us?
         You all killed me.
                 ~if: CH1_AAC
                 ~link: Alive again C
-                ~raise[aa][ab][ac][ad]: 1
+                ~raise: 1
         Something strange is happening.
                 ~if: not CH1_AAA and not CH1_AAB and not CH1_AAC
                 ~link: Something strange
@@ -289,7 +286,7 @@ I’m sorry, I wish I knew.
         ~link: Alarmed B
 Nothing that should be scaring you.
         ~link: Alarmed C
-//Angry options?[ae]
+//Angry options?
 }
 
 
@@ -424,7 +421,7 @@ Even if you are punished, you will still learn.
 # Learning B
 
 
-Think of a fleck of skin, shedding from a body. [af]
+Think of a fleck of skin, shedding from a body. 
 As much as that.
         ~name: Entity
         ~unset: CH1_LB
@@ -447,7 +444,7 @@ Because of me.
 Do not fear ending.
 You will learn from death
 As those who meet it only once pretend they can.
-        ~name: Entity[ag][ah][ai]
+        ~name: Entity
 What if I say the wrong thing?
         ~name: Gates
 You will make no mistake.
@@ -489,11 +486,11 @@ Gates. Where are you right now?
 
 
 //END - Player can explore and look around
-//Player can learn the name of the ship via exploring. Link: Finding the name[aj]
+//Player can learn the name of the ship via exploring. Link: Finding the name
 
 
 # Finding the name
-This must be it. The Kairos-3.[ak][al]
+This must be it. The Kairos-3.
         ~name: Gates
 
 
@@ -519,7 +516,7 @@ Well?
 The Kairos-3
                 ~if: CH1_NameOfShip
                 ~link: The Kairos-3
-        ESC[am]
+        ESC
 }
 
 
@@ -626,7 +623,7 @@ That doesn’t matter. Just try.
 You listed your symptoms before.
 I’m looking at your chart right now.
         ~name: Rakesh
-        ~lookat: Chart[an]
+        ~lookat: Chart
 The memory loss may have been exacerbated..
         ~name: Esme
 Any mental degradation is troubling.
@@ -839,7 +836,7 @@ Why have you been depressed?
 {
         Anders is gone.
                 ~raise: 3
-                ~link: Death 3 Careless[ao]
+                ~link: Death 3 Careless
         Marv is gone.
                 ~link: Freedom
 }
@@ -944,7 +941,6 @@ Because Marv is dead
 
 
 //END
-________________
 //PROTOCOL - Keeping all the protocols together.
 
 
@@ -967,7 +963,7 @@ I’m so sorry.
 # Learn name
 Goodbye, Gates.
         ~name: Peyton
-        ~color: blue
+        // ~color: blue // we wouldn't need color if text colour is per character
 ~set: CH1_KnowsName
 
 
@@ -984,30 +980,24 @@ I’m sorry, Gates.
 
 //END - link: Death 3
 
-
-
-
 //Do we need extra death counters?
-________________
 //DEATHS - Keeping all the deaths together.
-
 
 # Death 1
 No no no no no no no no
         ~name: Gates
 Not like this…
         ~name: Gates
-        ~speed: slow
+        // ~speed: slow
 Not... like this…
         ~name: Gates
-        ~style: weak
-        ~speed: slower
-        ~wait: 5[ap][aq][ar]
+        // ~style: weak
+        // ~speed: slower
+        ~wait: 5
 To end just as we begin.
+        ~name: Entity
 Speak and they shall listen.
 Again.
-        ~name: Entity
-        ~style: entity
 
 
 //END
@@ -1114,39 +1104,39 @@ As you are careless with life
 //
 //default behavior would be
 //~raise: 1
-//[aa]Do i need to say anything else here?
-//[ab]keep the ending colon :
-//[ac]Does it need any text after? Travis mentioned making the 'raise' a float.
-//[ad]optionally if you want it to raise  or lower paranoia more than usual could put a number at the end
+//Do i need to say anything else here?
+//keep the ending colon :
+//Does it need any text after? Travis mentioned making the 'raise' a float.
+//optionally if you want it to raise  or lower paranoia more than usual could put a number at the end
 //~raise: 3
 //
 //
 //default behavior would be
 //~raise: 1
-//[ae]Should we have renegade/paragon style options/interrupts?
-//[af]Think of a fleck of skin, shedding from a body.
+//Should we have renegade/paragon style options/interrupts?
+//Think of a fleck of skin, shedding from a body.
 //As much as that.
-//[ag]They fear ending, yes.
+//They fear ending, yes.
 //For they have no way to continue.
         //~name: Entity
-//[ah]What do you want?
+//What do you want?
         //~name: Gates
 //The same as you once did.
 //Silence.
         //~name: Entity
 //~link:
-//[ai]Yes, they are fearful.
+//Yes, they are fearful.
 //Of us. Of death.
 //Things you should not fear.
 //For some, death is failure.
 //For us, death is but another way to continue.
-//[aj]Might be cheesy since they can see you look around.
-//[ak]Should this be more interesting? Like what the mission is?
-//[al]Maybe what your role is?
-//[am]Can we get an escape option, if a player isn't ready to answer a question yet?
-//[an]Can we add objects to the 'lookat' function
-//[ao]Need a protocol moment here
-//[ap]Want to be able to wait to give time before the voice comes in.
-//[aq]I feel like text speed would be a better implementation since "click to continue" dialogue shouldn't be halted and shouldn't auto-progress by default.
+//Might be cheesy since they can see you look around.
+//Should this be more interesting? Like what the mission is?
+//Maybe what your role is?
+//Can we get an escape option, if a player isn't ready to answer a question yet?
+//Can we add objects to the 'lookat' function
+//Need a protocol moment here
+//Want to be able to wait to give time before the voice comes in.
+//I feel like text speed would be a better implementation since "click to continue" dialogue shouldn't be halted and shouldn't auto-progress by default.
 //~speed: slow,fast,hyper
-//[ar]as in how it comes up on screen? It isn't necessarily a thing of how the text writes to screen--it's about the pause/silence as you're dead before the next piece of dialogue comes in.
+//as in how it comes up on screen? It isn't necessarily a thing of how the text writes to screen--it's about the pause/silence as you're dead before the next piece of dialogue comes in.
