@@ -233,16 +233,20 @@ const Line * gr2::get_current_line() const
 	return &*chapterLine;
 }
 
-bool gr2::select_option (unsigned i)
+bool gr2::select_option (const Line * c, unsigned i)
 {
-	if (get_current_line()->choices.empty())
-		return true;
+	if (c->choices.empty())
+	{
+			++_chapterProgress;
+			return true;
+	}
 
 	int index = i;
-	for (auto & choice : get_current_line()->choices)
+	for (auto & choice : c->choices)
 	{
 		if (condition_test_text (&choice) and --index == 0)
 		{
+			++_chapterProgress;
 			process_text (&choice);
 			return true;
 		}
@@ -255,20 +259,19 @@ bool gr2::select_option (unsigned i)
 // for testing
 void gr2::cli_play()
 {
-	// load next line based on process_text
-	// if (process_text (current_stage))
-	// _dialogue = line text
-
-	while (get_current_line() != nullptr)
+	const Line * cl {get_current_line()};
+	while (cl != nullptr)
 	{
-		if (condition_test_text (get_current_line()) and process_text (get_current_line()))
+		// so much garbage gets altered with process_text (), thus the issue with OOP
+		if (condition_test_text (cl) and process_text (cl))
 		{
+			cl = get_current_line();
 			std::cout << _nameplate << ":\n" << _dialogue;
-			if (not get_current_line()->choices.empty())
+			if (not cl->choices.empty())
 			{
 				std::cout << "\n\n";
 				int choicesIndex {0};
-				for (auto & i : get_current_line()->choices)
+				for (auto & i : cl->choices)
 				{
 					if (condition_test_text (&i))
 						std::cout << ++choicesIndex << ") " << i.text << '\n';
@@ -281,11 +284,11 @@ void gr2::cli_play()
 			if (userChoice == 0)
 				break;
 
-			if (select_option (userChoice))
-			{
-			}
+			select_option (cl, userChoice);
+
 		}
 		else
 			++_chapterProgress;
+		cl = get_current_line();
 	}
 }

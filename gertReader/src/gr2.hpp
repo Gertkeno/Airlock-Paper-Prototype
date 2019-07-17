@@ -55,10 +55,13 @@ class gr2
 	const Line * get_current_line() const;
 	// true if text is to be displayed / not ignored
 	bool process_text (const Line * c);
+	bool process_text() {return process_text (get_current_line());}
 	bool condition_test_text (const Line * c);
+	bool condition_test_text() {return condition_test_text (get_current_line());};
 public:
 	gr2 (const std::string  & filename);
 
 	void cli_play();
-	bool select_option (unsigned i);
+	bool select_option (const Line * c, unsigned i);
+	bool select_option (unsigned i) {return select_option (get_current_line(), i);}
 };
